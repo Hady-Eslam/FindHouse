@@ -1,0 +1,15 @@
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "c:/xampp/htdocs/findhouse.com"
+        }
+    ],
+    /* below is the important part ;) */
+    "settings": {
+        "xdebug": {
+            "url": "http://localhost/findhouse.com",
+        }
+    }
+}
