@@ -1,8 +1,9 @@
-# Project Name
+# Project Title
 Find House
 
-# Languages
-Back End => ( PHP )
+# Built With
+  BackEnd => ( PHP )
+  FronEnd => ( HTML, CSS, JAVASCRIPT )
 
 # Purpose
 For Fun
@@ -89,3 +90,11 @@ For Fun
 
 # Current Status
   Not Finished
+
+# Versioning
+  The Current Version is 1.1
+  
+  The Available Versions:
+    1 - 1.1
+# Authors
+  Hady Eslam
