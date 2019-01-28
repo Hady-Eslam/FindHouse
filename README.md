@@ -9,11 +9,11 @@ For Fun
   FronEnd => ( HTML, CSS, JAVASCRIPT )
 
 # Technologies Used in it
-  1 - PHPMailer Class
-  2 - Composer For PHP Manger
-  3 - MVC Design Pattern
-  4 - .htaccess File For Routing URLS
-  5 - JQuery
+  1- PHPMailer Class
+  2- Composer For PHP Manger
+  3- MVC Design Pattern
+  4- .htaccess File For Routing URLS
+  5- JQuery
 
 
 # Project Whole Discription
