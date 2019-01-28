@@ -56,7 +56,7 @@ For Fun
   9. Predict (The Function Still under maintenence)
      - Anyone can predict the price of house with specefic features.
   
-  10. Settings
+  10. Settings : 
        User Can Change
        - Name
        - Phone
