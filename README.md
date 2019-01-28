@@ -19,26 +19,26 @@ For Fun
 # Project Whole Discription
   The Site Do This Functions.
   
-  1 - ## Sign UP
+  ## 1. Sign UP
     - it register the name, email, phone, password.
     - check if email and name is not found so every user can have unique.
     - it Send Confirm Email using phpmailer class With The User Token For Completing The Procces of SignUP and put him in waiting_user
           List.
     - it Delete the Token And user Data after a week time if he didn't enter the link in the email.
   
-  2 - ## Confirm User
+  ## 2. Confirm User
     - check if user in waiting list or not and the token is valid or not.
     - Put the Data from the waiting_list to users_list so he can use some of website functions.
   
-  3 - Log in
-    A - if the user in waiting_list it redirct him to confirm user page.
+  ## 3. Log in
+    - if the user in waiting_list it redirct him to confirm user page.
   
-  4 - Forget Password
-    A - The user put his email and website check if the email is in users_list or not.
-    B - if the email is registered in waiting_list it redirect him in Confirm user page.
-    C - if the email is registered in users_list the website send forget password email which contain the token and link of the reset
+  ## 4. Forget Password
+    - The user put his email and website check if the email is in users_list or not.
+    - if the email is registered in waiting_list it redirect him in Confirm user page.
+    - if the email is registered in users_list the website send forget password email which contain the token and link of the reset
           password link.
-    D - The Token Will be deleted after 3 days.
+    - The Token Will be deleted after 3 days.
   
   5 - ReSet Password
     A - check if the token and user is exists in database or not .
