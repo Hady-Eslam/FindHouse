@@ -1,0 +1,42 @@
+section, .info, .Posts div{
+	text-align: left;
+}
+.Posts div p, .info, .Posts, .Posts div a{
+	display: inline-block;
+}
+span{
+    color: #454545;
+}
+.Posts div, .Posts{
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+}
+.info{
+	margin-left: 0px;
+	padding-left: 0px;
+	vertical-align: top;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+.info input{
+	width: 100px;
+	height: 100px;
+}
+.Posts{
+    width: 59%;
+    margin-top: 100px;
+}
+.Posts div{
+	border-color: #454545;
+}
+.Posts div input{
+	width: 40px;
+	margin-right: 50px;
+}
+.Posts p{
+	text-align: center;
+}
+.Number{
+	color: black;
+}
