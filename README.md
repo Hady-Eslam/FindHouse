@@ -106,3 +106,4 @@ For Fun
     1 - 1.1
 # Authors
   Hady Eslam
+  [Linkedin Profile](https://www.linkedin.com/in/hady-eslam/)
