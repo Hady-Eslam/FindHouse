@@ -62,9 +62,9 @@ For Fun
        - Phone
        - Password
        - Profile Picture
-       - DeActivate Account
+       - DeActivate Account : 
           in this it will log out user and his posts will not be shown in the search untill he log in again.
-       - Delete Account
+       - Delete Account : 
           in this the account will be deleted and his posts will also be deleted.
   
   11. My Profile
