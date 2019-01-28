@@ -1,26 +1,34 @@
 # Project Title
 Find House
 
+# Purpose
+For Fun
+
 # Built With
   BackEnd => ( PHP )
   FronEnd => ( HTML, CSS, JAVASCRIPT )
 
-# Purpose
-For Fun
+# Technologies Used in it
+  1 - PHPMailer Class
+  2 - Composer For PHP Manger
+  3 - MVC Design Pattern
+  4 - .htaccess File For Routing URLS
+  5 - JQuery
+
 
 # Project Whole Discription
   The Site Do This Functions.
   
-  1 - Sign UP
-    A - it register the name, email, phone, password.
-    B - check if email and name is not found so every user can have unique.
-    C - it Send Confirm Email using phpmailer class With The User Token For Completing The Procces of SignUP and put him in waiting_user
+  1 - ## Sign UP
+    - it register the name, email, phone, password.
+    - check if email and name is not found so every user can have unique.
+    - it Send Confirm Email using phpmailer class With The User Token For Completing The Procces of SignUP and put him in waiting_user
           List.
-    D - it Delete the Token And user Data after a week time if he didn't enter the link in the email.
+    - it Delete the Token And user Data after a week time if he didn't enter the link in the email.
   
-  2 - Confirm User
-    A - check if user in waiting list or not and the token is valid or not.
-    B - Put the Data from the waiting_list to users_list so he can use some of website functions.
+  2 - ## Confirm User
+    - check if user in waiting list or not and the token is valid or not.
+    - Put the Data from the waiting_list to users_list so he can use some of website functions.
   
   3 - Log in
     A - if the user in waiting_list it redirct him to confirm user page.
