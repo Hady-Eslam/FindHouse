@@ -19,12 +19,12 @@ For Fun
 # Project Whole Discription
   The Site Do This Functions.
   
-  ## 1. Sign UP
-    - it register the name, email, phone, password.
-    - check if email and name is not found so every user can have unique.
-    - it Send Confirm Email using phpmailer class With The User Token For Completing The Procces of SignUP and put him in waiting_user
-          List.
-    - it Delete the Token And user Data after a week time if he didn't enter the link in the email.
+  1. Sign UP
+    * it register the name, email, phone, password.
+    * check if email and name is not found so every user can have unique.
+    * it Send Confirm Email using phpmailer class With The User Token For Completing The Procces of SignUP and put him
+        in waiting_user List.
+    * it Delete the Token And user Data after a week time if he didn't enter the link in the email.
   
   ## 2. Confirm User
     - check if user in waiting list or not and the token is valid or not.
