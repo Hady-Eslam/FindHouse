@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once CheckToken;
 include_once ChangePassword;
 
@@ -77,4 +77,3 @@ function ReSetPassword_Check_GET_Data(){
     	'T' => ['Type' => 'STRING', 'Len' => Token_Len ]
 	], 'StatusPages_Not_Authurithed_User_Page' );
 }
-?>

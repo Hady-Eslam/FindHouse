@@ -17,10 +17,6 @@ function CheckData(){
     Result = CheckDataLenAndNumber(Result, '#MinPathRooms', Rooms_Len, 0, 9, true);
     Result = CheckDataLenAndNumber(Result, '#MaxPathRooms', Rooms_Len, 0, 9, true);
     Result = CheckMinMax('#MinPathRooms', '#MaxPathRooms', Result);
-    
-    Result = CheckDataLenAndNumber(Result, '#MinStorey', Storey_Len, 0, 20, true);
-    Result = CheckDataLenAndNumber(Result, '#MaxStorey', Storey_Len, 0, 20, true);
-    Result = CheckMinMax('#MinStorey', '#MaxStorey', Result);
 
     Result = CheckDataLenAndNumber(Result, '#MinMoney', Money_Len,0,10000000000,true);
     Result = CheckDataLenAndNumber(Result, '#MaxMoney', Money_Len,0,10000000000,true);

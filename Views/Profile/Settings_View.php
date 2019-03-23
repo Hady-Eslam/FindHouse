@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once CheckUser;
 
 function Settings_Begin($incomingURL){
@@ -9,23 +9,26 @@ function Settings_Begin($incomingURL){
 
 function Settings_POST($incomingURL){
 	$URL = new URLClass();
-	if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings(\?(.+))?/', $incomingURL ) ||
-		$URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Picture(\?(.+))?/', $incomingURL ))
-		Settings_POST_Picture();
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Name(\?(.+))?/', $incomingURL ) )
+
+	$incomingURL = explode('?', $incomingURL)[0];
+
+	if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Name/', $incomingURL ) )
 		Settings_POST_Name();
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Phone(\?(.+))?/', $incomingURL ) )
-		Settings_POST_Phone();
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Password(\?(.+))?/', $incomingURL ))
+
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Password/',
+				$incomingURL ))
 		Settings_POST_Password();
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate(\?(.+))?/',$incomingURL))
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Phone/', $incomingURL ) )
+		Settings_POST_Phone();
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate/',
+				$incomingURL))
 		Settings_POST_DeActivate();
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings/', $incomingURL ) ||
+			preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Picture/', $incomingURL ))
+		Settings_POST_Picture();
 }
 
 function Settings_GET($incomingURL){
@@ -35,36 +38,49 @@ function Settings_GET($incomingURL){
 
 function Settings_SetVariables($incomingURL){
 	$URL = new URLClass();
-	if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Name(\?(.+))?/', $incomingURL ) )
+	$incomingURL = explode('?', $incomingURL)[0];
+
+	if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Name/', $incomingURL ) )
 		$GLOBALS['Section'] = 'Name';
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Password(\?(.+))?/', $incomingURL ))
+
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Password/',
+				$incomingURL ))
 		$GLOBALS['Section'] = 'Password';
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Phone(\?(.+))?/', $incomingURL ) )
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Phone/', $incomingURL ) )
 		$GLOBALS['Section'] = 'Phone';
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate(\?(.+))?/',$incomingURL))
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate/',
+				$incomingURL))
 		$GLOBALS['Section'] = 'DeActivate';
-	else if ( $URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings(\?(.+))?/', $incomingURL ) ||
-		$URL->Match(
-		'/http:\/\/findhouse\.com\/Profile\/Settings\/Picture(\?(.+))?/', $incomingURL ))
+	
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings/', $incomingURL ) ||
+			preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Picture/', $incomingURL ))
 		$GLOBALS['Section'] = 'Picture';
+
+	
 
 	if ( isset($_GET['NameDone']) )
 		$GLOBALS['Result'] = 'NameDone';
-	else if ( isset($_GET['PhoneDone']) )
-		$GLOBALS['Result'] = 'PhoneDone';
-	else if ( isset($_GET['PictureDone']) )
-		$GLOBALS['Result'] = 'PictureDone';
-	else if ( isset($_GET['WrongPassword']) )
-		$GLOBALS['Result'] = 'WrongPassword';
-	else if ( isset($_GET['PasswordDone']) )
-		$GLOBALS['Result'] = 'PasswordDone';
+	
 	else if ( isset($_GET['ReservedName']) )
 		$GLOBALS['Result'] = 'ReservedName';
+
+	else if ( isset($_GET['PhoneDone']) )
+		$GLOBALS['Result'] = 'PhoneDone';
+
+	else if ( isset($_GET['ReservedPhone']) )
+		$GLOBALS['Result'] = 'ReservedPhone';
+	
+	else if ( isset($_GET['PictureDone']) )
+		$GLOBALS['Result'] = 'PictureDone';
+	
+	else if ( isset($_GET['WrongPassword']) )
+		$GLOBALS['Result'] = 'WrongPassword';
+	
+	else if ( isset($_GET['PasswordDone']) )
+		$GLOBALS['Result'] = 'PasswordDone';
+	
 	else
 		$GLOBALS['Result'] = '';
 }
@@ -75,24 +91,17 @@ function Settings_POST_Name(){
 
 	if ( $URL->REFFERE_is_SET() && isset($_POST['NameSubmit']) && isset($_POST['N'])){
 		
-		if ( !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings\/Name(\?(.+))?/',
-			$URL->Get_REFFERE()) )
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/Name/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
 			StatusPages_Not_Authurithed_User_Page();
-		
+
 		(new FILTERSClass())->FILTER_POST(
             [ 'N' => [ 'Type' => 'STRING', 'Len' => Name_Len] ],
-            'Redirect', Settings.'/Password');
-
-	    // Check Name
-	    if ( ($Result = CheckUserName($GLOBALS['N']))->Result == -1 )
-	    	 StatusPages_Error_Page();
-	    else if ( $Result->Data != 'name Not Found')
-	    	Redirect(Settings.'/Name?ReservedName');
+            'Redirect', Settings.'/Name');
 
 	    // Save in DataBase
-	    if ((new MYSQLClass('Settings'))
-	    		->excute('UPDATE users SET name = ? WHERE email = ?',
+	    if ((new MYSQLClass('Settings'))->
+	    		excute('UPDATE users SET name = ? WHERE email = ?',
 				array(
 					$Hashing->Hash_Users($GLOBALS['N']),
 					$Hashing->Hash_Users($_SESSION['Email'])
@@ -108,25 +117,31 @@ function Settings_POST_Phone(){
 	$URL = new URLClass();
 	$Hashing = new HashingClass();
 
-	if ( $URL->REFFERE_is_SET() && isset($_POST['PhoneSubmit'])&&isset($_POST['Ph'])){
+	if ( $URL->REFFERE_is_SET() && isset($_POST['PhoneSubmit']) && isset($_POST['Ph'])){
 		
-		if ( !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings\/Phone(\?(.+))?/',
-			$URL->Get_REFFERE()) )
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/Phone/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
 			StatusPages_Not_Authurithed_User_Page();
-
+		
 		(new FILTERSClass())->FILTER_POST(
             [ 'Ph' => [ 'Type' => 'STRING', 'Len' => Phone_Len] ],
             'Redirect', Settings.'/Phone');
 
+	    // Check Phone
+	    if ( ($Result = CheckUserPhone($GLOBALS['Ph']))->Result == -1 )
+	    	 StatusPages_Error_Page();
+	    else if ( $Result->Data != 'phone Not Found')
+	    	Redirect(Settings.'/Phone?ReservedPhone');
+
 	    // Save in DataBase
-	    if ((new MYSQLClass('Settings'))->
-	    		excute('UPDATE users SET phone = ? WHERE email = ?',
+	    if ((new MYSQLClass('Settings'))
+	    		->excute('UPDATE users SET phone = ? WHERE email = ?',
 				array(
 					$Hashing->Hash_Users($GLOBALS['Ph']),
 					$Hashing->Hash_Users($_SESSION['Email'])
 				))->Result == -1 )
 	    	StatusPages_Error_Page('Saving Phone into DataBase');
+	    $_SESSION['Phone'] = $GLOBALS['Ph'];
 	    Redirect(Settings.'/Phone?PhoneDone');
 	}
 	StatusPages_Not_Authurithed_User_Page();
@@ -140,9 +155,8 @@ function Settings_POST_Password(){
 	if ( $URL->REFFERE_is_SET() && isset($_POST['PasswordSubmit']) &&
 		 isset($_POST['P']) && isset($_POST['OP']) ){
 
-		if ( !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings\/Password(\?(.+))?/',
-			$URL->Get_REFFERE()) )
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/Password/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
 			StatusPages_Not_Authurithed_User_Page();
 
 		(new FILTERSClass())->FILTER_POST([ 
@@ -181,9 +195,8 @@ function Settings_POST_DeActivate(){
 	if ( $URL->REFFERE_is_SET() &&
 		( isset($_POST['DeactivateSubmit']) || isset($_POST['DeleteSubmit']) ) ){
 		
-		if ( !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate(\?(.+))?/',
-			$URL->Get_REFFERE()) )
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
 			StatusPages_Not_Authurithed_User_Page();
 
 		if ( isset($_POST['DeactivateSubmit']) ){
@@ -215,11 +228,10 @@ function Settings_POST_Picture(){
 
 	if ( $URL->REFFERE_is_SET() && isset($_POST['PictureSubmit']) ){
 
-		if ( !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings(\?(.+))?/',
-				$URL->Get_REFFERE()) &&  !$URL->Match(
-			'/http:\/\/findhouse\.com\/Profile\/Settings\/Picture(\?(.+))?/',
-				$URL->Get_REFFERE()) )
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/Picture/',
+					explode('?', $URL->Get_REFFERE())[0] ) && 
+			!preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
 			StatusPages_Not_Authurithed_User_Page();
 			
 		$GLOBALS['Pic'] = true;

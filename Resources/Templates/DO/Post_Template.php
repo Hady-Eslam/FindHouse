@@ -1,8 +1,7 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE>
 <html>
 <head>
-	<title>Post</title>
+	<title><?php echo $GLOBALS['Add_Name']?></title>
 	
 	<link rel="stylesheet" type="text/css" href="<?php echo AllPagesCSS; ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo PagesCSS; ?>Post.CSS">
@@ -26,100 +25,97 @@
     <?php include_once AllHeaders; ?>
 
 	<section>
-		
-		<div class='Title'>
-            Post
-        </div>
 
         <?php   include_once MessageBox; ?>
 
         <div class="Post">
-            
-            <div class="Pictures">
-                <img src="<?php echo $GLOBALS['First_Picture']; ?>">
-                <img src="<?php echo $GLOBALS['Second_Picture']; ?>">
-            </div>
 
-            <div class="User_info">
-                <a href="<?php echo $GLOBALS['User_Profile']; ?>">
-                    <p><strong>By : </strong><?php echo $GLOBALS['User']; ?></p>
-                </a>
-                <p><strong>in : </strong><?php echo $GLOBALS['Date']; ?></p>
-                <p><strong>Phone : </strong><?php echo $GLOBALS['Phone']; ?></p>
-            </div>
+            <div style="vertical-align: top;padding: 0px;margin: 0px;display: inline-block;
+                    padding-left: 5%;width: 65%">
 
-            <div class="info">
-
-                <p><strong>Home Details :</strong></p>
+                <div style="font-size: 15px;">
+                    <p style="padding: 0px;margin: 0px;"><?php echo $GLOBALS['Add_Name']?></p>
+                    <p><?php echo $GLOBALS['SmallType'].' For '.$GLOBALS['BigType']; ?></p>
+                    <p><?php echo $GLOBALS['Date']?></p>
+                    <p><?php echo $GLOBALS['POST_ID']?></p>
+                </div>
                 
-                <div>
-
-                    <p><strong>Description :</strong></p>
-                    
-                    <div class="Discreption">
-                        <?php echo (empty($GLOBALS['Discreption']))?
-                                'No Discreption': $GLOBALS['Discreption']; ?>
-                    </div>
-
+                <div class="Pictures" style="border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #454545;">
+                    <img src="<?php echo $GLOBALS['First_Picture']; ?>"
+                        style="vertical-align: top;">
                 </div>
 
-                <div class="Someinfo">
-                    <p><strong>Features :</strong></p>
-                    
+                <div style="border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #454545;">
                     <div>
-                        <p><strong>For </strong><?php echo $GLOBALS['Type']; ?></p>
-                        <p><strong>For </strong><?php echo $GLOBALS['Status']; ?></p>
-                        <p><strong>is Furnished ? 
-                            </strong><?php echo $GLOBALS['Furnished']; ?></p>
-                                
+                        <span>Rooms : <?php echo $GLOBALS['Rooms']; ?></span>
+                        <span>PathRooms : <?php echo $GLOBALS['PathRooms']; ?></span>
                     </div>
 
                     <div>
-                        <p>Area : <strong><?php echo $GLOBALS['Area']; ?></strong>
-                                Square Feet</p>
-                        <p><?php echo $GLOBALS['Rooms']; ?> <strong>Rooms</strong></p>
-                        <p><?php echo $GLOBALS['PathRooms']; ?> 
-                            <strong>Pathrooms</strong></p>
-                        <p>in <strong><?php echo $GLOBALS['Storey']; ?></strong> Floor</p>
+                        <span>Area : <?php echo $GLOBALS['Area']; ?></span>
+                        <span>Furnished : <?php echo $GLOBALS['Furnished']; ?></span>
                     </div>
 
                     <div>
-                        <p><strong>in : </strong><?php echo $GLOBALS['Address']; ?></p>
-                        <p><strong>Price : $ </strong><?php echo $GLOBALS['Money']; ?></p>
+                        <p><?php echo $GLOBALS['Discreption']; ?></p>
                     </div>
                 </div>
+
+                <div class="Pictures">
+                    <img src="<?php echo $GLOBALS['Second_Picture']; ?>"
+                        style="vertical-align: top;">
+                </div>
+
+                <div class="Pictures">
+                    <img src="<?php echo $GLOBALS['Third_Picture']; ?>"
+                        style="vertical-align: top;">
+                </div>
+
+                <div class="Pictures">
+                    <img src="<?php echo $GLOBALS['Fourth_Picture']; ?>"
+                        style="vertical-align: top;">
+                </div>
+
             </div>
 
+            <div style="display: inline-block; width: 25%;">
+                <div style="background-color: blue;border-color: blue;border-style: solid;border-width: 1px;border-radius: 5px;height: 30px;">
+                    <p style="margin: 0px;"><?php echo $GLOBALS['Money']; ?> $</p>
+                </div>
 
-            <div>
-                <input type="button" value="Like" id="Like">
-                <input type="button" value="DisLike" id="DisLike">
-                <span><span id="Likes">
-                    <?php echo $GLOBALS['Post_Likes']; ?></span> Likes</span>
-                <span><span id="DisLikes">
-                    <?php echo $GLOBALS['Post_DisLikes']; ?></span> DisLikes</span>
-                <span><span id="Comments">
-                    <?php echo $GLOBALS['Comments_Count']; ?></span> Comments</span>
+                <div style="background-color: blue;border-color: blue;border-style: solid;border-width: 1px;border-radius: 5px;height: 30px;">
+                    <p style="margin: 0px;"><?php echo $GLOBALS['Phone']; ?></p>
+                </div>
+
+                <div>
+                    
+                    <div class="User_info">
+                        <a href="<?php echo $GLOBALS['User_Profile']; ?>">
+                            
+                            <img src="<?php echo OnlineUser; ?>" style="width: 80px;height: 80px;
+                                border-radius: 50%;display: inline-block;">
+
+                            <div style="display: inline-block;">
+                                <p><?php echo $GLOBALS['User_Name']; ?></p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
+        <div style="text-align: left;" id="MakeMessage">
+            <p>Make Message</p>
 
-        <div class="Comments_Div">
-            
-            <div class="WriteComment">
-                <?php Post_Get_User_Link(); ?>
-                <textarea rows="2" placeholder="Write Your Comment Here" id="Comment"
-                    oninput="CheckinputLen(this.id, Comment_Len);"></textarea>
+            <div>
+                <?php Post_Check_Email(); ?>
 
-                <input type="image" src="<?php echo Send; ?>" id="SendComment">
+                <textarea cols="10" rows="10" style="display: block;margin: 10px;"
+                placeholder="Enter Your Message Here" id="Message" name="Message"></textarea>
             </div>
 
-        <?php
-            foreach ($GLOBALS['Query_Comments_Result'] as $Data) {
-                Post_Set_Comments($Data);
-            }
-        ?>
-
+            <input type="submit" value="Send" id="SendMessage">
         </div>
 
 	</section>
@@ -127,16 +123,9 @@
 	<?php  include_once Footer;  ?>
 
     <script type="text/javascript">
-        var Comment_Len = <?php echo Comment_Len; ?>;
-
-        var MakeCommentPage = '<?php echo MakeCommentPage; ?>';
-        var MakeLike_DisLikePage = '<?php echo MakeLike_DisLikePage; ?>';
-        
-        var Post_id = <?php echo $GLOBALS['Post_id']; ?>;
-        var isUser = <?php echo $GLOBALS['isUser']; ?>;
-        var User_Link = '<?php echo $GLOBALS['User_Link']; ?>';
-        var User_image = '<?php echo $GLOBALS['User_image']; ?>';
-        var User_Name = '<?php echo $GLOBALS['User_Name']; ?>';
+        var MakeMessagePage = '<?php echo MakeMessage; ?>';
+        var Message_Len = <?php echo Message_Len; ?>;
+        var Email_Len = <?php echo Email_Len; ?>;
     </script>
 
 </body>

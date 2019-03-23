@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE>
 <html>
 <head>
@@ -24,16 +23,13 @@
     <?php include_once AllHeaders; ?>
 
 	<section>
-		
-		<div class='Title'>
-            My Profile
-        </div>
 
         <?php   include_once MessageBox; ?>
 
         <div class="info">
 
-            <input type="image" src="<?php echo $_SESSION['Picture']; ?>">
+            <a href="<?php echo User.$_SESSION['ID']; ?>">
+                <input type="image" src="<?php echo $_SESSION['Picture']; ?>"></a>
             <p><span>ID</span> : <?php echo $_SESSION['ID'];?></p>
             <p><span>Name</span> : <?php echo $_SESSION['Name'];?></p>
             <p><span>Email</span> : <?php echo $_SESSION['Email'];?></p>
@@ -48,7 +44,7 @@
             <?php
                 $Count = 1;
                 foreach ($GLOBALS['Query_Results'] as $Value) {
-                    $Count = MyProfile_GetPosts($Value['id'], $Count);
+                    $Count = MyProfile_GetPosts($Value, $Count);
                 }
                 if ( $Count == 1 ){
                 ?>

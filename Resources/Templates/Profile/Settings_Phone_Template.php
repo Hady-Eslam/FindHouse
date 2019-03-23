@@ -7,7 +7,7 @@
 	    <p>New Phone : </p>
 
 	    <input class="Input_Data"name="Ph" id='Phone'placeholder="Enter Your New Phone"
-	     	type="text" required oninput="CheckinputLen(this.id, Phone_Len);">
+	     	type="text" required oninput="CheckPhone()">
 	</div>
 
 	<div class="Button_Div">

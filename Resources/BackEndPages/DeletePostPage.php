@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 $MySql = new MYSQLClass('BackEnd');
 
 $Result = (new FILTERSClass())->FilterString($_POST['ID'], ID_Len);

@@ -1,4 +1,4 @@
-<?php  set_error_handler("Error_Handeler");
+<?php
 
 function Services_Help(){
 	$_SESSION['Page Name'] = 'Help';
@@ -9,4 +9,3 @@ function Services_Privacy(){
 	$_SESSION['Page Name'] = 'Privacy';
 	include_once Privacy_Template;
 }
-?>

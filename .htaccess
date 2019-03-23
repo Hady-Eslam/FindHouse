@@ -1,51 +1,8 @@
-# Error Page
-# ErrorDocument 404 /404.html
-
-
-# TO Rewrite The URL Like  localhost/s.php  To localhost/s
-#<IfModule mod_rewrite.c >
+<IfModule mod_rewrite.c>
 	
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule ^(.*)$ URLs/Routing.php?URL=$1 [QSA,L]
+	RewriteEngine on
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ Routing.php?URL=$1 [QSA,L]
 	
-#</IfModule>
-
-
-#RewriteCond %{HTTP_HOST} ^findhouse.com\/?$ [NC]
-#RewriteRule ^(.*)$ URL/Routing.php?URL=$1 [QSA,L]
-
-
-
-# TO Prevent Access To Certain Folders
-#<Directory FolderPath>
-#	Order Deny,Allow
-#	Deny from all 	# To Deny Access
-#</Directory>
-
-#<Directory findhouse.com/Resources>
-#	Order Deny,Allow
-#	Deny from all
-#</Directory>
-
-#<Directory findhouse.com/Resources>
-#	Order Deny,Allow
-#	Deny from 127.0.0.1 129.5.5.2
-#</Directory>
-
-#<LocationMatch ^lo> eny url begins with lo
-#	Order Deny,Allow
-#	Deny from all
-#</LocationMatch>
-
-#<Directory findhouse.com/Resources>
-#	Order Allow,Deny
-#	Allow from all
-#</Directory>
-
-#<Files "">
-#	Order Allow,Deny
-#	allow from all
-#</Files>
+</IfModule>

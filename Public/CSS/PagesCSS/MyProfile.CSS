@@ -7,23 +7,25 @@ section, .info, .Posts div{
 span{
     color: #454545;
 }
-.Posts div, .Posts{
+.Posts div{
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 5px;
 }
 .info{
+	top: 80px;
+	font-size: 15px;
 	margin-left: 0px;
 	padding-left: 0px;
 	vertical-align: top;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
+	position: fixed;
 }
 .info input{
 	width: 100px;
 	height: 100px;
 }
 .Posts{
+	padding-left: 30%;
     width: 59%;
     margin-top: 100px;
 }

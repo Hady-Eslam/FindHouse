@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 /*
     -info
         php page    =>  URL.php
@@ -33,6 +33,7 @@ class URLClass{
         $_SERVER["HTTP_REFERER"] is getting Where The Request Coming From
     */
     function CheckREFFERE($URL){
+        $URL = explode('?', $URL)[0];
         try{
             if ( !isset($_SERVER["HTTP_REFERER"]) )
                 return false;

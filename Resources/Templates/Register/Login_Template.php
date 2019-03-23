@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE >
 <html>
 <head>
@@ -36,7 +35,7 @@
 			
             <div>
 				<input id='Password' type="Password" name="P" required
-                        placeholder="Enter Password">
+                            placeholder="Enter Password">
 			</div>
 
             <div>
@@ -58,8 +57,9 @@
 
     <script type="text/javascript">
 <?php
-    if ( $GLOBALS['Result'] == 'Email Not Found' )
+    if ( $GLOBALS['Result'] == 'Email And Phone Not Found' )
         echo "$('#Email').css('border-color','red');";
+
     else if ( $GLOBALS['Result'] == 'Wrong Password' )
         echo "$('#Password').css('border-color','red');";
 ?>

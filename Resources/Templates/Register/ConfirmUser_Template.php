@@ -1,4 +1,3 @@
-<?php set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE>
 <html>
 <head>

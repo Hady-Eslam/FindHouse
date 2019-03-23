@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 
 function Find_Begin(){
 	Search();
@@ -7,17 +7,12 @@ function Find_Begin(){
 
 function Search(){
 	Make_Search_Query();
-	$Result = (new MYSQLClass('DO'))->FetchAllRows('SELECT * FROM posts WHERE area >= ?'
-			.' AND area <= ? AND storey >= ? AND storey <= ? AND rooms >= ?'
-			.' AND rooms <= ? AND pathrooms >= ? AND pathrooms <= ? AND money >= ?'
-			.' AND money <= ? '.$GLOBALS['Status'] .$GLOBALS['Type']
-			.$GLOBALS['Furnished'].' AND deleted = ? LIMIT '
-			.($GLOBALS['The Page'] * 12).' , '.( ($GLOBALS['The Page'] * 12 ) + 12 ),
+	$Result = (new MYSQLClass('DO'))->FetchAllRows('SELECT * FROM posts WHERE area >= ? AND area <= ? AND rooms >= ? AND rooms <= ? AND pathrooms >= ? AND pathrooms <= ? AND money >= ? AND money <= ? AND deleted = ? '.$GLOBALS['Status'] .$GLOBALS['Type']
+		.$GLOBALS['Furnished'].' LIMIT '.($GLOBALS['The Page'] * 12)
+		.' , '.( ($GLOBALS['The Page'] * 12 ) + 12 ),
 			array(
 				$GLOBALS['MinA'],
 				$GLOBALS['MaxA'],
-				$GLOBALS['MinStorey'],
-				$GLOBALS['MaxStorey'],
 				$GLOBALS['MinR'],
 				$GLOBALS['MaxR'],
 				$GLOBALS['MinPR'],
@@ -49,10 +44,6 @@ function Make_Search_Query(){
 			'Default' => 0 ],
 		'MaxPR' =>[ 'Type' => 'INT', 'Len' => Rooms_Len, 'Min' => 0, 'Max' => 9,
 			'Default' => 9 ],
-		'MinStorey' =>[ 'Type' => 'INT', 'Len' => Storey_Len, 'Min' => 0, 'Max' => 20,
-			'Default' => 0 ],
-		'MaxStorey' =>[ 'Type' => 'INT', 'Len' => Storey_Len, 'Min' => 0, 'Max' => 20,
-			'Default' => 20 ],
 		'MinM' =>[ 'Type' => 'INT', 'Len' => Money_Len, 'Min' => 0, 'Max' => 10000000000,
 			'Default' => 0 ],
 		'MaxM' =>[ 'Type' => 'INT', 'Len' => Money_Len, 'Min' => 0, 'Max' => 10000000000,
@@ -67,16 +58,16 @@ function Make_Search_Query(){
 					/* 		Status Div 		*/
 	// Filter For Status
 	if ( isset($_GET['StatusBuy']) )
-	    $GLOBALS['StatusBuy'] = '( status = "'.$Hashing->Hash_POSTS('Buy').'" ';
+	    $GLOBALS['StatusBuy'] = '( bigtype = "'.$Hashing->Hash_POSTS('Buy').'" ';
 	else
 		$GLOBALS['StatusBuy'] = '( ';
 
 	// Filter For Status
 	if ( isset($_GET['StatusRent']) )
 		if ( $GLOBALS['StatusBuy'] == '( ' )
-			$GLOBALS['StatusRent'] = 'status = "'.$Hashing->Hash_POSTS('Rent').'" )';
+			$GLOBALS['StatusRent'] = 'bigtype = "'.$Hashing->Hash_POSTS('Rent').'" )';
 		else
-	    	$GLOBALS['StatusRent'] = 'OR status = "'.$Hashing->Hash_POSTS('Rent').'" )';
+	    	$GLOBALS['StatusRent'] = 'OR bigtype = "'.$Hashing->Hash_POSTS('Rent').'" )';
 	else
 		$GLOBALS['StatusRent'] = ')';
 
@@ -88,26 +79,29 @@ function Make_Search_Query(){
 					/* 		Type Div 		*/
 	// Filter For Type
 	if ( isset($_GET['TypeStudents']) )
-	    $GLOBALS['TypeStudents'] = '( type = "'.$Hashing->Hash_POSTS('Students').'" ';
+	    $GLOBALS['TypeStudents'] = '( smalltype = "'.$Hashing->Hash_POSTS('Flat For Students')
+										.'" ';
 	else
 		$GLOBALS['TypeStudents'] = '( ';
 
 	// Filter For Type
 	if ( isset($_GET['TypeFamilies']) )
 		if ( $GLOBALS['TypeStudents'] == '( ' )
-			$GLOBALS['TypeFamilies'] = 'type = "'.$Hashing->Hash_POSTS('Families').'" ';
+			$GLOBALS['TypeFamilies'] = 'smalltype = "'.$Hashing->Hash_POSTS('Flat For Families')
+									.'" ';
 		else
-	    	$GLOBALS['TypeFamilies'] = 'OR type = "'.
-	    				$Hashing->Hash_POSTS('Families').'" ';
+	    	$GLOBALS['TypeFamilies'] = 'OR smalltype = "'.
+	    				$Hashing->Hash_POSTS('Flat For Families').'" ';
 	else
 		$GLOBALS['TypeFamilies'] = '';
 
 	// Filter For Type
 	if ( isset($_GET['TypeOffices']) )
 		if ( $GLOBALS['TypeFamilies'] == '' )
-			$GLOBALS['TypeOffices'] = 'type = "'.$Hashing->Hash_POSTS('Offices').'" )';
+			$GLOBALS['TypeOffices'] = 'smalltype = "'.$Hashing->Hash_POSTS('Flat For Officess').'" )';
 		else
-	    	$GLOBALS['TypeOffices'] = 'OR type = "'.$Hashing->Hash_POSTS('Offices').'" )';
+	    	$GLOBALS['TypeOffices'] = 'OR smalltype = "'
+	    			.$Hashing->Hash_POSTS('Flat For Officess').'" )';
 	else
 		$GLOBALS['TypeOffices'] = ')';
 
@@ -129,9 +123,9 @@ function Make_Search_Query(){
 	// Filter For Furnished
 	if ( isset($_GET['FurnishedNo']) )
 		if ( $GLOBALS['FurnishedYes'] == '( ' )
-			$GLOBALS['FurnishedNo'] = 'status = "'.$Hashing->Hash_POSTS('No').'" )';
+			$GLOBALS['FurnishedNo'] = 'furnished = "'.$Hashing->Hash_POSTS('No').'" )';
 		else
-	    	$GLOBALS['FurnishedNo'] = 'OR status = "'.$Hashing->Hash_POSTS('No').'" )';
+	    	$GLOBALS['FurnishedNo'] = 'OR furnished = "'.$Hashing->Hash_POSTS('No').'" )';
 	else
 		$GLOBALS['FurnishedNo'] = ')';
 
@@ -287,4 +281,3 @@ function Find_Get_Navigation_Link($Number){
 
 	return $Link;
 }
-?>

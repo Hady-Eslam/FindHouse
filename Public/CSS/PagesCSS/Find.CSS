@@ -4,7 +4,7 @@
 section p, .Search_Bar, .Search_Bar div{
 	margin: 0px;
 }
-.Search_Bar, .Result_Bar{
+.Result_Bar{
 	border-width: 1px;
 	border-bottom-width: 1px;
 	border-bottom-color: #454545;
@@ -12,6 +12,9 @@ section p, .Search_Bar, .Search_Bar div{
 }
 section p{
 	color: #454545;
+}
+section {
+	padding: 5px;
 }
 .Search_Bar{
 	text-align: left;

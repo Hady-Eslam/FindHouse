@@ -1,5 +1,4 @@
-<?php set_error_handler("Error_Handeler");
-
+<?php
 function Post_Begin($Post_id){
 	Post_SetVariables($Post_id);
 	Post_Check_Post();
@@ -7,11 +6,11 @@ function Post_Begin($Post_id){
 }
 
 function Post_SetVariables($Post_id){
-	$GLOBALS['isUser'] = (SESSION())? 1: 0;
+	$GLOBALS['isUser'] = ( SESSION() )? 1: 0;
 	$GLOBALS['Post_id'] = $Post_id;
-	$GLOBALS['User_Link'] = (SESSION())?User.$_SESSION['ID']:'';
-	$GLOBALS['User_image'] = (SESSION())?$_SESSION['Picture']:OfflineUsers;
-	$GLOBALS['User_Name'] = (SESSION())?$_SESSION['Name']:'';
+	$GLOBALS['User_Link'] = ( SESSION() ) ? User.$_SESSION['ID'] : '';
+	$GLOBALS['User_image'] = ( SESSION() ) ? $_SESSION['Picture'] : OfflineUsers;
+	$GLOBALS['User_Name'] = ( SESSION() ) ? $_SESSION['Name'] : '';
 }
 
 function Post_Check_Post(){
@@ -38,34 +37,40 @@ function Post_Check_Post(){
 	else if ( $Result->Result == 0 )
 		StatusPages_Not_Found_Page();
 	else{
-		$Data['User'] = $Result->Data['name'];
+		$Data['Phone'] = $Result->Data['phone'];
 		$GLOBALS['User_Profile'] = User.$Result->Data['id'];
 		Post_Get_Post_Data_From_Hashing($Data);
-		Post_Get_Likes_DisLikes();
-		Post_Get_Comments();
 	}
 }
 
 function Post_Get_Post_Data_From_Hashing($Data){
 	(new HashingClass())->Get_Data_From_Hashing([
-		['Type' => 'User', 'Data' => $Data['User'], 'Key' => 'User' ],
+		['Type' => '', 'Data' => $Data['id'], 'Key' => 'POST_ID' ],
+		['Type' => 'User', 'Data' => $Data['Phone'], 'Key' => 'Phone' ],
+
 		['Type' => 'POSTS', 'Data' => $Data['address'], 'Key' => 'Address' ],
-		['Type' => 'POSTS', 'Data' => $Data['status'], 'Key' => 'Status' ],
-		['Type' => 'POSTS', 'Data' => $Data['type'], 'Key' => 'Type' ],
+		['Type' => 'POSTS', 'Data' => $Data['bigtype'], 'Key' => 'BigType' ],
 		['Type' => 'POSTS', 'Data' => $Data['furnished'], 'Key' => 'Furnished' ],
-		['Type' => 'POSTS', 'Data' => $Data['phone'], 'Key' => 'Phone' ],
 		['Type' => '', 'Data' => $Data['area'], 'Key' => 'Area' ],
-		['Type' => '', 'Data' => $Data['storey'], 'Key' => 'Storey' ],
 		['Type' => '', 'Data' => $Data['rooms'], 'Key' => 'Rooms' ],
 		['Type' => '', 'Data' => $Data['pathrooms'], 'Key' => 'PathRooms' ],
-		['Type' => '', 'Data' => $Data['money'], 'Key' => 'Money' ],
 		['Type' => 'POSTS', 'Data' => $Data['discreption'], 'Key' => 'Discreption' ],
 		['Type' => 'POSTS', 'Data' => $Data['f_pic'], 'Key' => 'First_Picture',
 			'Default' => Housing ],
 		['Type' => 'POSTS', 'Data' => $Data['s_pic'], 'Key' => 'Second_Picture',
 			'Default' => Housing ],
-		['Type' => '', 'Data' => $Data['post_date'], 'Key' => 'Date',
-			'Default' => '' ]
+		['Type' => '', 'Data' => $Data['post_date'], 'Key' => 'Date', 'Default' => '' ],
+		['Type' => 'POSTS', 'Data' => $Data['smalltype'], 'Key' => 'SmallType' ],
+		['Type' => 'POSTS', 'Data' => $Data['user_name'], 'Key' => 'User_Name' ],
+		
+		['Type' => 'POSTS', 'Data' => $Data['t_pic'], 'Key' => 'Third_Picture',
+			'Default' => Housing ],
+		['Type' => 'POSTS', 'Data' => $Data['fo_pic'], 'Key' => 'Fourth_Picture',
+			'Default' => Housing ],
+		['Type' => '', 'Data' => $Data['money'], 'Key' => 'Money' ],
+
+		['Type' => 'POSTS', 'Data' => $Data['addname'], 'Key' => 'Add_Name' ]
+
 	], 'StatusPages_Error_Page');
 }
 
@@ -174,5 +179,11 @@ function Post_Set_Comments($Data){
         </div>
     </div>
 	<?php
+}
+
+function Post_Check_Email(){
+	echo ( !SESSION() )? '
+	<input type="text" name="MessageEmail" id="MessageEmail" placeholder="Your Email" style="display: block;margin: 10px;" oninput="CheckinputLen(this.id, Email_Len);">'
+	: '';
 }
 ?>

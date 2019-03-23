@@ -11,12 +11,28 @@ $(document).ready(function(){
 })
 
 function CheckData(){
-    Result = CheckLength('#Address', Address_Len);
-    Result = CheckLength('#Phone', Phone_Len, Result);
+    Result = CheckLength('#AddName', Advertise_Name_Len);
+    Result = Select('#BigType', 'Select', Result);
+    Result = Select('#SmallType', 'Select', Result);
+    Result = Select('#Rooms', 'Select', Result);
+    Result = Select('#PathRooms', 'Select', Result);
     Result = CheckDataLenAndNumber(Result, '#Area', Area_Len, 0, 10000);
-    Result = CheckDataLenAndNumber(Result, '#Rooms', Rooms_Len, 0, 9);
-    Result = CheckDataLenAndNumber(Result, '#PathRooms', Rooms_Len, 0, 9);
-    Result = CheckDataLenAndNumber(Result, '#Storey', Storey_Len, 0, 20);
     Result = CheckDataLenAndNumber(Result, '#Money', Money_Len, 0, 10000000000);
-    return CheckLength('#Discreption', Discreption_Len, Result, true);
+    Result = CheckLength('#Discreption', Discreption_Len, Result);
+    Result = CheckLength('#City', Address_Len, Result);
+    Result = CheckLength('#UserName', Name_Len, Result);
+    if ( !$('#TermsOfUse').prop('checked') ){
+        alert('You Must Agree in Terms Of Use');
+        return false;
+    }
+    return Result;
+}
+
+
+function Select(id, Value, Result){
+    if ( $(id+' :selected').text() == Value ){
+        $(id).css('border-color', 'red');
+        return false;
+    }
+    return Result;
 }

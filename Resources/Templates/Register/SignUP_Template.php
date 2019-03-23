@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE >
 <html>
 <head>
@@ -19,7 +18,7 @@
     <script src="<?php echo CheckPasswordScript; ?>"></script>
     <script src="<?php echo CheckPatternScript; ?>"></script>
 
-    <script src="<?php echo CheckNameScript; ?>"></script>
+    <script src="<?php echo CheckPhoneScript; ?>"></script>
 
     <script src="<?php echo TriggerMessageScript; ?>"></script>
     <script src="<?php echo SetError_FunctionScript; ?>"></script>
@@ -47,8 +46,9 @@
             <div>
     			
                 <div>
-                    <input oninput="CheckName()" type="text" id='Name' name="N" required
-                    placeholder="Enter Your Name"value="<?php echo $GLOBALS['N']; ?>">
+                    <input oninput="CheckinputLen(this.id, Name_Len);" type="text" id='Name'
+                    name="N" required placeholder="Enter Your Name"
+                    value="<?php echo $GLOBALS['N']; ?>">
     			</div>
 
     			<div>
@@ -58,21 +58,23 @@
 
                 <div>
                     <input id='Phone' type="text" placeholder="Enter Your Phone"
-                        oninput="CheckinputLen(this.id, Phone_Len);"name="Ph" required
+                        oninput="CheckPhone()"name="Ph" required
                         value="<?php echo $GLOBALS['Ph']; ?>">
                 </div>
 
                 <div>
                     <input id='Password' type="password" placeholder="Enter Your Password"
-                        required name="P" oninput="CheckinputLen(this.id, Password_Len);"
-                        value="<?php echo $GLOBALS['P']; ?>">
+                        required name="P" oninput="CheckinputLen(this.id, Password_Len);">
 
                 </div>
 
                 <div>
                     <input id='ConPassword'type="password"placeholder="Re-Enter Password"
-                        required oninput="CheckinputLen(this.id, Password_Len);"
-                        value="<?php echo $GLOBALS['P']; ?>">
+                        required oninput="CheckinputLen(this.id, Password_Len);">
+                </div>
+
+                <div>
+                    <input type="checkbox" id="TemsOfUse" name="TemsOfUse"><span>Terms Of Use</span>
                 </div>
             </div>
             
@@ -94,6 +96,9 @@
 
     else if ( $GLOBALS['Result'] == "Email Found" )
         echo "$('#Email').css('border-color','red');";
+
+    else if ( $GLOBALS['Result'] == "Phone Found" )
+        echo "$('#Phone').css('border-color','red');";
 ?>
     </script>
 

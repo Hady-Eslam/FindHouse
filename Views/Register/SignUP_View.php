@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once CheckUser;
 include_once PHPMailClass;
 
@@ -22,8 +22,8 @@ function SignUP_POST(){
                 'Ph' => [ 'Type' => 'STRING', 'Len' => Phone_Len ],
                 'P' => [ 'Type' => 'STRING', 'Len' => Password_Len ]
             ], 'Redirect', SignUP );
-        CheckUser();
-        SaveData();
+        SignUP_CheckUser();
+        SignUP_SaveData();
     }
     SignUP_GET();
 }
@@ -46,7 +46,7 @@ function SignUP_SetVariables($Result){
     $GLOBALS['Result'] = $Result;
 }
 
-function CheckUser(){
+function SignUP_CheckUser(){
     // Check Email
     if ( ($Result = CheckUserEmail($GLOBALS['E']))->Result == -1 )
         StatusPages_Error_Page('in Checking User Email');
@@ -54,13 +54,19 @@ function CheckUser(){
         SignUP_GET('Email Found');
 
     // Check Name
-    if ( ($Result = CheckUserName($GLOBALS['N']))->Result == -1 )
+    /*if ( ($Result = CheckUserName($GLOBALS['N']))->Result == -1 )
         StatusPages_Error_Page('in Checking User Name');
     else if ( $Result->Data != 'name Not Found' )
-        SignUP_GET('Name Found');
+        SignUP_GET('Name Found');*/
+
+    // Check Phone
+    if ( ($Result = CheckUserPhone($GLOBALS['Ph']))->Result == -1 )
+        StatusPages_Error_Page('in Checking User Phone');
+    else if ( $Result->Data != 'phone Not Found' )
+        SignUP_GET('Phone Found');
 }
 
-function SaveData(){
+function SignUP_SaveData(){
     $MySql = new MYSQLClass('Register');
     $Hashing = new HashingClass();
     
@@ -99,4 +105,3 @@ function SaveData(){
         StatusPages_Error_Page('Failed in Sending Mail');
     Redirect(SuccessSignUP);
 }
-?>

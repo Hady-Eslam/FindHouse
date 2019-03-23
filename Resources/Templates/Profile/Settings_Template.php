@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE >
 <html>
 <head>
@@ -24,22 +23,25 @@ if ( $GLOBALS['Section'] == 'Picture' ){
     <script src="<?php echo PagesScripts; ?>Settings_PictureScript.js"></script>
 <?php
 }
-else if ( $GLOBALS['Section'] == 'Name' ){
-?>
-    <script src="<?php echo CheckLenScript; ?>"></script>
 
-    <script src="<?php echo CheckNameScript; ?>"></script>
-    <script src="<?php echo PagesScripts; ?>Settings_NameScript.js"></script>
-<?php
-}
-else if ( $GLOBALS['Section'] == 'Phone' ){
+else if ( $GLOBALS['Section'] == 'Name' ){
 ?>
     <script src="<?php echo CheckLenScript; ?>"></script>
     <script src="<?php echo CheckinputLenScript; ?>"></script>
 
+    <script src="<?php echo PagesScripts; ?>Settings_NameScript.js"></script>
+<?php
+}
+
+else if ( $GLOBALS['Section'] == 'Phone' ){
+?>
+    <script src="<?php echo CheckLenScript; ?>"></script>
+    <script src="<?php echo CheckPhoneScript; ?>"></script>
+
     <script src="<?php echo PagesScripts; ?>Settings_PhoneScript.js"></script>
 <?php
 }
+
 else if ( $GLOBALS['Section'] == 'Password' ){
 ?>
     <script src="<?php echo CheckLenScript; ?>"></script>
@@ -49,6 +51,7 @@ else if ( $GLOBALS['Section'] == 'Password' ){
     <script src="<?php echo PagesScripts; ?>Settings_PasswordScript.js"></script>
 <?php
 }
+
 else if ( $GLOBALS['Section'] == 'DeActivate' ){
 ?>
     <script src="<?php echo PagesScripts; ?>Settings_DeActivateScript.js"></script>
@@ -80,12 +83,16 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
         
     if ( $GLOBALS['Section'] == 'Picture' )
         include_once Profile_Templates.'Settings_Picture_Template.php';
+
     else if ( $GLOBALS['Section'] == 'Name' )
         include_once Profile_Templates.'Settings_Name_Template.php';
+    
     else if ( $GLOBALS['Section'] == 'Phone' )
         include_once Profile_Templates.'Settings_Phone_Template.php';
+    
     else if ( $GLOBALS['Section'] == 'Password' )
         include_once Profile_Templates.'Settings_Password_Template.php';
+    
     else if ( $GLOBALS['Section'] == 'DeActivate' )
         include_once Profile_Templates.'Settings_DeActivate_Template.php';
 ?>
@@ -111,26 +118,37 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
         TriggerMessage(3000, '#53A01A', '<p>Name Changed</p>');
     <?php
     }
+
     else if ( $GLOBALS['Result'] == 'ReservedName' ){
     ?>
         $('#Name').css('border-color', 'red');
     <?php
     }
+    
     else if ( $GLOBALS['Result'] == 'PhoneDone' ){
     ?>
         TriggerMessage(3000, '#53A01A', '<p>Phone Changed</p>');
     <?php
     }
+
+    else if ( $GLOBALS['Result'] == 'ReservedPhone' ){
+    ?>
+        $('#Phone').css('border-color', 'red');
+    <?php
+    }
+    
     else if ( $GLOBALS['Result'] == 'PictureDone' ){
     ?>
         TriggerMessage(3000, '#53A01A', '<p>Picture Changed</p>');
     <?php
     }
+    
     else if ( $GLOBALS['Result'] == 'PasswordDone' ){
     ?>
         TriggerMessage(3000, '#53A01A', '<p>Password Changed</p>');
     <?php
     }
+    
     else if ( $GLOBALS['Result'] == 'WrongPassword' ){
     ?>
         $('#OldPassword').css('border-color', 'red');

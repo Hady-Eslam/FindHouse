@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 /*	
 	-info
 		php page  	=>  Hashing.php
@@ -22,6 +22,7 @@ class HashingClass{
 	private $COMMENTS_HASH_LEN = 16;
 	private $LIKE_DISLIKE_HASH_LEN = 18;
 	private $NOTIFICATIONS_HASH_LEN = 20;
+	private $MESSAGES_HASH_LEN = 22;
 
 	// Hash
 	function Hash_Users($User){
@@ -62,6 +63,10 @@ class HashingClass{
 
 	function Hash_Notifications($Notification){
 		return 'MYNAMEHADYESLAMMOHAM'.$Notification;
+	}
+
+	function Hash_Messages($Message){
+		return 'MYNAMEHADYESLAMMOHAMME'.$Message;
 	}
 
 	// Get Hashed
@@ -120,6 +125,11 @@ class HashingClass{
 							'Notification');
 	}
 
+	function Get_Hashed_Messages($Messages){
+		return $this->GetString($Messages, $this->MESSAGES_HASH_LEN,
+							'Messages');
+	}
+
 	// Get Data From Hashing
 	/*
 		Type
@@ -151,6 +161,8 @@ class HashingClass{
 				$Result = $this->Get_Hashed_Like_DisLike($Value['Data']);
 			else if ( $Value['Type'] == 'Notifications' )
 				$Result = $this->Get_Hashed_Notifications($Value['Data']);
+			else if ( $Value['Type'] == 'Messages' )
+				$Result = $this->Get_Hashed_Messages($Value['Data']);
 			else{
 				$GLOBALS[ $Value['Key'] ] = $Value['Data'];
 				continue;

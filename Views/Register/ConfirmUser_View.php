@@ -1,23 +1,23 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once CheckToken;
 
 function ConfirmUser_Begin(){
 	if ((new URLClass())->Request() == 'GET' && isset($_GET['E']) && isset($_GET['T'])){
 		
-		CheckData();
+		ConfirmUser_CheckData();
 		if (($Result = Check_SignUP_Token($GLOBALS['E'], $GLOBALS['T']))->Result == -1 )
 			StatusPages_Error_Page($Result->Data);
 		else if ( $Result->Data == 'Found' )
-			SaveData();
+			ConfirmUser_SaveData();
 	}
 	StatusPages_Not_Authurithed_User_Page();
 }
 
-function OpenTemplate(){
+function ConfirmUser_OpenTemplate(){
 	include_once ConfirmUser_Template;
 }
 
-function CheckData(){
+function ConfirmUser_CheckData(){
 	(new HashingClass())->Get_Data_From_Hashing([
 		['Type' => 'SignUP_Token', 'Data' => $_GET['E'], 'Key' => 'E' ],
 		['Type' => 'SignUP_Token', 'Data' => $_GET['T'], 'Key' => 'T' ],
@@ -32,7 +32,7 @@ function CheckData(){
 	], 'StatusPages_Not_Authurithed_User_Page' );
 }
 
-function SaveData(){
+function ConfirmUser_SaveData(){
 	$MySql = new MYSQLClass('Register');
     $Hashing = new HashingClass();
 	
@@ -68,11 +68,10 @@ function SaveData(){
 	// Delete Data From waiting User
 	if ( $MySql->excute('DELETE FROM waiting_users WHERE email = ?',
 				array( $Hashing->Hash_WaitingUsers($GLOBALS['E']) ))->Result == -1 )
-		OpenTemplate();
+		ConfirmUser_OpenTemplate();
 
 	// Delete Token From DataBase
 	$MySql->excute('DELETE FROM sign_up_token WHERE token_email = ?',
 				array( $Hashing->Hash_SignUP_Token($GLOBALS['E']) ));
-	OpenTemplate();
+	ConfirmUser_OpenTemplate();
 }
-?>

@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once PHPMailClass;
 include_once CheckUser;
 
@@ -64,4 +64,3 @@ function ForgetPassword_CheckData(){
 
     ForgetPassword_GET('Done');
 }
-?>

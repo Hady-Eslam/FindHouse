@@ -11,13 +11,23 @@ function CheckData(){
     Result = CheckLength('#Phone', Phone_Len, Result);
     Result = CheckLength('#Password', Password_Len, Result);
     Result = CheckEmailPattern(Result);
-    return CheckPassword(Result);
+    Result = CheckPassword(Result);
+    if ( !$('#TemsOfUse').prop('checked') ){
+        alert('You Must Agree in Terms Of Use');
+        return false;
+    }
+    return Result;
 }
 
 function CheckEmail(){
     
-    if ( $('#Email').val().length == 0 || $('#Email').val().length > Email_Len )
+    if ( $('#Email').val().length == 0 || !CheckEmailPattern() )
         return ;
+
+    else if ( $('#Email').val().length > Email_Len ){
+        $("#Email").css('border-color', 'red');
+        return;
+    }
 
     $.ajax({
         type : "POST",

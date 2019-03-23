@@ -6,8 +6,8 @@
 
 	<div class="Div3">
 	    <p>New Name : </p>
-	    <input class="Input_Data"oninput="CheckName()" type="text" id='Name' name="N"
-	    	required placeholder="Enter Your New Name" >
+	    <input class="Input_Data"oninput="CheckinputLen(this.id, Name_Len)" type="text"
+	    	id='Name' name="N" required placeholder="Enter Your New Name" >
 	</div>
 
 	<div class="Button_Div">

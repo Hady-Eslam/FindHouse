@@ -1,12 +1,11 @@
-<?php set_error_handler("Error_Handeler");
-include_once JSON;
+<?php include_once JSON;
 
 function CheckPage_Begin(){
 	$URL = new URLClass();
 	if ( $URL->Request() == "POST" && $URL->REFFERE_is_SET() &&
-		( isset($_POST['N']) || isset($_POST['E']) ) ){
+		( isset($_POST['N']) || isset($_POST['E']) || isset($_POST['Ph'])) ){
 
-		if ( $URL->CheckREFFERE(SignUP) ){
+		if ( $URL->CheckREFFERE(SignUP) || $URL->CheckREFFERE(Settings.'/Phone') ){
 			echo (new JSONClass())->MakeJson(include_once BackEnd.'CheckPage.php');
 			exit();
 		}
@@ -17,10 +16,9 @@ function CheckPage_Begin(){
 function DeletePost_Begin(){
 	if ( SESSION() ){
 		$URL = new URLClass();
-		if ( $URL->Request() == "POST"&&$URL->REFFERE_is_SET()&&isset($_POST['ID']) )
+		if ( $URL->Request() == "POST" && $URL->REFFERE_is_SET() && isset($_POST['ID']) )
 			if ( $URL->CheckREFFERE(MyProfile) ){
-				echo (new JSONClass())->MakeJson(include_once BackEnd
-								.'DeletePostPage.php');
+				echo (new JSONClass())->MakeJson(include_once BackEnd.'DeletePostPage.php');
 				exit();
 			}
 	}
@@ -68,6 +66,41 @@ function MakeDisLike_Begin(){
 	StatusPages_Not_Authurithed_User_Page('UnAuthorized User');
 }
 
+function MakeMessage_Begin(){
+	$URL = new URLClass();
+	if ( $URL->Request() == "POST" && $URL->REFFERE_is_SET() && isset($_POST['Message']) ){
+		if ( !SESSION() && isset($_POST['MessageEmail']) || SESSION() ){
+			if ( preg_match('/^http:\/\/findhouse\.com\/DO\/Post\/(\d+)/',
+				$URL->Get_REFFERE()) ){
+				
+				echo (new JSONClass())->MakeJson(include_once BackEnd.'MakeMessage.php');
+				exit();
+			}
+		}
+	}
+	StatusPages_Not_Authurithed_User_Page('UnAuthorized User');
+}
+
+function DeleteMessage_Begin(){
+	$URL = new URLClass();
+	if ( $URL->Request() == "POST" && $URL->REFFERE_is_SET() && isset($_POST['MessageID']) ){
+		
+		$Page = '';
+		if ( preg_match('/^http:\/\/findhouse\.com\/Profile\/Messages\/Inbox/',
+			$URL->Get_REFFERE()) )
+			$Page = 'Inbox';
+		else if ( preg_match('/^http:\/\/findhouse\.com\/Profile\/Messages\/Sent/',
+			$URL->Get_REFFERE()) )
+			$Page = 'Sent';
+		
+		if ( $Page != '' ){
+			echo (new JSONClass())->MakeJson(include_once BackEnd.'DeleteMessage.php');
+			exit();
+		}
+	}
+	StatusPages_Not_Authurithed_User_Page('UnAuthorized User');
+}
+
 function LogOut_Begin(){
 	$Page = (isset($_SESSION['Page Name']))?$_SESSION['Page Name']:'Find';
 	if ( (new SessionClass())->DestroySession()->Result == -1 )
@@ -107,4 +140,3 @@ function LogOut_Begin(){
 
 	Redirect(Find);
 }
-?>

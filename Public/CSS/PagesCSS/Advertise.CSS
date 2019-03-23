@@ -18,8 +18,17 @@ div#AdvertiseDiv p{
 }
 #AdvertiseDiv{
 	padding-left: 50px;
-	display: none;
+	
 }
+#AdvertisDiv{
+	font-size: 10px !important;
+}
+
+.Advertise span, .Advertise div input[type='text']{
+	font-size: 15px;
+	size: 20%;
+}
+
 #Link{
 	text-align: center;
 	padding-top: 50px;

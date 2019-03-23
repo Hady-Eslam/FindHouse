@@ -1,7 +1,7 @@
 function DeletePost(id, Post_Number){
-	if ( confirm('Are You Sure Want To Delete This Post ( ' + Post_Number +
-		' ) With id ( ' + id + ' )' ) == false )
+	if ( confirm('Are You Sure Want To Delete This Post ? ') == false )
 		return ;
+
 	$.ajax({
         type : "POST",
         url : DeletePostPage,

@@ -55,4 +55,3 @@ function Get_Posts_Number(){
     $_SESSION['Posts'] = $Result->Data;
     return Returns(0, 'Done');
 }
-?>

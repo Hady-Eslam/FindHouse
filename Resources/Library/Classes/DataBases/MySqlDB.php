@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 /* 	
 	-some important info
 	deleted 	1 => Yes 	0 => NO 	2 => Suspended		Defult => 0

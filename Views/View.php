@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 /*
 	- included Classes :
 		URL
@@ -155,6 +155,29 @@ function Profile_Notifications(){
 	Notifications_Begin();
 }
 
+function Profile_Messages_Inbox(){
+	$_SESSION['Page Name'] = 'Messages Inbox';
+	if ( !SESSION() )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once Messages_Inbox_View;
+	Messages_Inbox_Begin();
+}
+
+function Profile_Messages_Sent(){
+	$_SESSION['Page Name'] = 'Messages Sent';
+	if ( !SESSION() )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once Messages_Sent_View;
+	Messages_Sent_Begin();
+}
+
+function Profile_Message(){
+	$Message_id = (new URLClass())->GetMetched('/Profile\/Message\/(\d+)$/');
+	$_SESSION['Page Name'] = 'Message '.$Message_id;
+	include_once Message_View;
+	Message_Begin($Message_id);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -184,6 +207,10 @@ function BackEnd($URL){
 		MakeComment_Begin();
 	else if ( $URL == MakeLike_DisLikePage )
 		MakeLike_DisLike_Begin();
+	else if ( $URL == MakeMessage )
+		MakeMessage_Begin();
+	else if ( $URL == DeleteMessage )
+		DeleteMessage_Begin();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -210,4 +237,3 @@ function StatusPages_Error_Page($Message = ''){
 	include_once ErrorPage;
 	exit();
 }
-?>

@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE>
 <html>
 <head>
@@ -29,15 +28,12 @@
     <?php include_once AllHeaders; ?>
 
 	<section>
-		
-		<div class='Title'>
-            Search For House
-        </div>
 
-        <div class="Search_Bar" id="Search_Bar">
+        <div class="Search_Bar" id="Search_Bar" style="display: inline-block;text-align: left;
+            width: 15%;margin: 0px;padding: 0px;vertical-align: top;">
 
          <!-- Status -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>Status</p>
 
         		<input type="checkbox" name="StatusRent">Rent
@@ -45,8 +41,8 @@
         		<input type="checkbox" name="StatusBuy">Buy
         	</div>
 
-    <!-- Type -->
-        	<div>
+        <!-- Type -->
+        	<div style="display: block;width: 100%;">
         		<p>Type</p>
 
         		<input type="checkbox" name="TypeStudents" id="Students" >
@@ -60,7 +56,7 @@
         	</div>
 
     <!-- Furnished -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>Furnished</p>
 
         		<input type="checkbox" name="FurnishedYes">Yes
@@ -69,7 +65,7 @@
         	</div>
 
     <!-- Area -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>Area</p>
 
         		<input type="text" name="MinA" required id='MinArea' placeholder="Min"
@@ -81,7 +77,7 @@
 
 
     <!-- Rooms -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>Rooms</p>
 
         		<input type="text" name="MinR" required id='MinRooms' placeholder="Min"
@@ -93,7 +89,7 @@
         	</div>
 
     <!-- PathRooms -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>PathRooms</p>
 
         		<input type="text" required id='MinPathRooms' placeholder="Min"
@@ -103,19 +99,8 @@
         			name="MaxPR" oninput="CheckinputLenAndNumber(this.id, Rooms_Len);">
         	</div>
 
-    <!-- Storey -->
-        	<div>
-        		<p>Storey</p>
-
-        		<input required placeholder="Min" id='MinStorey'  name="MinStorey"
-        			type="text" oninput="CheckinputLenAndNumber(this.id, Storey_Len);">
-                <br>
-                <input name="MaxStorey" required placeholder="Max" id='MaxStorey'
-                	type="text" oninput="CheckinputLenAndNumber(this.id, Storey_Len);">
-        	</div>
-
     <!-- Money -->
-        	<div>
+        	<div style="display: block;width: 100%;">
         		<p>Money</p>
 
         		<input type="text" name="MinM" required id='MinMoney' placeholder="Min"
@@ -125,15 +110,15 @@
         			oninput="CheckinputLenAndNumber(this.id, Money_Len);">
         	</div>
 
-        	<div class="Button_Div">
-		        <input type="submit" value="Search" id="Submit">
+        	<div class="Button_Div" style="width: 100%;border: none;">
+		        <input type="submit" value="Search" id="Submit" style="width: 100%;">
         	</div>
         </div>
 
 
 
 <!-- Result Search -->
-        <div class="Result_Bar">
+        <div class="Result_Bar" style="display: inline-block;width: 65%">
 
         <?php
         	$Count = 1;

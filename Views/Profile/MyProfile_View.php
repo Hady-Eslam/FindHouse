@@ -1,5 +1,4 @@
-<?php set_error_handler("Error_Handeler");
-
+<?php
 function MyProfile_Begin(){
 	MyProfile_Get_Posts();
 	include_once MyProfile_Template;
@@ -7,7 +6,7 @@ function MyProfile_Begin(){
 
 function MyProfile_Get_Posts(){
 	$Result = (new MYSQLClass('Profile'))
-		->FetchAllRows('SELECT id FROM posts WHERE user_email = ? AND deleted = ?',
+		->FetchAllRows('SELECT * FROM posts WHERE user_email = ? AND deleted = ?',
 		array( (new HashingClass())->Hash_POSTS($_SESSION['Email']), '0'));
 
 	if ( $Result->Result == -1 )
@@ -18,7 +17,8 @@ function MyProfile_Get_Posts(){
 		$GLOBALS['Query_Results'] = $Result->Data;
 }
 
-function MyProfile_GetPosts($id, $Count){
+function MyProfile_GetPosts($Post, $Count){
+
 	?>
 	<div id="<?php echo $id; ?>">
 	    <p>Post <?php echo $Count; ?></p>
@@ -31,4 +31,3 @@ function MyProfile_GetPosts($id, $Count){
 	<?php
 	return ($Count + 1);
 }
-?>

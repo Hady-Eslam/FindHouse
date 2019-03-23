@@ -7,6 +7,10 @@ function CheckUserEmail($Email){
 function CheckUserName($Name){
     return Check('name', $Name);
 }
+
+function CheckUserPhone($Phone){
+    return Check('phone', $Phone);
+}
 /*
     - Return :
         return Returns(-1, "Check if $Key Found Or Not in Users", $Result->Error);

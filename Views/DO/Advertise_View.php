@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once Files;
 include_once DATE;
 include_once PHPMailClass;
@@ -11,12 +11,12 @@ function Advertise_Begin(){
 
 function Advertise_POST(){
 	$URL = new URLClass();
-	if ( $URL->REFFERE_is_SET() && isset($_POST['Add']) && isset($_POST['Ph']) &&
-		isset($_POST['A']) && isset($_POST['Status']) && isset($_POST['Ty']) &&
-		isset($_POST['Fur']) && isset($_POST['R']) && isset($_POST['PR']) &&
-		isset($_POST['Storey']) && isset($_POST['M']) && isset($_POST['Dis']) &&
-    	isset($_FILES['File1']) && isset($_FILES['File2']) ){
-
+	if ( $URL->REFFERE_is_SET() && isset($_POST['AddName']) && isset($_POST['BigType']) &&
+		isset($_POST['SmallType']) && isset($_POST['Rooms']) && isset($_POST['PathRooms']) &&
+		isset($_POST['Area']) && isset($_POST['Furnished']) && isset($_POST['Discreption']) &&
+		isset($_POST['City']) && isset($_POST['UserName']) && isset($_POST['Money']) &&
+    	isset($_FILES['File1']) && isset($_FILES['File2']) && isset($_FILES['File3']) &&
+    	isset($_FILES['File4'])){
 
 		if ( !$URL->CheckREFFERE(Advertise) )
 			StatusPages_Not_Authurithed_User_Page();
@@ -45,34 +45,39 @@ function Advertise_Setvariables(){
 				'SELECT * FROM posts WHERE id = ? AND deleted = ?',
 				array( $GLOBALS['ID'], '0' ))->Result != 1 )
 		$GLOBALS['ID'] = NULL;
-
-	//Debug(true, $GLOBALS['ID']);
 }
 
 function Advertise_CheckData(){
     $FILTER = new FILTERSClass();
 	$FILTER->FILTER_POST([
-            'Add' => ['Type' => 'STRING', 'Len' => Address_Len ],
-            'Ph' => ['Type' => 'STRING', 'Len' => Phone_Len ],
-            'A' => ['Type' => 'INT', 'Len' => Area_Len,
-                    'Min' => 0, 'Max' => 10000 ],
-            'Status' => ['Type' => 'STRING', 'Len' => Status_Len ],
-            'Ty' => ['Type' => 'STRING', 'Len' => Type_Len ],
-            'Fur' => ['Type' => 'STRING', 'Len' => Furnished_Len ],
-            'R' => ['Type' => 'INT', 'Len' => Rooms_Len, 'Min' => 0, 'Max' => 9 ],
-            'PR' => ['Type' => 'INT', 'Len' => Rooms_Len, 'Min' => 0, 'Max' => 9 ],
-            'Storey' => ['Type' => 'INT', 'Len' => Storey_Len, 'Min' => 0, 'Max' => 20 ],
-            'M' => ['Type' => 'INT', 'Len' => Money_Len,
-                    'Min' => 0, 'Max' => 10000000000 ],
-            'Dis' => [ 'Type' => 'STRING', 'Len' => Discreption_Len,
-            		'Default' => '' ]
+            'AddName' => ['Type' => 'STRING', 'Len' => Advertise_Name_Len ],
+            'BigType' => ['Type' => 'STRING', 'Len' => BigType_Len ],
+            'SmallType' => ['Type' => 'STRING', 'Len' => SmallType_Len ],
+            
+            'Rooms' => ['Type' => 'INT', 'Len' => Rooms_Len, 'Min' => 0, 'Max' => 9 ],
+            'PathRooms' => ['Type' => 'INT', 'Len' => Rooms_Len, 'Min' => 0, 'Max' => 9 ],
+
+            'Area' => ['Type' => 'INT', 'Len' => Area_Len, 'Min' => 0, 'Max' => 10000 ],
+
+            'Money' => ['Type' => 'INT', 'Len' => Area_Len, 'Min' => 0, 'Max' => 10000000000 ],
+
+            'Furnished' => ['Type' => 'STRING', 'Len' => Furnished_Len ],
+
+            'Discreption' => [ 'Type' => 'STRING', 'Len' => Discreption_Len],
+
+            'City' => ['Type' => 'STRING', 'Len' => Address_Len ],
+            'UserName' => ['Type' => 'STRING', 'Len' => Name_Len ],
+
         ], 'Redirect', Advertise );
 
-    if ( $GLOBALS['Status'] != 'Rent' && $GLOBALS['Status'] != 'Buy' ||
-		 $GLOBALS['Ty'] != 'Students' && $GLOBALS['Ty'] != 'Families' &&
-    	 $GLOBALS['Ty'] != 'Offices' ||
-    	 $GLOBALS['Fur'] != 'Yes' && $GLOBALS['Fur'] != 'No' )
-    	Redirect(Advertise);
+
+	if ( $GLOBALS['Furnished'] == 'Select' || $GLOBALS['Furnished'] == 'NO' )
+		$GLOBALS['Furnished'] = 'NO';
+	else
+		$GLOBALS['Furnished'] = 'YES';
+
+	if ( $GLOBALS['SmallType'] == 'Select' || $GLOBALS['BigType'] == 'Select' )
+		Redirect(Advertise);
 
     // First Picture
     $GLOBALS['Pic1'] = true;
@@ -83,19 +88,26 @@ function Advertise_CheckData(){
     $GLOBALS['Pic2'] = true;
     if ( $FILTER->FilterPicture('File2')->Result != 'OK' )
     	$GLOBALS['Pic2'] = false;
+
+    // Second Picture
+    $GLOBALS['Pic3'] = true;
+    if ( $FILTER->FilterPicture('File3')->Result != 'OK' )
+    	$GLOBALS['Pic3'] = false;
+
+
+	// Second Picture
+    $GLOBALS['Pic4'] = true;
+    if ( $FILTER->FilterPicture('File4')->Result != 'OK' )
+    	$GLOBALS['Pic4'] = false;
 }
 
 function Advertise_SavePictures(){
 
-	if ( $GLOBALS['Pic1'] == true || $GLOBALS['Pic2'] == true){
-		MakePostFile($_SESSION['ID'], $_SESSION['Posts']);
-		ReNamePicture('Pic1', 'File1', $_SESSION['ID'], $_SESSION['Posts'], '1');
-		ReNamePicture('Pic2', 'File2', $_SESSION['ID'], $_SESSION['Posts'], '2');
-	}
-	else{
-		$GLOBALS['Pic1'] = Housing;
-		$GLOBALS['Pic2'] = Housing;
-	}
+	MakePostFile($_SESSION['ID'], $_SESSION['Posts']);
+	ReNamePicture('Pic1', 'File1', $_SESSION['ID'], $_SESSION['Posts'], '1');
+	ReNamePicture('Pic2', 'File2', $_SESSION['ID'], $_SESSION['Posts'], '2');
+	ReNamePicture('Pic3', 'File3', $_SESSION['ID'], $_SESSION['Posts'], '3');
+	ReNamePicture('Pic4', 'File4', $_SESSION['ID'], $_SESSION['Posts'], '4');
 }
 
 function ReNamePicture($PKey, $FKey, $Userid, $Postid, $id){
@@ -118,30 +130,34 @@ function Advertise_SaveData(){
 	$Hashing = new HashingClass();
 	$MySql = new MYSQLClass('DO');
 
-	if ( ($Result = $MySql->excute('INSERT INTO posts (user_email, address, status,'
-			.' type, furnished, phone, area, storey, rooms, pathrooms, money,'
-			.' discreption,f_pic, s_pic, post_date) VALUES '
-			.'(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+	if ( ($Result = $MySql->excute('INSERT INTO posts (deleted, user_email, address, addname,'
+			.' bigtype, furnished, area, rooms, pathrooms, discreption, f_pic, s_pic, post_date'
+			.', smalltype, user_name, t_pic, fo_pic, money) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
+				'0',
 				$Hashing->Hash_POSTS($_SESSION['Email']),
-				$Hashing->Hash_POSTS($GLOBALS['Add']),
-				$Hashing->Hash_POSTS($GLOBALS['Status']),
-				$Hashing->Hash_POSTS($GLOBALS['Ty']),
-				$Hashing->Hash_POSTS($GLOBALS['Fur']),
-				$Hashing->Hash_POSTS($GLOBALS['Ph']),
-				$Hashing->Hash_POSTS($GLOBALS['A']),
-				$Hashing->Hash_POSTS($GLOBALS['Storey']),
-				$Hashing->Hash_POSTS($GLOBALS['R']),
-				$Hashing->Hash_POSTS($GLOBALS['PR']),
-				$Hashing->Hash_POSTS($GLOBALS['M']),
-				$Hashing->Hash_POSTS($GLOBALS['Dis']),
+				$Hashing->Hash_POSTS($GLOBALS['City']),
+				$Hashing->Hash_POSTS($GLOBALS['AddName']),
+				$Hashing->Hash_POSTS($GLOBALS['BigType']),
+				$Hashing->Hash_POSTS($GLOBALS['Furnished']),
+				$GLOBALS['Area'],
+				$GLOBALS['Rooms'],
+				$GLOBALS['PathRooms'],
+				$Hashing->Hash_POSTS($GLOBALS['Discreption']),
 				$Hashing->Hash_POSTS($GLOBALS['Pic1']),
 				$Hashing->Hash_POSTS($GLOBALS['Pic2']),
-				date('D d-m-Y H:i:s')
+				date('D d-m-Y H:i:s'),
+				$Hashing->Hash_POSTS($GLOBALS['SmallType']),
+				$Hashing->Hash_POSTS($GLOBALS['UserName']),
+				$Hashing->Hash_POSTS($GLOBALS['Pic3']),
+				$Hashing->Hash_POSTS($GLOBALS['Pic4']),
+				$GLOBALS['Money'],
 			)))->Result == -1 )
 		StatusPages_Error_Page('Saving Post into DataBase');
+
 	$_SESSION['Posts']++;
-	interested_Check_interested($MySql->GetInsertedID());
+	Redirect(Post.$MySql->GetInsertedID());
+	//interested_Check_interested($MySql->GetInsertedID());
 }
 
 function interested_Check_interested($ID){

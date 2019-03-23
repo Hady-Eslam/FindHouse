@@ -6,6 +6,8 @@
 				</p>
 	</div>
 
+	<div class='Profile_Item'><a href="<?php echo Messages_Inbox; ?>">My Messages</a></div>
+
 	<div class='Profile_Item'><a href="<?php echo MyProfile; ?>">My Profile</a></div>
 	
 	<div class='Profile_Item'><a href="<?php echo Settings; ?>">Settings</a></div>

@@ -32,8 +32,11 @@ set_error_handler("Error_Handeler");
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
-define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('ROOT', _DIR_);
 define('HTTP_ROOT', 'http://findhouse.com');
+
+	define('Models', ROOT.'/Models/');
+
 
 	define('Public_ROOT', ROOT.'/Public/');
 	define('Public_HTTP', HTTP_ROOT.'/Public/');
@@ -149,7 +152,7 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		// DO
 		define('DO_Templates', Templates.'DO/');
 			define('Find_Template', DO_Templates.'Find_Template.php');
-			define('Advertise_Template', DO_Templates.'Advertise_Template.php');
+			define('Advertise_Template', DO_Templates.'Advertise.php');
 			define('Predict_Template', DO_Templates.'Predict_Template.php');
 			define('interested_Template', DO_Templates.'interested_Template.php');
 			define('Post_Template', DO_Templates.'Post_Template.php');			
@@ -168,6 +171,12 @@ define('HTTP_ROOT', 'http://findhouse.com');
 			define('MyProfile_Template', Profile_Templates.'MyProfile_Template.php');
 			define('Notifications_Template',
 						Profile_Templates.'Notifications_Template.php');
+
+			define('Messages_Template',
+						Profile_Templates.'Messages_Template.php');
+			define('Message_Template',
+						Profile_Templates.'Message_Template.php');
+			
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -212,6 +221,10 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('User_View', Profile_View.'User_View.php');
 		define('MyProfile_View', Profile_View.'MyProfile_View.php');
 		define('Notifications_View', Profile_View.'Notifications_View.php');
+
+		define('Messages_Inbox_View', Profile_View.'Messages_Inbox_View.php');
+		define('Messages_Sent_View', Profile_View.'Messages_Sent_View.php');
+		define('Message_View', Profile_View.'Message_View.php');
 
 
 	// Back End Pages
@@ -258,6 +271,11 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('MyProfile', Profile_HTTP.'MyProfile');
 		define('Notifications', Profile_HTTP.'Notifications');
 
+		define('Messages', Profile_HTTP.'Messages');
+		define('Messages_Inbox', Profile_HTTP.'Messages/Inbox');
+		define('Messages_Sent', Profile_HTTP.'Messages/Sent');
+		define('Message', Profile_HTTP.'Message/');
+
 
 	// Back End Page
 	define('BackEnd_HTTP', HTTP_ROOT.'/BackEnd/');
@@ -266,7 +284,8 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('DeletePostPage', BackEnd_HTTP.'DeletePost');
 		define('MakeCommentPage', BackEnd_HTTP.'MakeComment');
 		define('MakeLike_DisLikePage', BackEnd_HTTP.'MakeLike-DisLike');
-		
+		define('MakeMessage', BackEnd_HTTP.'MakeMessage');
+		define('DeleteMessage', BackEnd_HTTP.'DeleteMessage');
 		
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -303,6 +322,8 @@ define('Pictures', Public_HTTP.'Pictures/');
 	define('NoNotification', Pictures.'NoNotification.PNG');
 	define('Notification', Pictures.'Notification.PNG');
 	define('Send', Pictures.'Send.PNG');
+	define('DeleteImage', Pictures.'Delete.png');
+	
 	
 
 
@@ -343,6 +364,7 @@ define('JavaScript', Public_HTTP.'JavaScript/');
 		define('AddPictureScript', Global_Fun_Scripts.'AddPicture.js');
 
 		define('CheckNameScript', Global_Fun_Scripts.'CheckName.js');
+		define('CheckPhoneScript', Global_Fun_Scripts.'CheckPhone.js');
 
 		define('TriggerFormScript', Global_Fun_Scripts.'TriggerForm.js');
 		
@@ -369,16 +391,20 @@ define('Phone_Len', 11);	// 20
 define('Token_Len', 20);	// 100
 
 // DO
+define('Advertise_Name_Len', 150); // 200
+define('BigType_Len', 20); // 200
+define('SmallType_Len', 20); // 200
+define('Rooms_Len', 1);		// 5
+define('Area_Len', 5);		// 20
+define('Furnished_Len',10);	// 10
+
 define('Address_Len', 150); // 200
 
-define('Area_Len', 5);		// 20
 
 define('Status_Len', 10);	// 20
 define('Type_Len', 10);		// 30
-define('Furnished_Len',10);	// 10
 
 define('Storey_Len', 2);	// 5
-define('Rooms_Len', 1);		// 5
 
 define('Money_Len', 11);	// 20
 
@@ -394,6 +420,8 @@ define('ID_Len', 7);
 
 // Post
 define('Comment_Len', 500);
+define('Message_Len', 500);
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -416,6 +444,16 @@ define('UserName', 'root');
 //define('UserName', 'Settings');
 //define('UserName', 'Profile');
 define('Passwords', '');
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// DataBase Models
+
+define('SessionModel', Models.'SessionModel.php');
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////

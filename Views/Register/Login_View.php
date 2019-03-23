@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 include_once CheckUser;
 include_once OpenSession;
 
@@ -34,7 +34,7 @@ function Login_SetVariables($Result){
 function Login_CheckData(){
     $Hashing = new HashingClass();
     (new FILTERSClass())->FILTER_POST([
-            'E' => ['Type' => 'EMAIL'],
+            'E' => ['Type' => 'STRING', 'Len' => Email_Len],
             'P' => ['Type' => 'STRING', 'Len' => Password_Len ] 
         ], 'Redirect', Login );
 
@@ -88,4 +88,3 @@ function Login_CheckData_CheckAccount($Data, $Table){
 		StatusPages_Error_Page('in Opening Session');
 	Redirect(Find);
 }
-?>
