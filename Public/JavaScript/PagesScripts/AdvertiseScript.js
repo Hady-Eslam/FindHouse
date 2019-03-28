@@ -21,6 +21,7 @@ function CheckData(){
     Result = CheckLength('#Discreption', Discreption_Len, Result);
     Result = CheckLength('#City', Address_Len, Result);
     Result = CheckLength('#UserName', Name_Len, Result);
+    Result = CheckLength('#Phone', Phone_Len, Result);
     if ( !$('#TermsOfUse').prop('checked') ){
         alert('You Must Agree in Terms Of Use');
         return false;

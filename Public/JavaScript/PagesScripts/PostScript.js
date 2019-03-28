@@ -34,7 +34,7 @@ function SendMessage(){
             try{
                 Data = JSON.parse(Data);
                 if ( Data['Result'] == 0 )
-                	TriggerMessage(3500, 'red', '<p>Post Not Found</p>');
+                	TriggerMessage(3500, 'red', '<p>' + Data['Data'] + '</p>');
 
                 else if ( Data['Result'] == 1 ){
                 	TriggerMessage(3500, 'green', '<p>Sent</p>');

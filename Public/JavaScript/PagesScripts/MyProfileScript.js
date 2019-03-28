@@ -16,8 +16,7 @@ function DeletePost(id, Post_Number){
                 if ( Data['Result'] == 0 )
                     TriggerMessage(3500, '#E30300', '<p>Post Not Found</p>');
          		else if ( Data['Result'] == 1 ){
-         			TriggerMessage(4000, '#53A01A',
-         				'<p>Post ' + Post_Number + ' Deleted</p>');
+         			TriggerMessage(4000, '#53A01A', '<p>Post Deleted</p>');
          			$('#' + id).remove();
          			Posts = parseInt($('#Posts_Number').text());
          			$('#Posts_Number').text( Posts -1 );

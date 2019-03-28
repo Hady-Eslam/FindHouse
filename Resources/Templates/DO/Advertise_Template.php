@@ -30,7 +30,7 @@
 
 <body>
 
-    <?php include_once LoggedHeaders; ?>
+    <?php include_once AllHeaders; ?>
     
     <section>
         

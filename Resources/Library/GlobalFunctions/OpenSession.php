@@ -30,11 +30,16 @@ function OpenSession($Email){
         return Returns(-1, 'Getting Phone Hashed To Session', $_SESSION['Phone']->Error);
     $_SESSION['Phone'] = $_SESSION['Phone']->Data;
 
+    // Get Hashed Address
+    $_SESSION['Address'] = $Hashing->Get_Hashed_Users($Result->Data['address']);
+    if ( $_SESSION['Address']->Result == -1 )
+        return Returns(-1, 'Getting Address Hashed To Session', $_SESSION['Address']->Error);
+    $_SESSION['Address'] = $_SESSION['Address']->Data;
+
     // Get Hashed Profile Picture
     $_SESSION['Picture'] = $Hashing->Get_Hashed_Users($Result->Data['picture']);
     if ( $_SESSION['Picture']->Result == -1 )
-        return Returns(-1,'Getting Picture Hashed To Session',
-                    $_SESSION['Picture']->Error);
+        return Returns(-1,'Getting Picture Hashed To Session', $_SESSION['Picture']->Error);
     $_SESSION['Picture'] = $_SESSION['Picture']->Data;
 
     $_SESSION['Sign_UP_Date'] = $Result->Data['sign_in_date'];

@@ -133,6 +133,9 @@ define('HTTP_ROOT', 'http://findhouse.com');
 
 		define('NotFoundPage', StatusPages.'404.php');
 
+		define('MaximumAdvertisingLimitPage', StatusPages.'MaximumAdvertisingLimitPage.php');
+		
+
 
 	// Pages
 		// Register
@@ -153,9 +156,11 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('DO_Templates', Templates.'DO/');
 			define('Find_Template', DO_Templates.'Find_Template.php');
 			define('Advertise_Template', DO_Templates.'Advertise.php');
+			define('PostStatus_Template', DO_Templates.'PostStatus_Template.php');
 			define('Predict_Template', DO_Templates.'Predict_Template.php');
 			define('interested_Template', DO_Templates.'interested_Template.php');
-			define('Post_Template', DO_Templates.'Post_Template.php');			
+			define('Post_Template', DO_Templates.'Post_Template.php');
+			define('PeddingPosts_Template', DO_Templates.'PeddingPosts_Template.php');
 
 
 		// Services
@@ -169,13 +174,17 @@ define('HTTP_ROOT', 'http://findhouse.com');
 			define('Settings_Template', Profile_Templates.'Settings_Template.php');
 			define('User_Template', Profile_Templates.'User_Template.php');
 			define('MyProfile_Template', Profile_Templates.'MyProfile_Template.php');
-			define('Notifications_Template',
-						Profile_Templates.'Notifications_Template.php');
+			define('EditPost_Template', Profile_Templates.'EditPost_Template.php');
+			
+			define('Notifications_Template', Profile_Templates.'Notifications_Template.php');
 
-			define('Messages_Template',
-						Profile_Templates.'Messages_Template.php');
-			define('Message_Template',
-						Profile_Templates.'Message_Template.php');
+			define('Messages_Template', Profile_Templates.'Messages_Template.php');
+			define('Message_Template', Profile_Templates.'Message_Template.php');
+		
+
+		// Admin
+		define('Admin_Template', Templates.'Admin/');
+			define('AdminOperations_Template', Admin_Template.'AdminOperations_Template.php');
 			
 
 
@@ -206,9 +215,12 @@ define('HTTP_ROOT', 'http://findhouse.com');
 	define('DO_View', Views.'DO/');
 		define('Find_View', DO_View.'Find_View.php');
 		define('Advertise_View', DO_View.'Advertise_View.php');
+		define('PostStatus_View', DO_View.'PostStatus_View.php');
 		define('Predict_View', DO_View.'Predict_View.php');
 		define('interested_View', DO_View.'interested_View.php');
 		define('Post_View', DO_View.'Post_View.php');
+		define('PeddingPosts_View', DO_View.'PeddingPosts_View.php');
+		
 
 
 	// Services
@@ -220,11 +232,21 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('Settings_View', Profile_View.'Settings_View.php');
 		define('User_View', Profile_View.'User_View.php');
 		define('MyProfile_View', Profile_View.'MyProfile_View.php');
+		
+		define('EditPost_View', Profile_View.'EditPost_View.php');
 		define('Notifications_View', Profile_View.'Notifications_View.php');
-
 		define('Messages_Inbox_View', Profile_View.'Messages_Inbox_View.php');
 		define('Messages_Sent_View', Profile_View.'Messages_Sent_View.php');
 		define('Message_View', Profile_View.'Message_View.php');
+
+
+	// Admin
+	define('Admin_View', Views.'Admin/');
+		define('AdminDeletePost_View', Admin_View.'AdminDeletePost_View.php');
+		define('AdminAcceptPost_View', Admin_View.'AdminAcceptPost_View.php');
+		define('AdminRejectPost_View', Admin_View.'AdminRejectPost_View.php');
+		define('AdminDeleteAccount_View', Admin_View.'AdminDeleteAccount_View.php');
+		
 
 
 	// Back End Pages
@@ -251,16 +273,17 @@ define('HTTP_ROOT', 'http://findhouse.com');
 	define('DO_HTTP', HTTP_ROOT.'/DO/');
 		define('Find', DO_HTTP.'Find');
 		define('Advertise', DO_HTTP.'Advertise');
+		define('PostStatus', DO_HTTP.'PostStatus/');
 		define('Predict', DO_HTTP.'Predict');
 		define('interested', DO_HTTP.'interested');
 		define('Post', DO_HTTP.'Post/');
+		define('PeddingPosts', DO_HTTP.'PeddingPosts');
 
 
 	// Services
 	define('Services_HTTP', HTTP_ROOT.'/Services/');
 		define('Help', Services_HTTP.'Help');
 		define('Privacy', Services_HTTP.'Privacy');
-
 		define('AboutMe', Services_HTTP.'AboutMe');
 
 
@@ -269,12 +292,20 @@ define('HTTP_ROOT', 'http://findhouse.com');
 		define('Settings', Profile_HTTP.'Settings');
 		define('User', Profile_HTTP.'User/');
 		define('MyProfile', Profile_HTTP.'MyProfile');
+			
+		define('EditPost', Profile_HTTP.'EditPost/');
 		define('Notifications', Profile_HTTP.'Notifications');
-
 		define('Messages', Profile_HTTP.'Messages');
 		define('Messages_Inbox', Profile_HTTP.'Messages/Inbox');
 		define('Messages_Sent', Profile_HTTP.'Messages/Sent');
 		define('Message', Profile_HTTP.'Message/');
+
+	// Admin
+	define('Admin_HTTP', HTTP_ROOT.'/Admin/');
+		define('AdminDeletePost', Admin_HTTP.'AdminDeletePost/');
+		define('AdminAcceptPost', Admin_HTTP.'AdminAcceptPost/');
+		define('AdminRejectPost', Admin_HTTP.'AdminRejectPost/');
+		define('AdminDeleteAccount', Admin_HTTP.'AdminDeleteAccount/');
 
 
 	// Back End Page
@@ -323,6 +354,8 @@ define('Pictures', Public_HTTP.'Pictures/');
 	define('Notification', Pictures.'Notification.PNG');
 	define('Send', Pictures.'Send.PNG');
 	define('DeleteImage', Pictures.'Delete.png');
+	define('Admin', Pictures.'Admin.png');
+	
 	
 	
 
@@ -387,7 +420,7 @@ define('JavaScript', Public_HTTP.'JavaScript/');
 define('Email_Len', 100);	// 200 character 
 define('Password_Len', 40); // 100
 define('Name_Len', 40);		// 100
-define('Phone_Len', 11);	// 20
+define('Phone_Len', 20);	// 20
 define('Token_Len', 20);	// 100
 
 // DO
@@ -398,7 +431,7 @@ define('Rooms_Len', 1);		// 5
 define('Area_Len', 5);		// 20
 define('Furnished_Len',10);	// 10
 
-define('Address_Len', 150); // 200
+define('Address_Len', 70); // 200
 
 
 define('Status_Len', 10);	// 20

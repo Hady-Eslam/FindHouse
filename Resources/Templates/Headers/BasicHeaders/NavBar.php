@@ -22,6 +22,28 @@
 			else
 				$('.Profile').slideUp(400);
 		}
+
+		function ShowNotificationsMenu(){
+			if ( $('#Notifications').css('display') == 'none' )
+				$('#Notifications').slideDown(400);
+			else
+				$('#Notifications').slideUp(400);
+		}
 	</script>
+
+	<div>
+		<?php
+			if ( SESSION() ){
+			?>
+				<div>
+					<input type="image" src="<?php echo NoNotification;  ?>" 
+						width="30" height="30" onclick="ShowNotificationsMenu();">
+
+					<?php include_once Notifications_Header; ?>
+				</div>
+			<?php
+			}
+		?>
+	</div>
 
 </div>

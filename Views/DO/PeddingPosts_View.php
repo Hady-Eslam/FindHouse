@@ -1,74 +1,26 @@
 <?php
-function MyProfile_Begin($Type){
-	MyProfile_Get_Posts($Type);
-	include_once MyProfile_Template;
-}
 
-function MyProfile_Get_Posts($Type){
-	if ( $Type == 1 )
-		MyProfile_Get_All_Posts();
+function PeddingPosts_Begin(){
 
-	else if ( $Type == 2 )
-		MyProfile_Get_Pedding_Posts();
-	
-	else if ( $Type == 3 )
-		MyProfile_Get_Rejected_Posts();
-	
-	else
-		MyProfile_Get_Approved_Posts();
-}
-
-function MyProfile_Get_All_Posts(){
-	$Result = (new MYSQLClass('Profile'))->FetchAllRows('SELECT * FROM posts WHERE user_email = ? AND deleted = ? ORDER BY id DESC',
-		array( (new HashingClass())->Hash_POSTS($_SESSION['Email']), '0'));
-
+	$Result = (new MYSQLClass('DO'))->FetchAllRows(
+		'SELECT * FROM posts WHERE status = ? AND deleted = ? LIMIT 0, 20',
+		array(
+			'0',
+			'0'
+		));
 	if ( $Result->Result == -1 )
 		StatusPages_Error_Page();
 	else if ( $Result->Result == 0 )
 		$GLOBALS['Result'] = [];
 	else
 		$GLOBALS['Result'] = $Result->Data;
+
+	include_once PeddingPosts_Template;
 }
 
-function MyProfile_Get_Pedding_Posts(){
-	$Result = (new MYSQLClass('Profile'))->FetchAllRows('SELECT * FROM posts WHERE user_email = ? AND deleted = ? AND status = ? ORDER BY id DESC',
-		array( (new HashingClass())->Hash_POSTS($_SESSION['Email']), '0', '0'));
-
-	if ( $Result->Result == -1 )
-		StatusPages_Error_Page();
-	else if ( $Result->Result == 0 )
-		$GLOBALS['Result'] = [];
-	else
-		$GLOBALS['Result'] = $Result->Data;
-}
-
-function MyProfile_Get_Rejected_Posts(){
-	$Result = (new MYSQLClass('Profile'))->FetchAllRows('SELECT * FROM posts WHERE user_email = ? AND deleted = ? AND status = ? ORDER BY id DESC',
-		array( (new HashingClass())->Hash_POSTS($_SESSION['Email']), '0', '-1'));
-
-	if ( $Result->Result == -1 )
-		StatusPages_Error_Page();
-	else if ( $Result->Result == 0 )
-		$GLOBALS['Result'] = [];
-	else
-		$GLOBALS['Result'] = $Result->Data;
-}
-
-function MyProfile_Get_Approved_Posts(){
-	$Result = (new MYSQLClass('Profile'))->FetchAllRows('SELECT * FROM posts WHERE user_email = ? AND deleted = ? AND status = ? ORDER BY id DESC',
-		array( (new HashingClass())->Hash_POSTS($_SESSION['Email']), '0', '1'));
-
-	if ( $Result->Result == -1 )
-		StatusPages_Error_Page();
-	else if ( $Result->Result == 0 )
-		$GLOBALS['Result'] = [];
-	else
-		$GLOBALS['Result'] = $Result->Data;
-}
-
-function MyProfile_Get_Post($Post){
+function PeddingPosts_Get_Pedding_Post($Post){
 	$GLOBALS['Error'] = false;
-	User_Get_Post_From_Hashing($Post);
+	PeddingPosts_Get_Post_From_Hashing($Post);
 	if ( $GLOBALS['Error'] )
 		return ;
 	?>
@@ -81,8 +33,8 @@ function MyProfile_Get_Post($Post){
 					</a>
 				</div>
 
-				<div style="display: inline-block;margin: 0px;padding: 0px;font-size: 15px;">
-					<p><strong>By : </strong><?php echo $GLOBALS['User_Name']; ?></p>
+				<div style="display: inline-block;margin: 0px;padding: 0px;">
+					<p><strong>By : </strong>Hady Eslam</p>
 					<p><strong>Date : </strong><?php echo $GLOBALS['Date']; ?></p>
 				</div>
 			</div>
@@ -98,7 +50,7 @@ function MyProfile_Get_Post($Post){
 	<?php
 }
 
-function User_Get_Post_From_Hashing($Data){
+function PeddingPosts_Get_Post_From_Hashing($Data){
 	(new HashingClass())->Get_Data_From_Hashing([
 		['Type' => '', 'Data' => $Data['id'], 'Key' => 'POST_ID' ],
 		['Type' => 'POSTS', 'Data' => $Data['phone'], 'Key' => 'Phone' ],
@@ -125,9 +77,9 @@ function User_Get_Post_From_Hashing($Data){
 
 		['Type' => 'POSTS', 'Data' => $Data['addname'], 'Key' => 'Add_Name' ]
 
-	], 'User_Post_Error');
+	], 'PeddingPosts_Post_Error');
 }
 
-function User_Post_Error(){
+function PeddingPosts_Post_Error(){
 	$GLOBALS['Error'] = true;
 }

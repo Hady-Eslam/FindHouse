@@ -1,8 +1,13 @@
 <IfModule mod_rewrite.c>
 	
+	Options +FollowSymLinks
+
 	RewriteEngine on
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^(.*)$ Routing.php?URL=$1 [QSA,L]
+
+	RewriteCond %{HTTP_HOST} ^findhouse.com$ 
+	RedirectMatch ^(/)?$ "http://findhouse.com/DO/Find"
 	
 </IfModule>

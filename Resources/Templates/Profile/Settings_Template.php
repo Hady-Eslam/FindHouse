@@ -33,6 +33,15 @@ else if ( $GLOBALS['Section'] == 'Name' ){
 <?php
 }
 
+else if ( $GLOBALS['Section'] == 'Address' ){
+?>
+    <script src="<?php echo CheckLenScript; ?>"></script>
+    <script src="<?php echo CheckinputLenScript; ?>"></script>
+
+    <script src="<?php echo PagesScripts; ?>Settings_AddressScript.js"></script>
+<?php
+}
+
 else if ( $GLOBALS['Section'] == 'Phone' ){
 ?>
     <script src="<?php echo CheckLenScript; ?>"></script>
@@ -62,7 +71,7 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
 </head>
 <body>
 
-    <?php include_once LoggedHeaders; ?>
+    <?php include_once AllHeaders; ?>
     <?php include_once MessageBox; ?>
 
     <section>
@@ -72,6 +81,7 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
             
             <a href="<?php echo Settings.'/Picture'; ?>">Change Profile Picture</a>
             <a href="<?php echo Settings.'/Name'; ?>">Change Name</a>
+            <a href="<?php echo Settings.'/Address'; ?>">Change Address</a>
             <a href="<?php echo Settings.'/Password'; ?>">Change Password</a>
             <a href="<?php echo Settings.'/Phone'; ?>">Change Phone</a>
             <a href="<?php echo Settings.'/DeActivate'; ?>">De Activate Account</a>
@@ -86,6 +96,9 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
 
     else if ( $GLOBALS['Section'] == 'Name' )
         include_once Profile_Templates.'Settings_Name_Template.php';
+
+    else if ( $GLOBALS['Section'] == 'Address' )
+        include_once Profile_Templates.'Settings_Address_Template.php';
     
     else if ( $GLOBALS['Section'] == 'Phone' )
         include_once Profile_Templates.'Settings_Phone_Template.php';
@@ -106,6 +119,7 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
         var Name_Len = <?php echo Name_Len; ?>;
         var Phone_Len = <?php echo Phone_Len; ?>;
         var Password_Len = <?php echo Password_Len; ?>;
+        var Address_Len = <?php echo Address_Len; ?>;
 
         var CheckPage = '<?php echo CheckPage; ?>';
         var MyPage = '<?php echo Settings; ?>';
@@ -146,6 +160,12 @@ else if ( $GLOBALS['Section'] == 'DeActivate' ){
     else if ( $GLOBALS['Result'] == 'PasswordDone' ){
     ?>
         TriggerMessage(3000, '#53A01A', '<p>Password Changed</p>');
+    <?php
+    }
+
+    else if ( $GLOBALS['Result'] == 'AddressDone' ){
+    ?>
+        TriggerMessage(3000, '#53A01A', '<p>Address Changed</p>');
     <?php
     }
     

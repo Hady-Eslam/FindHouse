@@ -99,6 +99,15 @@ function DO_Advertise(){
 	include_once Advertise_View;
 	Advertise_Begin();
 }
+	
+	// Check Post Status
+function DO_PostStatus(){
+	$_SESSION['Page Name'] = 'Post Status';
+	if ( !SESSION() )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once PostStatus_View;
+	PostStatus_Begin((new URLClass())->GetMetched('/DO\/PostStatus\/(\d+)$/'));
+}
 
 	// interested
 function DO_interested(){
@@ -106,12 +115,22 @@ function DO_interested(){
 	include_once interested_View;
 	interested_Begin();
 }
-
+	
+	// See Posts
 function DO_Post(){
 	$Post_id = (new URLClass())->GetMetched('/DO\/Post\/(\d+)$/');
 	$_SESSION['Page Name'] = 'Post '.$Post_id;
 	include_once Post_View;
 	Post_Begin($Post_id);
+}
+
+	// See All Pedding Posts
+function DO_PeddingPosts(){
+	if ( !SESSION() || $_SESSION['Status'] != '0' )
+		StatusPages_Not_Authurithed_User_Page();
+	$_SESSION['Page Name'] = 'Pedding Posts';
+	include_once PeddingPosts_View;
+	PeddingPosts_Begin();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -138,12 +157,21 @@ function Profile_User(){
 }
 
 	// My Profile
-function Profile_MyProfile(){
+function Profile_MyProfile($Type){
 	$_SESSION['Page Name'] = 'My Profile';
 	if ( !SESSION() )
 	    StatusPages_Not_Authurithed_User_Page();
 	include_once MyProfile_View;
-	MyProfile_Begin();
+	MyProfile_Begin($Type);
+}
+
+	// Edit Posts
+function Profile_EditPost(){
+	$_SESSION['Page Name'] = 'Edit Post';
+	if ( !SESSION() )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once EditPost_View;
+	EditPost_Begin((new URLClass())->GetMetched('/Profile\/EditPost\/(\d+)$/'));
 }
 
 	// Notifications
@@ -155,6 +183,7 @@ function Profile_Notifications(){
 	Notifications_Begin();
 }
 
+	// Get Inbox Messages
 function Profile_Messages_Inbox(){
 	$_SESSION['Page Name'] = 'Messages Inbox';
 	if ( !SESSION() )
@@ -163,6 +192,7 @@ function Profile_Messages_Inbox(){
 	Messages_Inbox_Begin();
 }
 
+	// Get Sent Message
 function Profile_Messages_Sent(){
 	$_SESSION['Page Name'] = 'Messages Sent';
 	if ( !SESSION() )
@@ -171,11 +201,56 @@ function Profile_Messages_Sent(){
 	Messages_Sent_Begin();
 }
 
+	// Message
 function Profile_Message(){
 	$Message_id = (new URLClass())->GetMetched('/Profile\/Message\/(\d+)$/');
 	$_SESSION['Page Name'] = 'Message '.$Message_id;
 	include_once Message_View;
 	Message_Begin($Message_id);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+// Admin
+
+
+	// Admin Deleting Posts
+function Admin_AdminDeletePost(){
+	$_SESSION['Page Name'] = 'Admin Delete Post';
+	if ( !SESSION() || $_SESSION['Status'] != '0' )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once AdminDeletePost_View;
+	AdminDeletePost_Begin((new URLClass())->GetMetched('/Admin\/AdminDeletePost\/(\d+)$/'));
+}
+
+	// Admin Accept Posts
+function Admin_AdminAcceptPost(){
+	$_SESSION['Page Name'] = 'Admin Accept Post';
+	if ( !SESSION() || $_SESSION['Status'] != '0' )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once AdminAcceptPost_View;
+	AdminAcceptPost_Begin((new URLClass())->GetMetched('/Admin\/AdminAcceptPost\/(\d+)$/'));
+}
+
+	// Admin Reject Posts
+function Admin_AdminRejectPost(){
+	$_SESSION['Page Name'] = 'Admin Reject Post';
+	if ( !SESSION() || $_SESSION['Status'] != '0' )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once AdminRejectPost_View;
+	AdminRejectPost_Begin((new URLClass())->GetMetched('/Admin\/AdminRejectPost\/(\d+)$/'));
+}
+
+	// Admin Delete Account
+function Admin_AdminDeleteAccount(){
+	$_SESSION['Page Name'] = 'Admin Delete Account';
+	if ( !SESSION() || $_SESSION['Status'] != '0' )
+	    StatusPages_Not_Authurithed_User_Page();
+	include_once AdminDeleteAccount_View;
+	AdminDeleteAccount_Begin(
+		(new URLClass())->GetMetched('/Admin\/AdminDeleteAccount\/(\d+)$/'));
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -235,5 +310,10 @@ function StatusPages_Not_Authurithed_User_Page($Message = ''){
 
 function StatusPages_Error_Page($Message = ''){
 	include_once ErrorPage;
+	exit();
+}
+
+function StatusPages_Maximum_Advertising_Limit(){
+	include_once MaximumAdvertisingLimitPage;
 	exit();
 }

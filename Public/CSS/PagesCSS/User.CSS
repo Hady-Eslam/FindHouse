@@ -1,24 +1,17 @@
-section, .Posts div, .info{
+section, .info{
 	text-align: left;
 }
-.Posts div p, .Posts, .Posts div a, .info{
+.Posts, .info{
 	display: inline-block;
 }
 span{
     color: #454545;
-}
-.Posts div, .Posts{
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
 }
 .info{
 	margin-right: 100px;
 	margin-left: 0px;
 	padding-left: 0px;
 	vertical-align: top;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
 }
 .info input{
 	width: 100px;
@@ -27,13 +20,4 @@ span{
 .Posts{
     width: 59%;
     margin-top: 100px;
-}
-.Posts div{
-	border-color: #454545;
-}
-.Posts div p{
-	padding-right: 50px;
-}
-.Posts p{
-	text-align: center;
 }

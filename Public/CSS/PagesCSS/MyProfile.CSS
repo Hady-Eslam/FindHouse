@@ -1,16 +1,11 @@
 section, .info, .Posts div{
 	text-align: left;
 }
-.Posts div p, .info, .Posts, .Posts div a{
+.info, .Posts div a{
 	display: inline-block;
 }
 span{
     color: #454545;
-}
-.Posts div{
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
 }
 .info{
 	top: 80px;
@@ -18,7 +13,6 @@ span{
 	margin-left: 0px;
 	padding-left: 0px;
 	vertical-align: top;
-	position: fixed;
 }
 .info input{
 	width: 100px;
@@ -27,17 +21,10 @@ span{
 .Posts{
 	padding-left: 30%;
     width: 59%;
-    margin-top: 100px;
-}
-.Posts div{
-	border-color: #454545;
 }
 .Posts div input{
 	width: 40px;
 	margin-right: 50px;
-}
-.Posts p{
-	text-align: center;
 }
 .Number{
 	color: black;

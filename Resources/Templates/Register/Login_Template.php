@@ -18,7 +18,7 @@
 
 <body>
 
-    <?php include_once NotLoggedHeaders; ?>
+    <?php include_once AllHeaders; ?>
 
 	<section>
 
@@ -57,7 +57,7 @@
 
     <script type="text/javascript">
 <?php
-    if ( $GLOBALS['Result'] == 'Email And Phone Not Found' )
+    if ( $GLOBALS['Result'] == 'Email Not Found' )
         echo "$('#Email').css('border-color','red');";
 
     else if ( $GLOBALS['Result'] == 'Wrong Password' )

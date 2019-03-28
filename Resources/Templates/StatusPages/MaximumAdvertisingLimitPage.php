@@ -1,11 +1,9 @@
 <!DOCTYPE>
 <html>
 <head>
-	<title>Un Authurithed User</title>
+	<title>Maximum Advertising Limit</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo AllPagesCSS; ?>">
-    <link rel="stylesheet" type="text/css" 
-    		href="<?php echo PagesCSS;?>UnAuthurizedUser.CSS">
 
     <link rel="icon" type="image/JPG" href="<?php echo LOGO; ?>">
 
@@ -18,13 +16,11 @@
 
 	<?php include_once AllHeaders; ?>
 
-	<section>
+	<section style="min-height: 51.9%">
 
-		<div class='Title'>
-			Un Authurized User
-		</div>
+		<p>You Have Reached Your Adverting Limit in WebSite</p>
 
-		<P>You  Can't Enter This Page</P>
+		<p>Every User Have 600 Adds Only</p>
 
 	</section>
 

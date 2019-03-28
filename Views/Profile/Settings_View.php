@@ -25,6 +25,10 @@ function Settings_POST($incomingURL){
 	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate/',
 				$incomingURL))
 		Settings_POST_DeActivate();
+
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Address/',
+				$incomingURL))
+		Settings_POST_Address();
 	
 	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings/', $incomingURL ) ||
 			preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Picture/', $incomingURL ))
@@ -53,6 +57,10 @@ function Settings_SetVariables($incomingURL){
 	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/DeActivate/',
 				$incomingURL))
 		$GLOBALS['Section'] = 'DeActivate';
+
+	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Address/',
+				$incomingURL))
+		$GLOBALS['Section'] = 'Address';
 	
 	else if ( preg_match('/http:\/\/findhouse\.com\/Profile\/Settings/', $incomingURL ) ||
 			preg_match('/http:\/\/findhouse\.com\/Profile\/Settings\/Picture/', $incomingURL ))
@@ -80,6 +88,9 @@ function Settings_SetVariables($incomingURL){
 	
 	else if ( isset($_GET['PasswordDone']) )
 		$GLOBALS['Result'] = 'PasswordDone';
+
+	else if ( isset($_GET['AddressDone']) )
+		$GLOBALS['Result'] = 'AddressDone';
 	
 	else
 		$GLOBALS['Result'] = '';
@@ -109,6 +120,34 @@ function Settings_POST_Name(){
 	    	StatusPages_Error_Page('Saving Name into DataBase');
 	    $_SESSION['Name'] = $GLOBALS['N'];
 	    Redirect(Settings.'/Name?NameDone');
+	}
+	StatusPages_Not_Authurithed_User_Page();
+}
+
+function Settings_POST_Address(){
+	$URL = new URLClass();
+	$Hashing = new HashingClass();
+
+	if ( $URL->REFFERE_is_SET() && isset($_POST['AddressSubmit']) && isset($_POST['Address'])){
+		
+		if ( !preg_match('/^http:\/\/findhouse\.com\/Profile\/Settings\/Address/',
+					explode('?', $URL->Get_REFFERE())[0] ) )
+			StatusPages_Not_Authurithed_User_Page();
+
+		(new FILTERSClass())->FILTER_POST(
+            [ 'Address' => [ 'Type' => 'STRING', 'Len' => Address_Len] ],
+            'Redirect', Settings.'/Address');
+
+	    // Save in DataBase
+	    if ((new MYSQLClass('Settings'))->
+	    		excute('UPDATE users SET address = ? WHERE email = ?',
+				array(
+					$Hashing->Hash_Users($GLOBALS['Address']),
+					$Hashing->Hash_Users($_SESSION['Email'])
+				))->Result == -1 )
+	    	StatusPages_Error_Page('Saving Address into DataBase');
+	    $_SESSION['Address'] = $GLOBALS['Address'];
+	    Redirect(Settings.'/Address?AddressDone');
 	}
 	StatusPages_Not_Authurithed_User_Page();
 }
@@ -235,7 +274,7 @@ function Settings_POST_Picture(){
 			StatusPages_Not_Authurithed_User_Page();
 			
 		$GLOBALS['Pic'] = true;
-	    if ( (new $FILTER())->FilterPicture('File1')->Result != 'OK' )
+	    if ( $FILTER->FilterPicture('File1')->Result != 'OK' )
 	    	$GLOBALS['Pic'] = false;
 
 	    // Process File

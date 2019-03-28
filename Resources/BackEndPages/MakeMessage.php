@@ -27,6 +27,9 @@ if ( $Result->Result == -1 )
 else if ( $Result->Result == 0 )
 	return Returns(0, 'Post Not Found');
 
+else if ( $Result->Data['contact_status'] == '1' )
+	return Returns(0, "User Don't Want Enyone To Send Him Messages");
+
 $Result = $Hashing->Get_Hashed_POSTS($Result->Data['user_email']);
 if ( $Result->Result != 1 )
 		return $Result;
@@ -41,6 +44,14 @@ if ( ($Result = $MySql->excute('INSERT INTO messages (message_email, message_bod
 			$Post_id
 		)))->Result != 1 )
 	return $Result;
+
+$MySql->excute('INSERT INTO notifications (from_user, to_user, notification_type, message, notification_date) VALUES(?, ?, ?, ?, ?)', array(
+	$Hashing->Hash_Notifications($Email),
+	$Hashing->Hash_Notifications($User_Email),
+	'8',
+	$Hashing->Hash_Notifications('You Have New Message'),
+	date('D d-m-Y H:i:s')
+));
 
 return Returns(1, 'Done');
 ?>

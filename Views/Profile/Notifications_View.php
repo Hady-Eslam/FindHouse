@@ -1,4 +1,4 @@
-<?php set_error_handler("Error_Handeler");
+<?php
 
 function Notifications_Begin(){
 	Notifications_Get_Notifications();
@@ -10,73 +10,135 @@ function Notifications_Get_Notifications(){
 	$Hashing = new HashingClass();
 
 	$Result = $MySql->FetchAllRows(
-		'SELECT * FROM notifications WHERE user_email = ? ORDER BY id DESC',
-		array( $Hashing->Hash_Notifications($_SESSION['Email']) ));
+		'SELECT * FROM notifications WHERE to_user = ? ORDER BY id DESC',
+		array(
+			$Hashing->Hash_Notifications($_SESSION['Email'])
+		));
+
 	if ( $Result->Result == -1 )
 		StatusPages_Error_Page();
+	
 	else if ( $Result->Result == 0 )
-		$GLOBALS['Notifications_Query_Result'] = [];
+		$GLOBALS['Result'] = [];
+	
 	else
-		Notifications_Get_Data_From_Hashing($Result->Data);
+		$GLOBALS['Result'] = $Result->Data;
 }
 
-function Notifications_Get_Data_From_Hashing($Data){
-	$GLOBALS['Notifications_Query_Result'] = [];
-	$Hashing = new HashingClass();
+function Notifications_Get_Data_From_Hashing($Notification){
+	(new HashingClass())->Get_Data_From_Hashing([
+		['Type' => 'Notifications', 'Data' => $Notification['from_user'], 'Key' => 'From_User'],
+		['Type' => 'Notifications', 'Data' => $Notification['to_user'], 'Key' => 'To_User'],
 
-	foreach ($Data as $Row) {
-		$Hashing->Get_Data_From_Hashing([
-			['Type' => 'Notifications', 'Data' => $Row['message'],
-				'Key' => 'Notification_Message', 'Default' => '' ] ]);
+		['Type' => '','Data' => $Notification['notification_type'],'Key' => 'Notification_Type'],
+		['Type' => 'Notifications', 'Data' => $Notification['message'], 'Key' => 'Message'],
 
-		$Result = NULL;
-		$Result['Notification_Type'] = $Row['notification_type'];
-		$Result['Notification_Message'] = $GLOBALS['Notification_Message'];
-		$Result['Notification_Date'] = $Row['notification_date'];
-
-		if ( $GLOBALS['Notification_Message'] != '' )
-			$GLOBALS['Notifications_Query_Result'][] = $Result;
-	}
+		['Type' => '', 'Data' => $Notification['see'], 'Key' => 'See'],
+		['Type' => '', 'Data' => $Notification['notification_date'], 'Key' => 'Date']
+	], 'Notifications_Set_Error');
 }
 
-function Notifications_Set_Notifications($Notification, $Count){
-	$Hashing = new HashingClass();
-	$Type = $Notification['Notification_Type'];
-	$Message = $Notification['Notification_Message'];
+function Notifications_Set_Error(){
+	$GLOBALS['Error'] = true;
+}
 
-	if ( $Type == '1' || $Type == '2' || $Type == '3' ){
-		preg_match('/User : (.+) in Post (.\d+)$/', $Message, $Result );
-		$QueryResult = (new MYSQLClass('Profile'))->FetchOneRow(
-			'SELECT name FROM users WHERE email = ?',
-			array($Hashing->Hash_Users($Result[1])) );
-		if ( $QueryResult->Result != 1 )
-			$User = '';
-		else{
-			$Hashing->Get_Data_From_Hashing([
-				['Type' => 'User', 'Data' => $QueryResult->Data['name'],
-					'Key' => 'Notifications_User_Name', 'Default' => '' ] ]);
-			$User = $GLOBALS['Notifications_User_Name'];
-		}
+function Notifications_Get_Notification($Notification){
 
-		if ( $Type == '1' )
-			$Message = 'User '.$User.' Made Comment in Your Post <a href="'
-				.Post.$Result[2].'">Click Here To See The Post</a>';
-		else if ( $Type == '2' )
-			$Message = 'User '.$User.' Liked Your Post <a href="'
-				.Post.$Result[2].'">Click Here To See The Post</a>';
-		else if ( $Type == '3' )
-			$Message = 'User '.$User.' DisLiked Your Post <a href="'
-				.Post.$Result[2].'">Click Here To See The Post</a>';
-	}
+	$GLOBALS['Error'] = false;
+	Notifications_Get_Data_From_Hashing($Notification);
+	if ( $GLOBALS['Error'] )
+		return ;
+
+	Notifications_GetPicture();
+	if ( $GLOBALS['Error'] )
+		return ;
+
+	Notifications_Get_Message();
 	?>
 	<div>
-        <p>Date : <?php echo $Notification['Notification_Date']; ?></p>
 
         <div>
-            <p><?php echo $Message; ?></p>
+            <a href="" style="display: inline-block;">
+                <input type="image" src="<?php echo $GLOBALS['User_Picture']; ?>"
+                	style="width: 80px;height: 80px;">
+            </a>
+
+            <div style="display: inline-block;font-size: 15px;">
+                <p><strong>Date : </strong><?php echo $GLOBALS['Date']?></p>
+                <p><strong>By : </strong><?php echo $GLOBALS['User_Name']; ?></p>
+                <?php echo Notifications_Get_Status(); ?>
+            </div>
         </div>
+
+        <div>
+        	<p><?php echo $GLOBALS['Message']; ?></p>
+        </div>
+
     </div>
+
 	<?php
-	return ($Count + 1);
 }
-?>
+
+function Notifications_Get_Status(){
+	if ( $GLOBALS['From_User'] == 'Admin' ){
+	?>
+		<p style="color: green;"><strong>Status : </strong>Authorized Admin</p>
+	<?php
+	}
+	else{
+	?>
+		<p><strong>Status : </strong>User</p>
+	<?php
+	}
+}
+
+function Notifications_GetPicture(){
+	if ( $GLOBALS['From_User'] == 'Admin' ){
+		$GLOBALS['User_Picture'] = Admin;
+		$GLOBALS['User_Name'] = 'Admin';
+	}
+
+	else{
+		$Hashing = new HashingClass();
+		$Result = (new MYSQLClass('Profile'))->FetchOneRow(
+			'SELECT * FROM users WHERE email = ? AND deleted = ? AND activate = ?',
+			array(
+				$Hashing->Hash_Users($GLOBALS['From_User']),
+				'0',
+				'1'
+			));
+
+		if ( $Result->Result == -1 )
+			return -1;
+		
+		else if ( $Result->Result == 0 ){
+			$GLOBALS['User_Picture'] = OfflineUsers;
+			$GLOBALS['User_Name'] = $GLOBALS['From_User'];
+		}
+		
+		else{
+			$Hashing->Get_Data_From_Hashing([
+				['Type' => 'User', 'Data' => $Result->Data['picture'], 'Key' => 'User_Picture'],
+				['Type' => 'User', 'Data' => $Result->Data['name'], 'Key' => 'User_Name']
+			], 'Notifications_Set_Error');
+		}
+	}
+}
+
+function Notifications_Get_Message(){
+	if ( $GLOBALS['User_Name'] == 'Admin' ){
+		if ( preg_match('/(\d+)/', $GLOBALS['Message'], $Result) ){
+			Notifications_CheckPost($Result[1]);
+		}
+	}
+}
+
+function Notifications_CheckPost($Post_id){
+	$Result = (new MYSQLClass('Profile'))->FetchOneRow('SELECT addname FROM posts WHERE id = ?', array( $Post_id ));
+	if ( $Result->Result == 1 ){
+		$Re = (new HashingClass())->Get_Hashed_POSTS($Result->Data['addname']);
+		if ( $Re->Result == 1 )
+			$GLOBALS['Message'] = preg_replace('/(\d+)/',
+				'<span style = "color : green;">'.$Re->Data.'</span>', $GLOBALS['Message']);
+	}
+}

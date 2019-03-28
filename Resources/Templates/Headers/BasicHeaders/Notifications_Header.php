@@ -1,6 +1,7 @@
 <div id="Notifications">
 <?php
-$MySql = new MYSQLClass('Profile');
+
+/*$MySql = new MYSQLClass('Profile');
 $Hashing = new HashingClass();
 
 // Getting User Notifications
@@ -50,7 +51,7 @@ else{
 		}
 		unset($GLOBALS['Notification_Message']);
 	}
-}
+}*/
 ?>
 	<div class="SeeAll">
 		<a href="<?php echo Notifications; ?>">See All Notifications</a>

@@ -4,7 +4,10 @@ include_once DATE;
 include_once PHPMailClass;
 
 function Advertise_Begin(){
-	if ( (new URLClass())->Request() == "POST" )
+	if ( $_SESSION['Status'] != '0' && $_SESSION['Posts'] > 600 )
+		StatusPages_Maximum_Advertising_Limit();
+
+	else if ( (new URLClass())->Request() == "POST" )
 		Advertise_POST();
 	Advertise_GET();
 }
@@ -16,7 +19,7 @@ function Advertise_POST(){
 		isset($_POST['Area']) && isset($_POST['Furnished']) && isset($_POST['Discreption']) &&
 		isset($_POST['City']) && isset($_POST['UserName']) && isset($_POST['Money']) &&
     	isset($_FILES['File1']) && isset($_FILES['File2']) && isset($_FILES['File3']) &&
-    	isset($_FILES['File4'])){
+    	isset($_FILES['File4']) && isset($_POST['Phone']) ){
 
 		if ( !$URL->CheckREFFERE(Advertise) )
 			StatusPages_Not_Authurithed_User_Page();
@@ -67,9 +70,9 @@ function Advertise_CheckData(){
 
             'City' => ['Type' => 'STRING', 'Len' => Address_Len ],
             'UserName' => ['Type' => 'STRING', 'Len' => Name_Len ],
-
+            'Phone' => ['Type' => 'STRING', 'Len' => Phone_Len ]
+        
         ], 'Redirect', Advertise );
-
 
 	if ( $GLOBALS['Furnished'] == 'Select' || $GLOBALS['Furnished'] == 'NO' )
 		$GLOBALS['Furnished'] = 'NO';
@@ -78,6 +81,15 @@ function Advertise_CheckData(){
 
 	if ( $GLOBALS['SmallType'] == 'Select' || $GLOBALS['BigType'] == 'Select' )
 		Redirect(Advertise);
+
+	// Check Contact Me
+	if ( !isset($_POST['ContactMe']) || $_POST['ContactMe'] == 'Both' )
+		$GLOBALS['ContactMe'] = '0';
+	else if ( $_POST['ContactMe'] == 'Phone' )
+		$GLOBALS['ContactMe'] = '1';
+	else
+		$GLOBALS['ContactMe'] = '2';
+
 
     // First Picture
     $GLOBALS['Pic1'] = true;
@@ -132,7 +144,7 @@ function Advertise_SaveData(){
 
 	if ( ($Result = $MySql->excute('INSERT INTO posts (deleted, user_email, address, addname,'
 			.' bigtype, furnished, area, rooms, pathrooms, discreption, f_pic, s_pic, post_date'
-			.', smalltype, user_name, t_pic, fo_pic, money) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+			.', smalltype, user_name, t_pic, fo_pic, money, phone, status, contact_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				'0',
 				$Hashing->Hash_POSTS($_SESSION['Email']),
@@ -152,12 +164,27 @@ function Advertise_SaveData(){
 				$Hashing->Hash_POSTS($GLOBALS['Pic3']),
 				$Hashing->Hash_POSTS($GLOBALS['Pic4']),
 				$GLOBALS['Money'],
+				$Hashing->Hash_POSTS($GLOBALS['Phone']),
+				( $_SESSION['Status'] != '0' ) ? '0' : '1',
+				$GLOBALS['ContactMe']
 			)))->Result == -1 )
 		StatusPages_Error_Page('Saving Post into DataBase');
 
+	$Post_id = $MySql->GetInsertedID();
+	if ( $_SESSION['Status'] != '0' ){
+
+		$Result = $MySql->excute('INSERT INTO notifications (from_user, to_user, notification_type, message, notification_date) VALUES (?, ?, ?, ?, ?)',
+			array(
+				$Hashing->Hash_Notifications($_SESSION['Email']),
+				$Hashing->Hash_Notifications('Admin'),
+				'7',
+				$Hashing->Hash_Notifications('I Want To Approve This Post '.$Post_id),
+				date('D d-m-Y H:i:s')
+			));
+	}
+
 	$_SESSION['Posts']++;
-	Redirect(Post.$MySql->GetInsertedID());
-	//interested_Check_interested($MySql->GetInsertedID());
+	Redirect(Post.$Post_id);
 }
 
 function interested_Check_interested($ID){
@@ -276,4 +303,3 @@ function Advertise_Get_Link(){
     </div>
 	<?php
 }
-?>

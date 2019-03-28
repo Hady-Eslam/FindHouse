@@ -23,10 +23,11 @@
 				<p>From : <?php echo $GLOBALS['Message_Email']; ?></p>
 				<p>To : <?php echo $GLOBALS['User_Email']; ?></p>
 				<p>Date : <?php echo $GLOBALS['Message_Date']; ?></p>
+				<p>Advertise Name : <?php echo $GLOBALS['Add_Name']; ?></p>
 			</div>
 
 			<div style="width: 90%;word-wrap: break-word;">
-				<?php echo $GLOBALS['Message_Body']; ?>
+				<p><?php echo $GLOBALS['Message_Body']; ?></p>
 			</div>
 		</div>
 

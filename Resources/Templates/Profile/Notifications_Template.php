@@ -1,4 +1,3 @@
-<?php  set_error_handler("Error_Handeler"); ?>
 <!DOCTYPE>
 <html>
 <head>
@@ -26,11 +25,13 @@
 
         <div class="Notifications">
             <?php 
-                $Count = 1;
-                foreach ($GLOBALS['Notifications_Query_Result'] as $Value) {
-                    $Count = Notifications_Set_Notifications($Value, $Count);
+                $Count = false;
+                foreach ($GLOBALS['Result'] as $Value) {
+                    $Count = true;
+                    Notifications_Get_Notification($Value);
                 }
-                if ( $Count == 1 ){
+
+                if ( !$Count ){
                     ?>
                         <div style="text-align: center;">
                             <p>You Have No Notifications</p>

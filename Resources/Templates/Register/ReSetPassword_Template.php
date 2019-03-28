@@ -18,7 +18,7 @@
 </head>
 <body>
 
-	<?php include_once NotLoggedHeaders; ?>
+	<?php include_once AllHeaders; ?>
 
 	<section>
 		

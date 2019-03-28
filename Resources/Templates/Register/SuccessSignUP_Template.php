@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <?php include_once NotLoggedHeaders; ?>
+    <?php include_once AllHeaders; ?>
 
 	<section>
 		<P class="P1">Please Check Your Email To Complete The Proccess Of SIGN UP</P>
