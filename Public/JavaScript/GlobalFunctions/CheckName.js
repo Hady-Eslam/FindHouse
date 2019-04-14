@@ -21,7 +21,7 @@ function CheckName(){
     $.ajax({
         type : "POST",
         url : CheckPage,
-        data : 'N='+$('#Name').val(),
+        data : 'Name='+$('#Name').val(),
         error: function (jqXHR, exception) {
             console.log(jqXHR);
         },

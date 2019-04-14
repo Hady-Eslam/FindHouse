@@ -32,12 +32,13 @@ function CheckEmail(){
     $.ajax({
         type : "POST",
         url : CheckPage,
-        data : 'E='+$('#Email').val(),
+        data : 'Email='+$('#Email').val(),
         error: function (jqXHR, exception) {
             console.log(jqXHR);
         },
         
         success : function(Data){
+            console.log(Data);
             try{
                 Data = JSON.parse(Data);
                 if ( Data['Result'] == 0 ){

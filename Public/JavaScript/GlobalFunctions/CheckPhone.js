@@ -26,7 +26,7 @@ function CheckPhone(){
     $.ajax({
         type : "POST",
         url : CheckPage,
-        data : 'Ph='+$('#Phone').val(),
+        data : 'Phone='+$('#Phone').val(),
         error: function (jqXHR, exception) {
             console.log(jqXHR);
         },

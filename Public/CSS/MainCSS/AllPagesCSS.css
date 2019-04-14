@@ -132,6 +132,7 @@ header a{
     visibility: hidden;
     position: fixed;
     font-size: 20px !important;
+    z-index: 500;
 }
 body{
     font-family: sans-serif;
