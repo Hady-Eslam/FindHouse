@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 	
-	Options +FollowSymLinks
+	Options +FollowSymLinks -MultiViews -Indexes
 
 	RewriteEngine on
 	RewriteCond %{REQUEST_FILENAME} !-f

@@ -1,0 +1,156 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title><< HEAD_Title >></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="<< HEAD_Favicon >>"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Bootstrap_Min_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Fonts_Min_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Fonts_Iconic_Min_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Animate_CSS >>">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Hamburger_Min_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Animsition_Min_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Select2_Min_CSS >>">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Daterangepicker_CSS >>">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Util_CSS >>">
+	<link rel="stylesheet" type="text/css" href="<< HEAD_Main_CSS >>">
+	<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< HEAD_Style_CSS >>">
+
+    <script src="<< JQueryScript >>"></script>
+    <script src="<< DropBoxScript >>"></script>
+
+    <script src="<< CheckLenScript >>"></script>
+    <script src="<< CheckinputLenScript >>"></script>
+
+    <script src="<< CheckPasswordScript >>"></script>
+    <script src="<< CheckPatternScript >>"></script>
+
+    <script src="<< CheckPhoneScript >>"></script>
+
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< PagesScripts >>SignUPScript.js"></script>
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<!-- Main Header Start -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+	
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('<< Form_Image >>');">
+			<div class="wrap-login100">
+
+                << include : MessageBox.html >>
+
+				<form class="login100-form validate-form" method="POST" action="<< SignUP >>"
+					id="SignForm" >
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						انشاء حساب جديد
+					</span>
+
+					<div style="text-align: center;">
+                        << Load : Register/SignUP_Result >>
+        				<< Filter : SignUP_Result : Result >>
+                    </div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter your name">
+
+						<input class="input100" type="text" name="Name" value = "<< Name >>"
+                            id="Name" placeholder="الاسم">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter E-mail">
+
+						<input class="input100" type="text" name="Email" id="Email"
+                            value = "<< Email >>" placeholder="االبريد الاكترونى">
+						<span  class="focus-input100" ><i class="fa fa-envelope icon"
+                                style="color: white;"></i></span>
+
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="phone">
+
+						<input class="input100" type="text" name="Phone" value="<< Phone >>"
+                            id="Phone" placeholder="رقم الموبيل">
+
+						<span class="focus-input100"  ><i class="fa fa-mobile" aria-hidden="true" style="color: white;font-size:24px;"></i></span>
+
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+
+						<input class="input100" type="password" name="Password"
+                            id="Password" placeholder="كلمه السر">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Re-enter password">
+
+						<input class="input100" type="password" id="ConPassword"
+                            placeholder="اعاده كتابه كلمه السر">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+					
+					
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							انشاء الحساب
+						</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	 <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : JSFiles/Login_Template_JS.html >>
+
+    <script type="text/javascript">
+        var CheckPage = '<< CheckPage >>';
+
+        var Name_Len = << Name_Len >>;
+        var Email_Len = << Email_Len >>;
+        var Phone_Len = << Phone_Len >>;
+        var Password_Len = << Password_Len >>;
+    </script>
+
+</body>
+</html>

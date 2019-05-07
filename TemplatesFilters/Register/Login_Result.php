@@ -3,10 +3,10 @@
 function Login_Result($Result){
 
     if ( $Result == 'Email Not Found' )
-        return "$('#Email').css('border-color','red');";
+    	return '<strong style="color: red;font-size: 30px;">Wrong Email</strong>';
 
     else if ( $Result == 'Wrong Password' )
-        return "$('#Password').css('border-color','red');";
+    	return '<strong style="color: red;font-size: 30px;">Wrong Password</strong>';
 
     return '';
 }

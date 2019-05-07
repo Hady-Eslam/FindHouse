@@ -1,0 +1,143 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+    <script src="<< JQueryScript >>"></script>
+    <script src="<< DropBoxScript >>"></script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Properties Hero Area Start **** -->
+    <div class="properties-hero-area d-flex flex-wrap align-items-center mb-80">
+        <div class="properties-slide">
+            <!-- Properties Slider -->
+            <div id="property-thumb-silde" class="carousel slide wow fadeInUp"
+                data-wow-delay="200ms" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#property-thumb-silde" data-slide-to="0" class="active"
+                        style="background-image: url(<< First_Image >>);"></li>
+
+                    <li data-target="#property-thumb-silde" data-slide-to="1"
+                        style="background-image: url(<< Second_Image >>);"></li>
+                    
+                    <li data-target="#property-thumb-silde" data-slide-to="2"
+                        style="background-image: url(<< Third_Image >>);"></li>
+                    
+                    <li data-target="#property-thumb-silde" data-slide-to="3"
+                        style="background-image: url(<< Fourth_Image >>);"></li>
+
+                    <li data-target="#property-thumb-silde" data-slide-to="3"
+                        style="background-image: url(<< Fifth_Image >>);"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    
+                    <div class="carousel-item active">
+                        <img src="<< First_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <img src="<< Second_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <img src="<< Third_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <img src="<< Fourth_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <img src="<< Fifth_Image >>" class="d-block w-100" alt="...">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- **** Properties Hero Area End **** -->
+
+    <!-- **** Properties-area Start **** -->
+    <div class="rehomes-properties-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-8">
+
+                    <!-- Information Area -->
+                    <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Infomation</h4>
+
+                        <!--Information Content -->
+                        <div class="information-content">
+                            <ul class="d-flex flex-wrap">
+                                <li><span>From</span> <span><< From >></span></li>
+                                <li><span>To</span> <span> << To >></span></li>
+                                <li><span>Date</span> <span><< Date >></span></li>
+                                <li><span>Add Name</span> <span><a href="<< Add_Link >>">
+                                        << Add_Name >></a></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- **** Properties-area End **** -->
+
+    <div class="rehomes-properties-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-8">
+
+                    <!-- Information Area -->
+                    <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Message</h4>
+
+                        <!--Information Content -->
+                        <p><< Message >></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+</body>
+
+</html>

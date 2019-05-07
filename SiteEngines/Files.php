@@ -1,8 +1,9 @@
 <?php
 
-function MakePostFile($Userid, $Postid){
+function MakePostFile($Userid, $Category, $Postid){
     MakeFile( UserPictures.'User'.$Userid );
-    MakeFile( UserPictures.'User'.$Userid.'/Post'.$Postid );
+    MakeFile( UserPictures.'User'.$Userid.'/'.$Category );
+    MakeFile( UserPictures.'User'.$Userid.'/'.$Category.'/Post'.$Postid );
 }
 
 function MakeMessageFile($User_id, $Message_id){

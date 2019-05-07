@@ -1,0 +1,78 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< HEAD_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< HEAD_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< HEAD_Font_Awasome >>">
+    <link rel="stylesheet" href="<< HEAD_Style_SHEET >>">
+
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< PagesScripts >>NotificationsScript.js"></script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Properties Hero Area Start **** -->
+    <!-- Agent Information -->
+    <div class="agent-information-area mb-80 wow fadeInUp" data-wow-delay="200ms"
+        id="Notifications">
+        <h4 class="mb-30">Notifications</h4>
+
+        <!-- Agent Information Info -->
+        <div class="agent-information-info d-flex align-items-center">
+            <!-- Agent Thumb -->
+            <div class="agent-thumb">
+                <img src="img/bg-img/72.jpg" alt="">
+            </div>
+            <!-- Agent Info -->
+            <div class="agent-info">
+                <h4>By : Jason Johnson</h4>
+                <!-- Agent Contact -->
+                <p>Date : <span>05/05/2019</span></p>
+                <p>Status : <span style="color: green;">Admin</span></p>
+                <p>Notification</p>
+            </div>
+        </div>
+        
+        << Load : Profile/Notifications >>
+        << Filter : GetNotifications >>
+
+    </div>
+    <!-- **** Properties-area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+</body>
+
+</html>

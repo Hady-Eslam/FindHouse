@@ -1,33 +1,49 @@
 <!DOCTYPE>
-<html>
+<html lang="en">
+
 <head>
-	<title>Message</title>
-	
-	<link rel="stylesheet" type="text/css" href="<< AllPagesCSS >>">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/JPG" href="<< LOGO >>">
+    <!-- Title -->
+    <title>Messages</title>
 
-    <script src="<< JQueryScript >>"></script>
-    <script src="<< DropBoxScript >>"></script>
+    <!-- Favicon -->
+    <link rel="icon" href="<< HEAD_LOGO >>">
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< HEAD_Font_Awasome >>">
+    <link rel="stylesheet" href="<< HEAD_Style_SHEET >>">
 </head>
+
 <body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
 
-    << include : Header/Header.html >>
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
 
-	<section style="min-height: 51.9%;">
+    <div style="text-align: center;">
+        <p style="font-size: 40px;padding: 10px;color:green;">Message Sent Succefully</p>
+    </div>
 
-		<style type="text/css">
-			section p{
-				padding-top: 80px;
-			}
-		</style>
 
-		<p style="color: green;">Message Sent Successfully</p>
-	
-	</section>
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
 
-	<< include : Footer.html >>
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
 
 </body>
+
 </html>

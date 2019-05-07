@@ -39,6 +39,30 @@ class HashingEngine{
 	private $MESSAGES_ENCRYPTION_KEY = 'UVQnY+hkhYLLV/1o9R/jKbGNoG1bSW76b3qXOvnerzo=';
 	private $MESSAGES_HASH_LEN = 22;
 
+	private $REGISTER_NOTIFICATIONS_ENCRYPTION_KEY =
+		'UVQnYsdfdsfsdfV/sdfsfR/jsfNoGsdfdsf76b3qXOvnerzo=';
+	private $REGISTER_NOTIFICATIONS_HASH_LEN = 24;
+
+	private $CONTACT_US_ENCRYPTION_KEY = 'UVQnYsdfdsfsdfdsfsdfs5456sdfdsf76b3qXOvnerzo=';
+	private $CONTACT_US_HASH_LEN = 26;
+
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	private $HOMES_ENCRYPTION_KEY = 'UVQnYsdfdsfsdjghdfghdffdsf76b3qXOvnerzo=';
+	private $HOMES_HASH_LEN = 10;
+
+	private $MOBILES_ENCRYPTION_KEY = 'UVQnY45654fsdfsdfs564dsf76b3qXOvnerzo=';
+	private $MOBILES_HASH_LEN = 12;
+
+	private $CARS_ENCRYPTION_KEY = 'sdgdfgdfg65454dfgdgdsf76b3qXOvnerzo=';
+	private $CARS_HASH_LEN = 9;
+
+	private $ELC_ENCRYPTION_KEY = 'asd645asd6a54das5dsa5d4848463211=';
+	private $ELC_HASH_LEN = 8;
+
+	private $EAT_ENCRYPTION_KEY = 'sdhfjksfsdkdfjsdfl12565465412sfdds=';
+	private $EAT_HASH_LEN = 8;
 
 	///////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +140,50 @@ class HashingEngine{
 		/*return $this->Encrypt_Data('MYNAMEHADYESLAMMOHAMME'.$Message,
 			$this->MESSAGES_ENCRYPTION_KEY);*/
 		return 'MYNAMEHADYESLAMMOHAMME'.$Message;
+	}
+
+	function Hash_RegisterNotifications($Email){
+		/*return $this->Encrypt_Data('MYNAMEHADYESLAMMOHAMMEDS'.$Email,
+			$this->REGISTER_NOTIFICATIONS_ENCRYPTION_KEY);*/
+		return 'MYNAMEHADYESLAMMOHAMMEDS'.$Email;
+	}
+
+	function Hash_ContactUS($User){
+		/*return $this->Encrypt_Data('MYNAMEHADYESLAMMOHAMMEDSAD'.$User,
+			$this->CONTACT_US_ENCRYPTION_KEY);*/
+		return 'MYNAMEHADYESLAMMOHAMMEDSAD'.$User;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+
+	function Hash_HOMES($Home){
+		/*return $this->Encrypt_Data('HOMES_HADY'.$Home,
+			$this->HOMES_ENCRYPTION_KEY);*/
+		return 'HOMES_HADY'.$Home;
+	}
+
+	function Hash_MOBILES($Mobile){
+		/*return $this->Encrypt_Data('MOBILES_HADY'.$Mobile,
+			$this->MOBILES_ENCRYPTION_KEY);*/
+		return 'MOBILES_HADY'.$Mobile;
+	}
+
+	function Hash_CARS($Car){
+		/*return $this->Encrypt_Data('CARS_HADY'.$Car,
+			$this->CARS_ENCRYPTION_KEY);*/
+		return 'CARS_HADY'.$Car;
+	}
+
+	function Hash_ELC($Elc){
+		/*return $this->Encrypt_Data('ELC_HADY'.$Elc,
+			$this->ELC_ENCRYPTION_KEY);*/
+		return 'ELC_HADY'.$Elc;
+	}
+
+	function Hash_EAT($Eat){
+		/*return $this->Encrypt_Data('EAT_HADY'.$Eat,
+			$this->EAT_ENCRYPTION_KEY);*/
+		return 'EAT_HADY'.$Eat;
 	}
 
 
@@ -201,6 +269,43 @@ class HashingEngine{
 				'Messages', $this->MESSAGES_ENCRYPTION_KEY);
 	}
 
+	function Get_Hashed_RegisterNotifications($Email){
+		return $this->GetString($Email, $this->REGISTER_NOTIFICATIONS_HASH_LEN,
+				'Register Notifications', $this->REGISTER_NOTIFICATIONS_ENCRYPTION_KEY);
+	}
+
+	function Get_Hashed_ContactUS($User){
+		return $this->GetString($User, $this->CONTACT_US_HASH_LEN,
+				'Contact US', $this->CONTACT_US_ENCRYPTION_KEY);
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	function Get_Hashed_HOMES($Home){
+		return $this->GetString($Home, $this->HOMES_HASH_LEN,
+				'Homes', $this->HOMES_ENCRYPTION_KEY);
+	}
+
+	function Get_Hashed_MOBILES($Mobile){
+		return $this->GetString($Mobile, $this->MOBILES_HASH_LEN,
+				'Mobiles', $this->MOBILES_ENCRYPTION_KEY);
+	}
+
+	function Get_Hashed_CARS($Car){
+		return $this->GetString($Car, $this->CARS_HASH_LEN,
+				'Car', $this->CARS_ENCRYPTION_KEY);
+	}
+
+	function Get_Hashed_ELC($Elc){
+		return $this->GetString($Elc, $this->ELC_HASH_LEN,
+				'Elc', $this->ELC_ENCRYPTION_KEY);
+	}
+
+	function Get_Hashed_EAT($Eat){
+		return $this->GetString($Eat, $this->EAT_HASH_LEN,
+				'Eat', $this->EAT_ENCRYPTION_KEY);
+	}
+
 	// Get Data From Hashing
 	/*
 		Type
@@ -234,6 +339,22 @@ class HashingEngine{
 				$Result = $this->Get_Hashed_Notifications($Value['Data']);
 			else if ( $Value['Type'] == 'Messages' )
 				$Result = $this->Get_Hashed_Messages($Value['Data']);
+			else if ( $Value['Type'] == 'RegisterNotifications' )
+				$Result = $this->Get_Hashed_RegisterNotifications($Value['Data']);
+			else if ( $Value['Type'] == 'ContactUS' )
+				$Result = $this->Get_Hashed_ContactUS($Value['Data']);
+
+			else if ( $Value['Type'] == 'HOMES' )
+				$Result = $this->Get_Hashed_HOMES($Value['Data']);
+			else if ( $Value['Type'] == 'MOBILES' )
+				$Result = $this->Get_Hashed_MOBILES($Value['Data']);
+			else if ( $Value['Type'] == 'CARS' )
+				$Result = $this->Get_Hashed_CARS($Value['Data']);
+			else if ( $Value['Type'] == 'ELC' )
+				$Result = $this->Get_Hashed_ELC($Value['Data']);
+			else if ( $Value['Type'] == 'EAT' )
+				$Result = $this->Get_Hashed_EAT($Value['Data']);
+			
 			else{
 				$GLOBALS[ $Value['Key'] ] = $Value['Data'];
 				continue;
@@ -276,6 +397,22 @@ class HashingEngine{
 				$Result = $this->Get_Hashed_Notifications($Value['Data']);
 			else if ( $Value['Type'] == 'Messages' )
 				$Result = $this->Get_Hashed_Messages($Value['Data']);
+			else if ( $Value['Type'] == 'RegisterNotifications' )
+				$Result = $this->Get_Hashed_RegisterNotifications($Value['Data']);
+			else if ( $Value['Type'] == 'ContactUS' )
+				$Result = $this->Get_Hashed_ContactUS($Value['Data']);
+			
+			else if ( $Value['Type'] == 'HOMES' )
+				$Result = $this->Get_Hashed_HOMES($Value['Data']);
+			else if ( $Value['Type'] == 'MOBILES' )
+				$Result = $this->Get_Hashed_MOBILES($Value['Data']);
+			else if ( $Value['Type'] == 'CARS' )
+				$Result = $this->Get_Hashed_CARS($Value['Data']);
+			else if ( $Value['Type'] == 'ELC' )
+				$Result = $this->Get_Hashed_ELC($Value['Data']);
+			else if ( $Value['Type'] == 'EAT' )
+				$Result = $this->Get_Hashed_EAT($Value['Data']);
+			
 			else{
 				$Hashed_Data[ $Value['Key'] ] = $Value['Data'];
 				//$GLOBALS[ $Value['Key'] ] = $Value['Data'];

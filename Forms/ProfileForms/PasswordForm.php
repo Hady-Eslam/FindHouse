@@ -7,9 +7,9 @@ class PasswordForm extends FormsEngine{
 	
 	function __construct(...$Data){
 
-		$this->P = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
+		$this->Password = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
 				'Max_Length' => Password_Len]);
-		$this->OP = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
+		$this->OldPassword = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
 				'Max_Length' => Password_Len]);
 
 		$this->FORMDATA = $Data;
@@ -17,10 +17,10 @@ class PasswordForm extends FormsEngine{
 	}
 
 	function GetPassword(){
-		return $this->FILTERED_DATA['P'];
+		return $this->FILTERED_DATA['Password'];
 	}
 
 	function GetOldPassword(){
-		return $this->FILTERED_DATA['OP'];
+		return $this->FILTERED_DATA['OldPassword'];
 	}
 }

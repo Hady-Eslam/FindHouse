@@ -26,8 +26,46 @@ function Begin($Request, $Message_ID){
 	if ( $Result->Result == -1 )
 		return (new SiteRenderEngine())->Error_Page("Message $Message_ID");
 
-	else if ( $Result->Result == 0 )
+	else if ( $Result->Result == 0 || $Result->Data['post_category'] == '0' ||
+			$Result->Data['post_category'] > 9 )
 		return (new SiteRenderEngine())->Not_Found_Page();
+
+	if ( $Result->Data['post_category'] == '1' ){
+		$TableName = 'homes';
+		$HashType = 'HOMES';
+	}
+	else if ( $Result->Data['post_category'] == '2' ){
+		$TableName = 'mobiles';
+		$HashType = 'MOBILES';
+	}
+	else if ( $Result->Data['post_category'] == '3' ){
+		$TableName = 'cars';
+		$HashType = 'CARS';
+	}
+	else if ( $Result->Data['post_category'] == '4' ){
+		$TableName = 'elc';
+		$HashType = 'ELC';
+	}
+	else if ( $Result->Data['post_category'] == '5' ){
+		$TableName = 'lux';
+		$HashType = 'ELC';
+	}
+	else if ( $Result->Data['post_category'] == '6' ){
+		$TableName = 'fashion';
+		$HashType = 'ELC';
+	}
+	else if ( $Result->Data['post_category'] == '7' ){
+		$TableName = 'eat';
+		$HashType = 'EAT';
+	}
+	else if ( $Result->Data['post_category'] == '8' ){
+		$TableName = 'doc';
+		$HashType = 'ELC';
+	}
+	else if ( $Result->Data['post_category'] == '9' ){
+		$TableName = 'ant';
+		$HashType = 'ELC';
+	}
 
 	$Message = $Result->Data;
 
@@ -38,6 +76,7 @@ function Begin($Request, $Message_ID){
 		['Type' => 'Messages', 'Data' => $Message['message_body'], 'Key' => 'Message_Body'],
 		['Type' => '', 'Data' => $Message['message_date'], 'Key' => 'Message_Date'],
 		['Type' => '', 'Data' => $Message['post_id'], 'Key' => 'Post_id'],
+		['Type' => '', 'Data' => $Message['post_category'], 'Key' => 'Post_Category'],
 
 		['Type' => 'Messages', 'Data' => $Message['f1_picture'], 'Key' => 'Picture1'],
 		['Type' => 'Messages', 'Data' => $Message['f2_picture'], 'Key' => 'Picture2'],
@@ -50,14 +89,15 @@ function Begin($Request, $Message_ID){
 	if ( $Data->Result != 1 )
 		return (new SiteRenderEngine())->Error_Page("Message $Message_ID");
 
+
 	$Result = (new ModelExcutionEngine())->FetchOneRow(
-			'SELECT addname FROM posts WHERE id = ?', array( $Data->Data['Post_id'] ));
+			"SELECT name FROM $TableName WHERE id = ?", array( $Data->Data['Post_id'] ));
 
 	if ($Result->Result != 1 )
 		return (new SiteRenderEngine())->Error_Page("Message $Message_ID");
 
 	$Result = (new HashingEngine())->Get_Data_From_Hash([
-		['Type' => 'POSTS', 'Data' => $Result->Data['addname'], 'Key' => 'Add_Name']
+		['Type' => $HashType, 'Data' => $Result->Data['name'], 'Key' => 'Add_Name']
 	]);
 
 	if ( $Result->Result != 1 )

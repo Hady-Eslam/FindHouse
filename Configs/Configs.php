@@ -254,7 +254,7 @@ define('HTTP_ROOT', 'http://lookandsee.com');
 	// Admin
 	define('Admin_HTTP', HTTP_ROOT.'/Admin/');
 		define('AdminDeletePost', Admin_HTTP.'DeletePost/');
-		define('AdminAcceptPost', Admin_HTTP.'ApprovePost/');
+		define('AdminApprovePost', Admin_HTTP.'ApprovePost/');
 		define('AdminRejectPost', Admin_HTTP.'RejectPost/');
 		define('AdminDeleteAccount', Admin_HTTP.'DeleteAccount/');
 		define('PeddingPosts', Admin_HTTP.'PeddingPosts');
@@ -268,6 +268,19 @@ define('HTTP_ROOT', 'http://lookandsee.com');
 		define('MakeLike_DisLikePage', BackEnd_HTTP.'MakeLike-DisLike');
 		define('MakeMessage', BackEnd_HTTP.'MakeMessage');
 		define('DeleteMessage', BackEnd_HTTP.'DeleteMessage');
+
+		define('GetMoreNotifications', BackEnd_HTTP.'GetMoreNotifications');
+
+		define('GetMorePeddingPosts', BackEnd_HTTP.'GetMorePeddingPosts');
+
+		define('GetMoreMobilesPosts', BackEnd_HTTP.'GetMoreMobilesPosts');
+		define('GetMoreElcPosts', BackEnd_HTTP.'GetMoreElcPosts');
+		define('GetMoreLuxPosts', BackEnd_HTTP.'GetMoreLuxPosts');
+		define('GetMoreFashionPosts', BackEnd_HTTP.'GetMoreFashionPosts');
+		define('GetMoreEatPosts', BackEnd_HTTP.'GetMoreEatPosts');
+		define('GetMoreDocPosts', BackEnd_HTTP.'GetMoreDocPosts');
+		define('GetMoreAntPosts', BackEnd_HTTP.'GetMoreAntPosts');
+		
 		
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -283,6 +296,8 @@ define('CSS', Public_HTTP.'CSS/');
 		define('BootStrapCSS', MainCSS.'MainBootstrap');
 
 
+	define('Style_Sheet', CSS.'style.css');
+	
 	define('PagesCSS', CSS.'PagesCSS/');
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +333,13 @@ define('Pictures', Public_HTTP.'Pictures/');
 
 // JavaScript Folder
 define('JavaScript', Public_HTTP.'JavaScript/');
+	
+	define('Min_JQuery', Public_HTTP.'SiteJavaScript/js/jquery.min.js');
+	define('Min_Proper', Public_HTTP.'SiteJavaScript/js/popper.min.js');
+	define('Min_Bootstrap', Public_HTTP.'SiteJavaScript/js/bootstrap.min.js');
+	define('Min_Bundle', Public_HTTP.'SiteJavaScript/js/rehomes.bundle.js');
+	define('Min_Active', Public_HTTP.'SiteJavaScript/js/default-assets/active.js');
+	
 	
 	// Main Scripts
 	define('MainScripts', JavaScript.'MainScripts/');
@@ -406,6 +428,16 @@ define('ID_Len', 7);
 // Post
 define('Comment_Len', 500);
 define('Message_Len', 500);
+
+
+define('Car_Type_Len', 100);
+define('Car_Model_Len', 50);
+define('Car_Engine_Len', 100);
+
+define('Product_Name_Len', 200);
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////

@@ -21,55 +21,87 @@ function Messages_Print_Messages($Message){
 		return '';
 
 	$GLOBALS['Error'] = False;
-	$Result = Messages_Get_Add_Name_From_Hashing($Message['post_id']);
+	$Result = Messages_Get_Add_Name_From_Hashing($Message['post_id'], $Message['post_category']);
 	if ( $Result != '1' || $GLOBALS['Error'] )
 		return '';
 
-	return '<div style="border-bottom-width: 1px;border-bottom-color: #454545;
-				border-bottom-style: solid;" id="'.$GLOBALS['MESSAGE_ID'].'">
-	       	
-	       	<div>
+	return '<div class="col-12 col-md-8 col-lg-8">
+		        <div class="single-property-area wow fadeInUp" data-wow-delay="200ms">
 
-	   			<input type="image" src="'.DeleteImage.'"
-	   				onclick="DeleteMessage('.$GLOBALS['MESSAGE_ID'].');" 
-	   				style="width: 50px;width: 35px;height: 35px;display: inline-block;">
+		            <!-- Property Description -->
+		            <div class="property-desc-area">
 
-	   			<div style="display: inline-block;width: 90%">
-	   				
-		   			<p style="vertical-align: top; padding-left: 2%;padding-right: 2%;text-overflow: ellipsis;overflow: hidden;font-size: 17px;white-space: nowrap;width: 100%;">
-		   				<strong>To : </strong>'.$GLOBALS['User_Email'].'</p>
+		                <!-- Property Info -->
+		                <p>From : <span>'.$GLOBALS['Message_Email'].'</span></p>
+		                <p>To : <span>'.$GLOBALS['User_Email'].'</span></p>
+		                <p>Date : <span>'.$GLOBALS['Message_Date'].'</span></p>
+		                <p>Addvertise Name: <span>'.$GLOBALS['Add_Name'].'</span></p>
+		            </div>
 
-		   			<p style="vertical-align: top; padding-left: 2%;padding-right: 2%;text-overflow: ellipsis;overflow: hidden;font-size: 17px;white-space: nowrap;width: 100%;">
-		   				<strong>Add Name : </strong>'.$GLOBALS['Add_Name'].'</p>
+		            <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+		                <!-- Content -->
+		                <a class="btn rehomes-btn mt-10" style="width: 40%"
+		                    onclick="DeleteMessage('.$GLOBALS['MESSAGE_ID'].')">Delete</a>
 
-		   			<a href="'.Post.$Message['post_id'].'">Add Link</a>
-	   			</div>
-	       		
-	       	</div>
-
-   			<p style="display: inline-block;text-overflow: ellipsis;overflow: hidden;
-					white-space: nowrap;width: 60%;vertical-align: top;font-size: 17px;">
-						'.$GLOBALS['Message_Body'].'</p>
-
-			<p style="font-size: 15px;">'.$GLOBALS['Message_Date'].'</p>
-
-			<a href="'.Message.$GLOBALS['MESSAGE_ID'].'">Full Message</a>
-   		</div>';
+		                <a class="btn rehomes-btn mt-10" style="width: 40%"
+		                    href="'.Message.$GLOBALS['MESSAGE_ID'].'">Show Full Message</a>
+		            </div>
+		        </div>
+		    </div>';
 }
 
 function Messages_Get_Data_From_Hashing($Message){
 	(new HashingEngine())->Get_Data_From_Hashing([
 		['Type' => '', 'Data' => $Message['id'], 'Key' => 'MESSAGE_ID' ],
 		['Type' => 'Messages', 'Data' => $Message['user_email'], 'Key' => 'User_Email'],
+		['Type' => 'Messages', 'Data' => $Message['message_email'], 'Key' => 'Message_Email'],
 		['Type' => 'Messages', 'Data' => $Message['message_body'], 'Key' => 'Message_Body'],
 		['Type' => '', 'Data' => $Message['message_date'], 'Key' => 'Message_Date']
 	], 'Status_Error');
 }
 
-function Messages_Get_Add_Name_From_Hashing($Post_id){
+function Messages_Get_Add_Name_From_Hashing($Post_id, $Post_Category){
+	if ( $Post_Category == '0' || $Post_Category > 9 )
+		return '';
+	else if ( $Post_Category == '1' ){
+		$TableName = 'homes';
+		$HashType = 'HOMES';
+	}
+	else if ( $Post_Category == '2' ){
+		$TableName = 'mobiles';
+		$HashType = 'MOBILES';
+	}
+	else if ( $Post_Category == '3' ){
+		$TableName = 'cars';
+		$HashType = 'CARS';
+	}
+	else if ( $Post_Category == '4' ){
+		$TableName = 'elc';
+		$HashType = 'ELC';
+	}
+	else if ( $Post_Category == '5' ){
+		$TableName = 'lux';
+		$HashType = 'ELC';
+	}
+	else if ( $Post_Category == '6' ){
+		$TableName = 'fashion';
+		$HashType = 'ELC';
+	}
+	else if ( $Post_Category == '7' ){
+		$TableName = 'eat';
+		$HashType = 'EAT';
+	}
+	else if ( $Post_Category == '8' ){
+		$TableName = 'doc';
+		$HashType = 'ELC';
+	}
+	else if ( $Post_Category == '9' ){
+		$TableName = 'ant';
+		$HashType = 'ELC';
+	}
 
 	$Result = (new ModelExcutionEngine())->FetchOneRow(
-			'SELECT addname FROM posts WHERE id = ?', array( $Post_id ));
+			"SELECT name FROM $TableName WHERE id = ?", array( $Post_id ));
 
 	if ($Result->Result == -1 )
 		return '';
@@ -78,7 +110,7 @@ function Messages_Get_Add_Name_From_Hashing($Post_id){
 		return '0';
 
 	(new HashingEngine())->Get_Data_From_Hashing([
-		['Type' => 'POSTS', 'Data' => $Result->Data['addname'], 'Key' => 'Add_Name']
+		['Type' => $HashType, 'Data' => $Result->Data['name'], 'Key' => 'Add_Name']
 	], 'Status_Error');
 
 	return '1';

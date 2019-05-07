@@ -3,6 +3,43 @@
 use CoreModels\ModelExcutionEngine;
 use SiteEngines\HashingEngine;
 
+function GetStatus($Status){
+    
+    if ( $Status == '0' )
+        return '<h2 style="color: #c6c608">Still Pedding</h2>';
+    
+    else if ( $Status == '-1' )
+        return '<h2 style="color: red">Rejected</h2>';
+
+    return '';
+}
+
+function AdminOperations($Status, $User_Status){
+    if ( $User_Status == '0' ){
+        if ( $Status == '0' )
+            return '<div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Admin Operations</h4>
+
+                        <!-- Content -->
+                        <a class="btn rehomes-btn mt-10" href="<< Approve_Add >>">Approve Add</a>
+                        <a class="btn rehomes-btn mt-10" href="<< Reject_Add >>">Reject Add</a>
+                    </div>';
+        else
+            return '<div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Admin Operations</h4>
+
+                        <!-- Content -->
+                        <a class="btn rehomes-btn mt-10" href="<< Delete_Add >>">Delete Add</a>
+                    </div>';
+    }
+    else
+        return '';
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
 function GetFirstPicture($Data){
 	for ( $i=1; $i <5 ; $i++ )
 		if ( $Data['Picture'.$i] != Housing ){
@@ -38,10 +75,7 @@ function GetAllPictures($Data){
 
 function CheckContactInfo($Contact_Status){
 	if ( $Contact_Status != '2' ){
-        return '
-            <div style="background-color: green;border-color: green;border-style: solid;border-width: 1px;border-radius: 5px;height: 30px;">
-                <p style="margin: 0px;"><< Phone >></p>
-            </div>';
+        return '<p>Phone: <span><< Phone >></span></p>';
     }
     return '';
 }
@@ -107,27 +141,34 @@ function GetAdminSettings($Status){
 
 function Check_Email(){
 	return ( !SESSION() )? '
-	<input type="text" name="MessageEmail" id="MessageEmail" placeholder="Your Email" style="display: block;margin: 10px;" oninput="CheckinputLen(this.id, Email_Len);">'
+	<div class="col-12 col-lg-4">
+        <input type="email" name="MessageEmail" id="MessageEmail" class="form-control mb-30" placeholder="Email" oninput="CheckEmailLength()">
+    </div>'
 	: '';
 }
 
 function GetMessage($Contact_Status){
 
 	if ( $Contact_Status != '1' )
-        return '<div id="MakeMessage" style="text-align: left;">
-                    <p>Make Message</p>
+		return '
+			<!-- Leave A Reply -->
+            <div class="rehomes-comment-form mb-80 wow fadeInUp" data-wow-delay="200ms">
+                <h4 class="mb-30">Make Message</h4>
 
-                    <div id="Message_Div">
-                        << Filter : Check_Email >>
-
-                        <textarea cols="10" rows="10" style="display: block;margin: 10px;"
-                            placeholder="Enter Your Message Here" id="Message"
-                            name="Message" style="display: inline-block;"></textarea>
+                <!-- Form -->
+                <div id="MakeMessage">
+                    <div class="row">
+                    	<< Filter : Check_Email >>
+                        <div class="col-12">
+                            <textarea name="Message" class="form-control mb-30" placeholder="Messages" id="Message"
+                                oninput="CheckMessageLength()"></textarea>
+                        </div>
 
                     <!-- First Message -->
                         <input type="image" src="<< AddPicture >>" width="80"
                             height="80" alt="AddPicture" id="image1" name = "image1"
-                            onclick="GetPicture(\'#File1\');" style="display: inline-block;">
+                            onclick="GetPicture(\'#File1\');" style="display: inline-block;
+                            padding:0px !important;margin:0px !important;">
                         
                         <input type="file" id="File1" name="File1"
                         	onchange="Read(this,\'#image1\');">
@@ -135,7 +176,8 @@ function GetMessage($Contact_Status){
                     <!-- Second Message -->
                         <input type="image" src="<< AddPicture >>" width="80"
                             height="80" alt="AddPicture" id="image2" name = "image2"
-                            onclick="GetPicture(\'#File2\');" style="display: inline-block;">
+                            onclick="GetPicture(\'#File2\');" style="display: inline-block;
+                            padding:0px !important;margin:0px !important;">
                         
                         <input type="file" id="File2" name="File2"
                                 onchange="Read(this,\'#image2\');">
@@ -143,7 +185,8 @@ function GetMessage($Contact_Status){
                     <!-- Third Message -->
                         <input type="image" src="<< AddPicture >>" width="80"
                             height="80" alt="AddPicture" id="image3" name = "image3"
-                            onclick="GetPicture(\'#File3\');" style="display: inline-block;">
+                            onclick="GetPicture(\'#File3\');" style="display: inline-block;
+                            padding:0px !important;margin:0px !important;">
                         
                         <input type="file" id="File3" name="File3"
                                 onchange="Read(this,\'#image3\');">
@@ -151,7 +194,8 @@ function GetMessage($Contact_Status){
                     <!-- Forth Message -->
                         <input type="image" src="<< AddPicture >>" width="80"
                             height="80" alt="AddPicture" id="image4" name = "image4"
-                            onclick="GetPicture(\'#File4\');" style="display: inline-block;">
+                            onclick="GetPicture(\'#File4\');" style="display: inline-block;
+                            padding:0px !important;margin:0px !important;">
                         
                         <input type="file" id="File4" name="File4"
                                 onchange="Read(this,\'#image4\');">
@@ -159,19 +203,24 @@ function GetMessage($Contact_Status){
                     <!-- Fifth Message -->
                         <input type="image" src="<< AddPicture >>" width="80"
                             height="80" alt="AddPicture" id="image5" name = "image5"
-                            onclick="GetPicture(\'#File5\');" style="display: inline-block;">
+                            onclick="GetPicture(\'#File5\');" style="display: inline-block;
+                            padding:0px !important;margin:0px !important;">
                         
                         <input type="file" id=\'File5\' name=\'File5\'
                                 onchange="Read(this,\'#image5\');">
 
+                    	<div class="col-12">
+                            <button type="submit" class="btn rehomes-btn mt-15" id="SendMessage">Send Message</button>
+                        </div>
                     </div>
-
-                    <input type="submit" value="Send" id="SendMessage">
-
-                </div>';
-    
+                </div>
+            </div>';
     return '';
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 function GetUserPosts($Email, $User_Profile, $User_Picture, $User_Name){
 
@@ -206,34 +255,25 @@ function Show_User_Post($Post){
 	if ( $GLOBALS['Error'] )
 		return '';
 
-	return '<div style="border-bottom-width: 1px;border-bottom-color: #454545;
-					border-bottom-style: solid;">
-			<div>
-				<div style="display: inline-block;margin: 0px;padding: 0px;">
-					'.Post_GetPicture().'
-				</div>
+	return '<!-- Single Recent Post -->
+            <div class="single-recent-post d-flex align-items-center">
+                
+                <!-- Thumb -->
+                <div class="properties-post-thumb">
+                    <a href="'.Post.$GLOBALS['POST_ID'].'">
+                    	<img src="'.Post_GetPicture().'" alt=""></a>
+                </div>
 
-				<div style="display: inline-block;margin: 0px;padding: 0px;">
-					<a href="'.$GLOBALS['User_Profile'].'">
-						<input type="image" src="'.$GLOBALS['User_Picture'].'"
-						style="width: 80px;height: 80px;">
-					</a>
-				</div>
+                <!-- Post Content -->
+                <div class="post-content">
+                    <a href="'.Post.$GLOBALS['POST_ID'].'" class="post-title">'
+                    	.$GLOBALS['Add_Name'].'</a>
+                    <p class="properties--location"><i class="fa fa-map-marker" aria-hidden="true"></i> '.$GLOBALS['Address'].'</p>
+                    <p class="properties--rent">'.$GLOBALS['BigType'].': <span>$ '
+                    		.$GLOBALS['Money'].'</span></p>
+                </div>
 
-				<div style="display: inline-block;margin: 0px;padding: 0px;font-size: 15px;">
-					<p><strong>By : </strong>'.$GLOBALS['User_Name'].'</p>
-					<p><strong>Date : </strong>'.$GLOBALS['Date'].'</p>
-				</div>
-			</div>
-			<p style="padding: 0px;margin: 0px;"><strong>Title : </strong>
-				'.$GLOBALS['Add_Name'].'</p>
-			<div style="font-size: 15px;">
-				<p>'.$GLOBALS['Discreption'].'</p>
-			</div>
-			<div style="padding: 0px;">
-				<a href="'.Post.$GLOBALS['POST_ID'].'">See Full Advertise</a>
-			</div>
-		</div>';
+            </div>';
 }
 
 function Post_Get_User_Post_From_Hashing($Data){
@@ -277,8 +317,7 @@ function Post_GetPicture(){
 
 	for ($i=1; $i < 5; $i++)
 		if ( $GLOBALS['Picture'.$i] != Housing )
-			return ' <input type="image" src="'.$GLOBALS['Picture'.$i].'"
-							style="width: 80px;height: 80px;">';
+			return $GLOBALS['Picture'.$i];
 
-	return ' <input type="image" src="'.Housing.'" style="width: 80px;height: 80px;">';
+	return Housing;
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+    
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< PagesScripts >>Find/AntScript.js"></script>
+
+</head>
+
+<body>
+
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <div class="welcome-area wow fadeInUp" data-wow-delay="200ms">
+        <div class="google-maps">
+            <iframe src="https://maps.google.com/maps?q=%D9%85%D8%B5%D8%B1%20%D8%A7%D8%B3%D9%8A%D9%88%D8%B7%20%D8%A7%D8%A8%D8%B1%D8%A7%D8%AC%20%D8%A7%D9%84%D9%86%D8%B5%D8%B1%20&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen ></iframe>
+        </div>
+    </div>
+    <!-- **** Welcome Maps Area End **** -->
+
+    <!-- **** Location Search Form Area **** -->
+    
+    <!-- **** Location Search Form Area **** -->
+
+    <!-- **** Sale area Start **** -->
+    <section class="rehome-house-sale-area section-padding-100-60">
+        <div class="container">
+            <div class="row" id="FashionPosts">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="200ms">
+                        <h2>Top News In <span>Assuit</span></h2>
+                        <p>These are the best deals and deals. All in Assuit City and nearby area</p>
+                    </div>
+                </div>
+
+                << Load : DO/Find/Ant >>
+                << Filter : GetPosts >>
+            </div>
+
+            << Filter : CheckButton >>
+        </div>
+    </section>
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+    <script type="text/javascript">
+        var Ant_Count = 21;
+
+        var GetMoreAntPostsPage = '<< GetMoreAntPostsPage >>';
+    </script>
+
+</body>
+
+</html>

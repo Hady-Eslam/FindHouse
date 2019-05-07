@@ -12,10 +12,6 @@ function CheckData(){
     Result = CheckLength('#Password', Password_Len, Result);
     Result = CheckEmailPattern(Result);
     Result = CheckPassword(Result);
-    if ( !$('#TemsOfUse').prop('checked') ){
-        alert('You Must Agree in Terms Of Use');
-        return false;
-    }
     return Result;
 }
 

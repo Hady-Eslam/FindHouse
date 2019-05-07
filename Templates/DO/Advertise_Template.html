@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+        
+
+    <!-- Our CSS stylesheet file -->
+    <link rel="stylesheet" href="<< Head_Assest_Style >>">
+
+    <!-- Font Awesome Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Assest_Font >>">
+
+    <script src="<< AddPictureScript >>"></script>
+    <script src="<< TriggerFormScript >>"></script>
+        
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 60%;
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        div#popup button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 30%; 
+          width:30%;
+        }
+        .column {
+          float: left;
+          
+        }
+        .column span, .column img{
+            cursor: pointer;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        .container {
+          
+          position: relative;
+          cursor: pointer;
+          font-size: 20px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          padding-right: 40%;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+          position: relative;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 10%;
+         
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+         
+          background-color: #eee;
+          padding-left: 2%;
+          margin-right: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+          background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+    <!--<div class="breadcrumb-area bg-img bg-overlay-3 wow fadeInUp" data-wow-delay="200ms" style="background-image: url(img/bg-img/30.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">post</li>
+                            </ol>
+                        </nav>
+                        <h2 class="page-title">اضافه اعلان</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** Contact Area Start **** -->
+    <section   dir="rtl" class="rehomes-support-and-contact-area section-padding-80-0">
+        
+        <div   align="right" class="col-12 col-md-6">
+            <!-- Leave A Reply -->
+            <div class="rehomes-contact-form mb-80 wow fadeInUp"
+                data-wow-delay="200ms">
+                <!-- Title -->
+                <p class="support-title"><h2>اضافه الاعلان</h2></p>
+
+                <!-- Form -->
+                <div id="popup">
+
+                    <button id="myBtn">صنف اعلانك </button>
+                    
+                    <!-- POP UP MENU -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content" style="width:100;">
+
+                            <span class="close">&times;</span>
+                            
+                            <div align="center" class="row">
+                                
+                                <div onclick="Home()" class="column">
+                                
+                                    <img src="https://img.icons8.com/dusk/64/000000/home-page.png">
+
+                                    <span style="padding-left:10%; font-size: 20px;">عقارات</span>
+                                </div>
+
+                                <div onclick="Mobile()" class="column">
+                                    
+                                    <img src="https://img.icons8.com/dusk/64/000000/two-smartphones.png">
+                                    
+                                    <span style="padding-left:10%; font-size: 20px; ">موبيلات</span>
+                                </div>
+
+                                <div onclick="Car()" class="column">
+                                    
+                                    <img src="https://img.icons8.com/dusk/64/000000/traffic-jam.png">
+                                
+                                    <span style="padding-left:10%; font-size: 20px;">سيارات</span>
+                                </div>
+                            
+                                <div onclick="Elc()" class="column">
+                                
+                                    <img src="https://img.icons8.com/dusk/64/000000/tv.png">
+                                    
+                                    <span style="padding-left:10%; font-size: 20px;">اجهزه</span>
+                                </div>
+
+                                <div onclick="Ant(7)" class="column">
+                                    
+                                    <img  src="https://img.icons8.com/dusk/64/000000/watch.png">
+                                    
+                                    <span style="padding-left:10%; font-size: 20px;">اكسسوارات</span>
+                                
+                                </div>
+                            
+                                <div onclick="Ant(8)" class="column">
+                                    
+                                    <img  src="https://img.icons8.com/color/64/000000/crown-and-lipstick.png">
+                                    
+                                    <span  style="padding-left:10%; font-size: 20px;">موضه</span>
+                                </div>
+                            
+                                <div  onclick="Eat()" class="column">
+                                    
+                                    <img   src="https://img.icons8.com/dusk/64/000000/hamburger.png">
+                                    
+                                    <span style="padding-left:10%; font-size: 20px;">ماكولات</span>
+                                
+                                </div>
+                            
+                                <div onclick="Ant(6)" class="column">
+                                    
+                                    <img   src="https://img.icons8.com/dusk/64/000000/stethoscope.png">
+                                    
+                                    <span style="padding-left:10%; font-size: 20px;">طبي</span>
+                                
+                                </div>
+
+                                <div onclick="Ant(9)" class="column">
+                                    
+                                    <img   src="https://img.icons8.com/dusk/64/000000/shopping-bag.png">
+                                
+                                    <span style="padding-left:10%; font-size: 20px;">تحف</span>
+                                </div>
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <!-- GENERAL FORM -->
+                    <div id="general" class="support-form">
+                        
+                        <div class="row">
+                        
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+    
+                            <div class="col-12">
+                                <textarea dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="الوصف "></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                        
+                        </div>
+                        
+                        <div  align="right" >
+                            <button align="center" type="submit" class="SubmitForm">نشر</button>
+                        </div>
+                    </div>
+
+
+                    <!-- HOME FORM -->
+                    <div style="display:none;" id="home" class="support-form">
+
+                        <input type="hidden" name="Type" id="HomeType">
+
+                        <div class="row">
+
+                            <!-- Advertise Name -->
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="Advertise_Name"
+                                    class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            </div>
+
+                            <!-- Advertise Price -->
+                            <div  align="right" class="col-12">
+                                <input  style="width: 40%;" dir="rtl" type="text"
+                                    name="Advertise_Price" class="form-control mb-20" placeholder="السعر * ">
+                            </div>
+                    
+                            <hr>
+                            
+                            <div align="right">
+
+                                <h4 style="padding-right: 20%;" >الكماليات</h4>
+                                
+                                <!-- Advertise Garage -->
+                                <label  align="right" class="container">جراج
+                                    <input  type="checkbox" checked="checked"
+                                        name="Advertise_Garage">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                                <!-- Advertise Security -->
+                                <label class="container">امن
+                                  <input type="checkbox" name="Advertise_Security">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <!-- Advertise Garden -->
+                                <label class="container">حديقه
+                                  <input type="checkbox" name="Advertise_Garden">
+                                  <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                            
+                            <!-- Advertise Rooms -->
+                            <div  class="col-12" style="padding-right: 2.7%; " 
+                                class="col-12 " align="right">
+                                
+                                <label style="font-size: 25px;  ">الغرف </label>
+                            
+                                <select  name="Advertise_Rooms" style="width: 4%; height: 60%; border-radius: 20%; padding-left: 120px;  font-size:20px;" >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                     <option value="5">5</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Advertise PathRooms -->
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+
+                                <label style="font-size: 25px;  ">الحمامات </label>
+                                
+                                <select  name="Advertise_PathRooms" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            
+                            <hr>
+
+                            <!-- Advertise Furnished -->
+                            <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">مفروش </label>
+                               
+                                
+                                <select  name="Advertise_Furnished" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="Yes">نعم</option>
+                                    <option value="No">لا</option>
+                                    
+                                </select>
+                            
+                             </div>
+
+                             <hr>
+                             
+                             <!-- Advertise Storey -->
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الطابق </label>
+                                
+                                
+                                <select  name="Advertise_Storey" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">+11</option>
+                                    
+                                </select>
+                            
+                             </div>
+                             
+                             <hr>
+
+                             <!-- Advertise Finishing -->
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">التشطيب </label>
+                                
+                                
+                                <select  name="Advertise_Finishing" style="width: 10%; height: 80%; border-radius: 20%; margin-right: 20%; font-size:20px;" >
+                                   <option value="Red Bricks">طوب احمر</option>
+                                    <option value="On Cement">حماره</option>
+                                    <option value="Normal">عادى</option>
+                                    <option value="Semi Finished">نص تشطيب</option>
+                                    <option value="Lux">لوكس</option>
+                                    <option value="Super Lux">سوب لوكس</option>
+                                    <option value="High Lux">هاى لوكس</option>
+                                    
+                                </select>
+                            
+                             </div>
+
+                             <hr>
+                             
+                             <!-- Advertise Area -->
+                             <div  align="right" class="col-12">
+                            
+                                <input  style="width: 40%; " dir="rtl" type="text"
+                                    name="Advertise_Area" class="form-control mb-20" placeholder="المساحه(م2) * ">
+                             
+                            </div>
+
+                            <!-- Advertise Descreption -->
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+
+                            <br>
+
+                            <!-- Advertise Pictures -->
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='image1' name = 'image1'
+                                onclick="GetPicture('#File1');">
+                            
+                            <input type="file"id='File1'name='File1'onchange="Read(this,'#image1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='image2' name = 'image2'
+                                onclick="GetPicture('#File2');">
+
+                            <input type="file" id='File2'name='File2'onchange="Read(this,'#image2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='image3' name = 'image3'
+                                onclick="GetPicture('#File3');">
+
+                            <input type="file" id='File3' name='File3' onchange="Read(this,'#image3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='image4' name = 'image4'
+                                onclick="GetPicture('#File4');">
+
+                            <input type="file" id='File4' name='File4' onchange="Read(this,'#image4');" style="display: none;">
+                            <hr>
+                            <br>
+
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+
+                            <!-- User Phone -->
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+
+                            <!-- User City -->
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+
+                            <!-- User Name -->
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+
+                            <!-- User Email -->
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن ">
+                            </div>
+
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#home');">نشر</button>
+                        </div>
+                    </div>
+
+                    <!-- EAT FORM -->
+                    <div style="display:none;" id="eat" class="support-form">
+
+                        <input type="hidden" name="Type" id="EatType">
+
+                        <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name" class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                        <div  align="right" class="col-12">
+                            
+                             <input  style="width: 40%; " dir="rtl" type="text" name="Advertise_Product_Name" class="form-control mb-20" placeholder="الاسم * "></input>
+                             
+                             
+                            </div>
+
+                        <div class="row">
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Price" class="form-control mb-20" placeholder="السعر * "></input>
+                             
+                            </div>
+                        
+                           <hr>
+                            
+
+                            
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+                            <hr>
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                            
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Eatimage1' name = 'image1'
+                                onclick="GetPicture('#EatFile1');">
+                            
+                            <input type="file"id='EatFile1'name='File1'onchange="Read(this,'#Eatimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Eatimage2' name = 'image2'
+                                onclick="GetPicture('#EatFile2');">
+
+                            <input type="file" id='EatFile2'name='File2'onchange="Read(this,'#Eatimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Eatimage3' name = 'image3'
+                                onclick="GetPicture('#EatFile3');">
+
+                            <input type="file" id='EatFile3' name='File3' onchange="Read(this,'#Eatimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Eatimage4' name = 'image4'
+                                onclick="GetPicture('#EatFile4');">
+
+                            <input type="file" id='EatFile4' name='File4' onchange="Read(this,'#Eatimage4');" style="display: none;">
+
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>                            
+                            
+                        </div>
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#eat');">نشر</button>
+                        </div>
+                    </div>
+
+                    <!-- MOBILE FORM -->
+                    <div style="display:none;" id="mobile" class="support-form" >
+
+                        <input type="hidden" name="Type" id="MobileType">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name"
+                                    class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                            <div  align="right" class="col-12">
+                                <input  style="width: 40%;" dir="rtl" type="text"
+                                    name="Advertise_Price" class="form-control mb-20"
+                                        placeholder="السعر * ">
+                             
+                            </div>
+                        
+                           <hr>
+
+                            <div align="right">
+                                
+                                <label  align="right" class="container">قابل للتبديل
+                                    <input  type="checkbox" checked="checked"
+                                        name="Advertise_Change">
+                                    <span class="checkmark"></span>
+                                </label>
+                               
+                                <label class="container">تقسيط
+                                    <input type="checkbox" name="Advertise_Installment">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                                <label class="container">مجانا
+                                    <input type="checkbox" name="Free">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+
+                            <div  class="col-12" style="padding-right: 2.7%; " 
+                                class="col-12 " align="right">
+
+                                <label style="font-size: 25px;  ">النواع </label>
+                                
+                                <select  name="Advertise_Type" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="0">نوع الموبيل </option>
+                                    <option value="HUAWEI">HUAWEI</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="SamSung">SamSung</option>
+                                     <option value="htc">htc</option>
+                                    <option value="Tecno">Tecno</option>
+                                    <option value="Lenovo">Lenovo</option>
+                                    <option value="Nokia">Nokia</option>
+                                    <option value="ALfa Romeo">ALfa Romeo</option>
+                                    <option value="HONER">HONER</option>
+                                    <option value="OPPO">OPPO</option>
+                                    <option value="Other Brands">انواع اخرى </option>
+                                </select>
+                            
+                             </div>
+                             
+                            <hr>
+
+                            <div  class="col-12" style="padding-right: 2.7%; " align="right">
+
+                                <label style="font-size: 25px;  ">الحاله </label>
+                               
+                                <select  name="Advertise_Status" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+
+                                    <option value="New">جديد</option>
+                                    <option value="Old">مستعمل</option>
+                                    
+                                </select>
+                            
+                            </div>
+
+                            <hr>
+                             
+                            <div width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption"
+                                    class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+
+                            <hr>
+                           
+                            <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  ">
+                            </div>
+
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه ">
+                            </div>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم ">
+                            </div>
+                            
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20"
+                                    placeholder=" الايميل المعلن ">
+                            </div>
+                            
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Mobileimage1' name = 'image1'
+                                onclick="GetPicture('#MobileFile1');">
+                            
+                            <input type="file" id='MobileFile1' name='File1' onchange="Read(this,'#Mobileimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Mobileimage2' name = 'image2'
+                                onclick="GetPicture('#MobileFile2');">
+
+                            <input type="file" id='MobileFile2' name='File2'onchange="Read(this,'#Mobileimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Mobileimage3' name = 'image3'
+                                onclick="GetPicture('#MobileFile3');">
+
+                            <input type="file" id='MobileFile3' name='File3' onchange="Read(this,'#Mobileimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Mobileimage4' name = 'image4'
+                                onclick="GetPicture('#MobileFile4');">
+
+                            <input type="file" id='MobileFile4' name='File4' onchange="Read(this,'#Mobileimage4');" style="display: none;">
+
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                            
+                        </div>
+
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#mobile');">نشر</button>
+                        </div>
+                    </div>
+
+                    <!-- CAR FORM -->
+                    <div style="display:none;" id="car" class="support-form">
+
+                        <input type="hidden" name="Type" id="CarType">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name" class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Price" class="form-control mb-20" placeholder="السعر * "></input>
+                             
+                            </div>
+
+                            <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+
+                                <label style="font-size: 25px;  ">نوع السياره </label>
+                                
+                                <input  style="width: 40%; height: 80%;" dir="rtl" type="text" name="Advertise_TextType"  placeholder="نوع السياره * "></input>
+                                
+                                <select  name="Advertise_SelectType" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="0">Car Type</option>
+                                    <option value="BMW">BMW</option>
+                                </select>
+                            
+                             </div>
+
+                           <hr>
+                           
+                           <div  align="right" class="col-12">
+
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Year" class="form-control mb-20" placeholder="السنه * "></input>
+                             
+                            </div>
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Model" class="form-control mb-20" placeholder="الموديل * "></input>
+                             
+                            </div>
+
+                           <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">المحرك </label>
+
+                                <input  style="width: 40%; height: 80%;" dir="rtl" type="text" name="Advertise_TextEngine" placeholder="المحرك * "></input>
+                                
+                                <select  name="Advertise_SelectEngine" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="">Select Engine</option>
+                                    <option value="MEngine">MEngine</option>
+                                </select>
+                            
+                             </div>
+                           <hr>
+                            
+                            <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">ناقل الحركه </label>
+                                
+                                
+                                <select  name="Advertise_SelectMotionVector" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="">ناقل الحركه</option>
+                                    <option value="Handy">يدوى</option>
+                                    <option value="Automatic">اوتوماتيك</option>
+                                    <option value="STEPTronic">ستيبترونيك</option>
+                                </select>
+                            
+                             </div>
+
+                             <hr>
+
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الحاله </label>
+                               
+                                
+                                <select  name="Advertise_Status" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="New">جديد</option>
+                                    <option value="Old">مستعمل</option>
+                                    
+                                </select>
+                            
+                             </div>
+                             <hr>
+                             
+                             
+                             <hr>
+                             
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+
+                            <hr>
+                           
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                           
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                            
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Carimage1' name = 'image1'
+                                onclick="GetPicture('#CarFile1');">
+                            
+                            <input type="file"id='CarFile1'name='File1'onchange="Read(this,'#Carimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Carimage2' name = 'image2'
+                                onclick="GetPicture('#CarFile2');">
+
+                            <input type="file" id='CarFile2'name='File2'onchange="Read(this,'#Carimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Carimage3' name = 'image3'
+                                onclick="GetPicture('#CarFile3');">
+
+                            <input type="file" id='CarFile3' name='File3' onchange="Read(this,'#Carimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Carimage4' name = 'image4'
+                                onclick="GetPicture('#CarFile4');">
+
+                            <input type="file" id='CarFile4' name='File4' onchange="Read(this,'#Carimage4');" style="display: none;">
+                            
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                            
+                        </div>
+
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#car');">نشر</button>
+                        </div>
+                    </div>
+
+                    <!-- ELC FORM -->
+                    <div style="display:none;" id="elc" class="support-form">
+
+                        <input type="hidden" name="Type" id="ElcType">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name"
+                                    class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                            <div  align="right" class="col-12">
+                                <input  style="width: 40%;" dir="rtl" type="text"
+                                    name="Advertise_Price" class="form-control mb-20"
+                                    placeholder="السعر * ">
+                            </div>
+
+                           <hr>
+                           
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Product_Name" class="form-control mb-20"
+                                placeholder="اسم المنتج * ">
+                             
+                            </div>
+
+                           <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الماركه </label>
+                                <input  style="width: 40%; height: 80%;" dir="rtl" type="text" name="Advertise_TextType" placeholder="الماركه * "></input>
+                                
+                                <select  name="Advertise_SelectType" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="0">Select Type</option>
+                                    <option value="BMW">BMW</option>
+                                </select>
+                            
+                             </div>
+                           <hr>
+                            
+                            
+                             <hr>
+
+                            
+                             
+                             
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الحاله </label>
+                               
+                                
+                                <select  name="Advertise_Status" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="New">جديد</option>
+                                    <option value="Old">مستعمل</option>
+                                    
+                                </select>
+                            
+                             </div>
+                             <hr>
+                             
+                             
+                             <hr>
+                             
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+                            <hr>
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                            
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage1' name = 'image1'
+                                onclick="GetPicture('#ElcFile1');">
+                            
+                            <input type="file"id='ElcFile1'name='File1'onchange="Read(this,'#Elcimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage2' name = 'image2'
+                                onclick="GetPicture('#ElcFile2');">
+
+                            <input type="file" id='ElcFile2'name='File2'onchange="Read(this,'#Elcimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage3' name = 'image3'
+                                onclick="GetPicture('#ElcFile3');">
+
+                            <input type="file" id='ElcFile3' name='File3' onchange="Read(this,'#Elcimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage4' name = 'image4'
+                                onclick="GetPicture('#ElcFile4');">
+
+                            <input type="file" id='ElcFile4' name='File4' onchange="Read(this,'#Elcimage4');" style="display: none;">
+                            
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#elc');">نشر</button>
+                        </div>
+                    </div>
+
+                    <!-- ANT FORM -->
+                    <div style="display:none;" id="ant" class="support-form">
+
+                        <input type="hidden" name="Type" id="AntType">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name"
+                                    class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text"
+                                name="Advertise_Price" class="form-control mb-20"
+                                placeholder="السعر * "></input>
+                             
+                            </div>
+
+                        
+                           <hr>
+                           
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Product_Name" class="form-control mb-20" placeholder="اسم المنتج * "></input>
+                             
+                            </div>
+                           <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الماركه </label>
+                                <input  style="width: 40%; height: 80%;" dir="rtl" type="text" name="Advertise_TextType" placeholder="الماركه * "></input>
+                                
+                                <select  name="Advertise_SelectType" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="">BMW</option>
+                                    <option value="BMW">BMW</option>
+                                </select>
+                            
+                             </div>
+                           <hr>
+                            
+                            
+                             <hr>
+
+                            
+                             
+                             
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الحاله </label>
+                               
+                                
+                                <select  name="Advertise_Status" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="New">جديد</option>
+                                    <option value="Old">مستعمل</option>
+                                    
+                                </select>
+                            
+                             </div>
+                             <hr>
+                             
+                             
+                             <hr>
+                             
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+                            <hr>
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                            
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Antimage1' name = 'image1'
+                                onclick="GetPicture('#AntFile1');">
+                            
+                            <input type="file"id='AntFile1'name='File1'onchange="Read(this,'#Antimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Antimage2' name = 'image2'
+                                onclick="GetPicture('#AntFile2');">
+
+                            <input type="file" id='AntFile2'name='File2'onchange="Read(this,'#Antimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Antimage3' name = 'image3'
+                                onclick="GetPicture('#AntFile3');">
+
+                            <input type="file" id='AntFile3' name='File3' onchange="Read(this,'#Antimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Antimage4' name = 'image4'
+                                onclick="GetPicture('#AntFile4');">
+
+                            <input type="file" id='AntFile4' name='File4' onchange="Read(this,'#Antimage4');" style="display: none;">
+                            
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+                            
+                        </div>
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#ant');">نشر</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <script>
+        // Get the modal
+        var Model = document.getElementById('myModal');
+
+        // General Model
+        var General = document.getElementById("general");
+
+        // Get the button that opens the modal
+        var Btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var Span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        Btn.onclick = function() {
+          Model.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        Span.onclick = function() {
+          Model.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        /*window.onclick = function(event) {
+            if (event.target == Modal)
+                Model.style.display = "none";
+        }*/
+
+        var HomeForm = document.getElementById("home");
+        var MobileForm = document.getElementById("mobile");
+        var EatForm = document.getElementById("eat");
+        var CarForm = document.getElementById("car");
+        var ElcForm = document.getElementById("elc");
+        var AntForm = document.getElementById("ant");
+
+        function Display(){
+            Model.style.display = "none";
+            General.style.display = "none";
+
+            HomeForm.style.display = "none";
+            MobileForm.style.display = "none";
+            EatForm.style.display = "none";
+            CarForm.style.display = "none";
+            ElcForm.style.display = "none";
+            AntForm.style.display = "none";
+        }
+
+        function Home() {
+            document.getElementById('HomeType').value = '1';
+            Display();
+            HomeForm.style.display = "block";
+        }
+
+        function Mobile() {
+            document.getElementById('MobileType').value = '2';
+            Display();
+            MobileForm.style.display = "block";
+        }
+
+        function Eat() {
+            document.getElementById('EatType').value = '3';
+            Display();
+            EatForm.style.display = "block";
+        }
+
+        function Car() {
+            document.getElementById('CarType').value = '4';
+            Display();
+            CarForm.style.display = "block";
+        }
+
+        function Elc() {
+            document.getElementById('ElcType').value = '5';
+            Display();
+            ElcForm.style.display = "block";
+        }
+
+        function Ant(Value) {
+            document.getElementById('AntType').value = Value;
+            Display();
+            AntForm.style.display = "block";
+        }
+
+    </script>
+
+    <!--<script src="js/jquery.min.js"></script>-->
+    <!-- Popper -->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!-- Bootstrap -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!-- All Plugins -->
+    <!--<script src="js/rehomes.bundle.js"></script>-->
+    <!-- Active -->
+    <!--<script src="js/default-assets/active.js"></script>-->
+    << include : AllJSFiles.html >>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+   <script src="http://cdn.tutorialzine.com/misc/adPacks/v1.js" async></script>
+
+</body>
+
+</html>

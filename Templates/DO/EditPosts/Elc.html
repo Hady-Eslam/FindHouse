@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+        
+
+    <!-- Our CSS stylesheet file -->
+    <link rel="stylesheet" href="<< Head_Assest_Style >>">
+
+    <!-- Font Awesome Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Assest_Font >>">
+
+    <script src="<< AddPictureScript >>"></script>
+    <script src="<< TriggerFormScript >>"></script>
+        
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 60%;
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        div#popup button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 30%; 
+          width:30%;
+        }
+        .column {
+          float: left;
+          
+        }
+        .column span, .column img{
+            cursor: pointer;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        .container {
+          
+          position: relative;
+          cursor: pointer;
+          font-size: 20px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          padding-right: 40%;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+          position: relative;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 10%;
+         
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+         
+          background-color: #eee;
+          padding-left: 2%;
+          margin-right: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+          background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+    <!--<div class="breadcrumb-area bg-img bg-overlay-3 wow fadeInUp" data-wow-delay="200ms" style="background-image: url(img/bg-img/30.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">post</li>
+                            </ol>
+                        </nav>
+                        <h2 class="page-title">اضافه اعلان</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** Contact Area Start **** -->
+    <section   dir="rtl" class="rehomes-support-and-contact-area section-padding-80-0">
+        
+        <div   align="right" class="col-12 col-md-6">
+            <!-- Leave A Reply -->
+            <div class="rehomes-contact-form mb-80 wow fadeInUp"
+                data-wow-delay="200ms">
+                <!-- Title -->
+
+                <!-- Form -->
+                <div id="popup">
+
+                    <!-- ELC FORM -->
+                    <div id="elc" class="support-form">
+
+                        <input type="hidden" name="Type" id="ElcType">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                            
+                                <input dir="rtl" type="text" name="Advertise_Name"
+                                    class="form-control mb-20" placeholder="عنوان الاعلان ">
+                            
+                            </div>
+
+                            <div  align="right" class="col-12">
+                                <input  style="width: 40%;" dir="rtl" type="text"
+                                    name="Advertise_Price" class="form-control mb-20"
+                                    placeholder="السعر * ">
+                            </div>
+
+                           <hr>
+                           
+                            <div  align="right" class="col-12">
+                             <input  style="width: 40%;" dir="rtl" type="text" name="Advertise_Product_Name" class="form-control mb-20"
+                                placeholder="اسم المنتج * ">
+                             
+                            </div>
+
+                           <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الماركه </label>
+                                <input  style="width: 40%; height: 80%;" dir="rtl" type="text" name="Advertise_TextType" placeholder="الماركه * "></input>
+                                
+                                <select  name="Advertise_SelectType" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="0">Select Type</option>
+                                    <option value="BMW">BMW</option>
+                                </select>
+                            
+                             </div>
+                           <hr>
+                            
+                            
+                             <hr>
+
+                            
+                             
+                             
+                             <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                <label style="font-size: 25px;  ">الحاله </label>
+                               
+                                
+                                <select  name="Advertise_Status" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                    <option value="New">جديد</option>
+                                    <option value="Old">مستعمل</option>
+                                    
+                                </select>
+                            
+                             </div>
+                             <hr>
+                             
+                             
+                             <hr>
+                             
+                            <div   width="60%" align="right" class="col-12">
+                                <textarea   dir="rtl" type="text" name="Advertise_Descreption" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                            </div>
+                            <hr>
+                           <h4 style="padding-right: 2%;" >بيانات صاحب الاعلان</h4>
+                           <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Phone" class="form-control mb-20" placeholder="رقم الهاتف  "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" name="User_City" class="form-control mb-20" placeholder="المدينه "></input>
+                            </div>
+                             <div class="col-12">
+                                <input dir="rtl" type="text" name="User_Name" class="form-control mb-20" placeholder=" الاسم "></input>
+                            </div>
+                            <div class="col-12">
+                                <input dir="rtl" type="text" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                            </div>
+                            
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage1' name = 'image1'
+                                onclick="GetPicture('#ElcFile1');">
+                            
+                            <input type="file"id='ElcFile1'name='File1'onchange="Read(this,'#Elcimage1');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage2' name = 'image2'
+                                onclick="GetPicture('#ElcFile2');">
+
+                            <input type="file" id='ElcFile2'name='File2'onchange="Read(this,'#Elcimage2');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage3' name = 'image3'
+                                onclick="GetPicture('#ElcFile3');">
+
+                            <input type="file" id='ElcFile3' name='File3' onchange="Read(this,'#Elcimage3');" style="display: none;">
+
+                            <input type="image" src="<< AddPicture >>" width="80"
+                                height="80" alt="AddPicture" id='Elcimage4' name = 'image4'
+                                onclick="GetPicture('#ElcFile4');">
+
+                            <input type="file" id='ElcFile4' name='File4' onchange="Read(this,'#Elcimage4');" style="display: none;">
+                            
+                            <!-- Advertise Contact Status -->
+                            <div align="right">
+                                
+                                <h4 style="padding-right: 20%;" >التواصل عن طريق</h4>
+                           
+                                <label class="container">التليفون
+                                    <input type="radio" name="Advertise_ContactStatus" 
+                                        value="Phone">
+                                  <span class="checkmark"></span>
+                                </label>
+                            
+                                <label class="container">الرسائل
+                                  <input type="radio" name="Advertise_ContactStatus"
+                                    value="Messages">
+                                  <span class="checkmark"></span>
+                                </label>
+                                
+                                <label  align="right" class="container"> كلاهما 
+                                    <input  type="radio" checked="checked"
+                                        name="Advertise_ContactStatus" value="Both">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div  align="right" >
+                                <button align="center" type="submit" onclick="GO('#elc');">نشر</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!--<script src="js/jquery.min.js"></script>-->
+    <!-- Popper -->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!-- Bootstrap -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!-- All Plugins -->
+    <!--<script src="js/rehomes.bundle.js"></script>-->
+    <!-- Active -->
+    <!--<script src="js/default-assets/active.js"></script>-->
+    << include : AllJSFiles.html >>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+   <script src="http://cdn.tutorialzine.com/misc/adPacks/v1.js" async></script>
+
+</body>
+
+</html>

@@ -22,7 +22,7 @@ function Post_GET($Request, $Post_id){
 
 	$MySql = new ModelExcutionEngine();
 	$Hashing = new HashingEngine();
-
+	
 	$Result = $MySql->FetchOneRow('SELECT * FROM posts WHERE id = ? AND deleted = ?',
 			array( $Post_id , '0'));
 

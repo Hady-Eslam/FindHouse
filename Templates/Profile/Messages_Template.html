@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+    <script src="<< JQueryScript >>"></script>
+    <script src="<< DropBoxScript >>"></script>
+
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< PagesScripts >>MessagesScript.js"></script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    << include : MessageBox.html >>
+
+    <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms"
+        style="padding-left: 10%">
+        <!--<h4 class="mb-30">Admin Operations</h4>-->
+
+        <!-- Content -->
+        <a class="btn rehomes-btn mt-10" href="<< AllMessages >>">All Messages</a>
+        <a class="btn rehomes-btn mt-10" href="<< Inbox >>">Inbox Messages</a>
+        <a class="btn rehomes-btn mt-10" href="<< Sent >>">Sent Messages</a>
+    </div>
+
+    << Load : Profile/Messages >>
+    << Filter : ShowMessages >>
+
+    <div class="col-12 col-md-8 col-lg-8">
+        <div class="single-property-area wow fadeInUp" data-wow-delay="200ms">
+
+            <!-- Property Description -->
+            <div class="property-desc-area">
+
+                <!-- Property Info -->
+                <p>From : <span>Hady@gmail.com</span></p>
+                <p>To : <span>Eslam@gmail.com</span></p>
+                <p>Date : <span>05/05/2019</span></p>
+                <p>Addvertise Name: <span>Hello World</span></p>
+            </div>
+
+            <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                <!--<h4 class="mb-30">Admin Operations</h4>-->
+
+                <!-- Content -->
+                <a class="btn rehomes-btn mt-10" style="width: 40%"
+                    onclick="DeleteMessage(100)">Delete</a>
+
+                <a class="btn rehomes-btn mt-10" style="width: 40%"
+                    href="">Show Full Message</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+</body>
+
+</html>

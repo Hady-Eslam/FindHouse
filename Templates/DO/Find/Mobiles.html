@@ -1,0 +1,221 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< PagesScripts >>Find/MobilesScript.js"></script>
+    
+
+</head>
+
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Welcome Maps Area Start **** -->
+    <div class="rehomes-search-form-area wow fadeInUp" data-wow-delay="200ms">
+
+        <div class="container">
+        
+            <div class="rehomes-search-form">
+        
+                <form method="POST">
+        
+                    <div class="row">
+        
+                        <div class="col-12 col-lg-10">
+        
+                            <div class="row">
+        
+                                <div class="col-12 col-md-6 col-lg-3">
+
+                                    <select  name="Type" id="cat" class="form-control" size="1">
+                                        
+                                        <option value="0">نوع الموبيل </option>
+                                        <option value="HUAWEI">HUAWEI</option>
+                                        <option value="Apple">Apple</option>
+                                        <option value="SamSung">SamSung</option>
+                                        <option value="htc">htc</option>
+                                        <option value="Tecno">Tecno</option>
+                                        <option value="Lenovo">Lenovo</option>
+                                        <option value="Nokia">Nokia</option>
+                                        <option value="ALfa Romeo">ALfa Romeo</option>
+                                        <option value="HONER">HONER</option>
+                                        <option value="OPPO">OPPO</option>
+                                        <option value="Other Brands">انواع اخرى </option>
+
+                                    </select>
+
+                                </div>
+                                
+                                <div class="col-12 col-md-6 col-lg-3">
+
+                                    <select name="Status" id="all" class="form-control">
+                                        <option value="01">حاله الموبيل </option>
+                                        <option value="New">جديد</option>
+                                        <option value="Old">مستعمل</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-3" >
+                                    <div width="100%"  class="slider-range mb-15">
+                                        <select name="Price" id="bedrooms"
+                                            class="form-control">
+
+                                            <option value="Non">السعر</option>
+                                            <option value="500">اقل من 500</option>
+                                            <option value="1500">من 500 ل 1500</option>
+                                            <option value="2000">من 1500 ل 2000</option>
+                                            <option value="3000">من 2000 ل 3000</option>
+                                            <option value="4000">من 3000 ل 4000</option>
+                                            <option value="5000">اكثر من 4000</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 col-lg-2">
+                            <button type="submit" class="btn rehomes-search-btn">Search</button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="welcome-area wow fadeInUp" data-wow-delay="200ms">
+        <div class="google-maps">
+            <iframe src="https://maps.google.com/maps?q=%D9%85%D8%B5%D8%B1%20%D8%A7%D8%B3%D9%8A%D9%88%D8%B7%20%D8%A7%D8%A8%D8%B1%D8%A7%D8%AC%20%D8%A7%D9%84%D9%86%D8%B5%D8%B1%20&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen ></iframe>
+        </div>
+    </div>
+    <!-- **** Welcome Maps Area End **** -->
+
+    <!-- **** Sale area Start **** -->
+    <section class="rehome-house-sale-area section-padding-100-60">
+        <div class="container">
+            <div class="row" id="MobilesPosts">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp"
+                        data-wow-delay="200ms">
+                        <h2>Search <span>Results</span></h2>
+                        <p>These are the best deals and deals. All in Assuit City and nearby area</p>
+                    </div>
+                </div>
+
+                << Load : DO/Find/Mobiles >>
+                << Filter : GetPosts >>
+
+            </div>
+
+
+            << Filter : CheckButton >>
+        </div>
+    </section>
+    <!-- **** Sale Area End **** -->
+
+    <section class="rehomes-choose-us-area section-padding-100-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center wow fadeInUp" data-wow-delay="200ms">
+                        <h2 align="right"><span>ليه</span> اختارتنا ؟</h2>
+                        <p align="right" >عندنا خبره اكتر من عشر سنين  في مجال البيع و التسويق وكيفيه التعامل مع العميل بشكل ممتاز</p>
+                    </div>
+                </div>
+
+                <!-- Single choose us content -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-choose-us-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Choose us Icon -->
+                        <div class="choose-us-icon">
+                            <i class="icon_search"></i>
+                        </div>
+                        <h5 align="right">هتلاقي طلبك اسرع</h5>
+                        <p  align="right">هنساعدك تلاقي اللى بتدور عليه بسرعه وانت مرتاح علشان تقعد ف بيتك برضو مرتاح  </p>
+                    </div>
+                </div>
+
+                <!-- Single choose us content -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-choose-us-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Choose us Icon -->
+                        <div class="choose-us-icon">
+                            <i class="fa fa-cc-visa"></i>
+                        </div>
+                        <h5 align="right">الامان</h5>
+                        <p align="right">لما تيجى تتفرج على حاجه هيكون معاك حد متخصص علشان يكون توصيلك سهل لطلبك </p>
+                    </div>
+                </div>
+
+                <!-- Single choose us content -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-choose-us-content wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Choose us Icon -->
+                        <div class="choose-us-icon">
+                            <i class="icon_creditcard"></i>
+                        </div>
+                        <h5 align="right">وفر فلوسك </h5>
+                        <p align="right">لما تلاقي طلبك عندنا مش هتدفع فلوس وهتوفر وقت ومجهود</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- **** Choose Us Area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+    <script type="text/javascript">
+        var Mobiles_Type = '<< Mobiles_Type >>';
+        var Mobiles_Status = '<< Mobiles_Status >>';
+        var Mobiles_Price = '<< Mobiles_Price >>';
+
+        var Mobiles_Count = 21;
+
+        var GetMoreMobilesPostsPage = '<< GetMoreMobilesPostsPage >>';
+    </script>
+
+</body>
+
+</html>

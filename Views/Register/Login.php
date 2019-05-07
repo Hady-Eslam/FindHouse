@@ -84,5 +84,5 @@ function Login_CheckData_CheckAccount($Data, $Table, $Form){
 		 $Result->Result == 0 && $Result->Data == 'User Not Found')
 		return (new SiteRenderEngine())->Error_Page('Log in');
 
-	Redirect(Find);
+	Redirect(Find.'/Homes');
 }

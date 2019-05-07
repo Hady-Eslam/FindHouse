@@ -1,0 +1,255 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <script src="<< JQueryScript >>"></script>
+    <script src="<< DropBoxScript >>"></script>
+
+    <script src="<< CheckLenScript >>"></script>
+    <script src="<< CheckinputLenScript >>"></script>
+
+    <script src="<< SetError_FunctionScript >>"></script>
+    <script src="<< TriggerMessageScript >>"></script>
+
+    <script src="<< AddPictureScript >>"></script>
+    <script src="<< TriggerFormScript >>"></script>
+
+    <script src="<< PagesScripts >>PostScript.js"></script>
+
+    <!-- Stylesheet -->
+    
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+    <style type="text/css">
+        input[type = 'file'] {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    << Load : DO/Post >>
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Properties Hero Area Start **** -->
+    <div class="properties-hero-area d-flex flex-wrap align-items-center mb-80">
+        <div class="properties-slide">
+            
+            <!-- Properties Slider -->
+            <div id="property-thumb-silde" class="carousel slide wow fadeInUp"
+                data-wow-delay="200ms" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#property-thumb-silde" data-slide-to="0" class="active"
+                        style="background-image: url(<< First_Image >>);"></li>
+
+                    <li data-target="#property-thumb-silde" data-slide-to="1"
+                        style="background-image: url(<< Second_Image >>);"></li>
+                    
+                    <li data-target="#property-thumb-silde" data-slide-to="2"
+                        style="background-image: url(<< Third_Image >>);"></li>
+                    
+                    <li data-target="#property-thumb-silde" data-slide-to="3"
+                        style="background-image: url(<< Fourth_Image >>);"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<< First_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<< Second_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<< Third_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<< Fourth_Image >>" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Properties Content Area -->
+        <div class="properties-content-area wow fadeInUp" data-wow-delay="200ms">
+            <div class="properties-content-info">
+
+                <h2><< Head_Title >></h2>
+                
+                <div style="background-color: #f5f8fa;">
+                    << Filter : GetStatus : Status >>
+                </div>
+                
+                <div class="properties-location">
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> << Address >></p>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> << Type >></p>
+                </div>
+
+                <h4 class="properties-rate">$<< Money >> <span>/ month</span></h4>
+                
+                <p><< Descreption >></p>
+
+                <!-- Properties Info -->
+                <div class="properties-info">
+                    <p>Status: <span><< Lux_Status >></span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- **** Properties Hero Area End **** -->
+
+    <!-- **** Properties-area Start **** -->
+    <div class="rehomes-properties-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-8">
+
+                    <!-- Admin Area -->
+                    << Filter : AdminOperations : Status - User_Status >>
+
+                    <!-- Information Area -->
+                    <div class="information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Infomation</h4>
+
+                        <!--Information Content -->
+                        <div class="information-content">
+                            <ul class="d-flex flex-wrap">
+                                <li><span>Name</span> <span><< Product_Name >></span></li>
+                                <li><span>Price</span> <span>$ << Money >></span></li>
+                                
+                                <li><span>Accessories Type</span> <span> << Type >></span></li>
+                                <li><span>Accessories Status</span> <span><< Lux_Status >></span></li>
+                                
+                                <li><span>Agent</span> <span> << User_Name >></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Agent Information -->
+                    <div class="agent-information-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <h4 class="mb-30">Agent Infomation</h4>
+
+                        <!-- Agent Information Info -->
+                        <div class="agent-information-info d-flex align-items-center">
+                            <!-- Agent Thumb -->
+                            <div class="agent-thumb">
+                                <img src="<< User_Picture >>" alt="Agent Picture ...">
+                            </div>
+                            <!-- Agent Info -->
+                            <div class="agent-info">
+                                <h4><< User_Name >></h4>
+                                <!-- Agent Contact -->
+                                <div class="agent-contact d-flex justify-content-between">
+                                    << Filter : CheckContactInfo : Contact_Status >>
+                                </div>
+                                <p>This is The Agent Who Made This Advertise</p>
+                                <a href="<< User_Link >>"><p>Link For This Agent</p></a>
+                                <a class="btn rehomes-btn mt-10" href="#">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    << Filter : GetMessage : Contact_Status >>
+                </div>
+
+                <!-- Sidebar Area -->
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="rehomes-property-sidebar-area">
+
+                        <!-- Single Properties Widget Area -->
+                        <div class="properties-single-widget-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                            <h4 class="widget-title mb-30">Agent Advertises</h4>
+
+                            << Filter : GetUserPosts : Email - User_Profile - User_Picture - User_Name >>
+
+                            <!-- Single Recent Post -->
+                            <div class="single-recent-post d-flex align-items-center">
+                                <!-- Thumb -->
+                                <div class="properties-post-thumb">
+                                    <a href="properties-details.html"><img src="img/bg-img/45.jpg" alt=""></a>
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <a href="properties-details.html" class="post-title">Kennedy Suite</a>
+                                    <p class="properties--location"><i class="fa fa-map-marker" aria-hidden="true"></i> GA 125, Newyork</p>
+                                    <p class="properties--rent">Rent: <span>$7.770.000</span></p>
+                                </div>
+                            </div>
+
+                            <!-- Single Recent Post -->
+                            <div class="single-recent-post d-flex align-items-center">
+                                <!-- Thumb -->
+                                <div class="properties-post-thumb">
+                                    <a href="properties-details.html"><img src="img/bg-img/46.jpg" alt=""></a>
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <a href="properties-details.html" class="post-title">Roob Viaduct</a>
+                                    <p class="properties--location"><i class="fa fa-map-marker" aria-hidden="true"></i> GA 125, Newyork</p>
+                                    <p class="properties--rent">Rent: <span>$7.770.000</span></p>
+                                </div>
+                            </div>
+
+                            <!-- Single Recent Post -->
+                            <div class="single-recent-post d-flex align-items-center">
+                                <!-- Thumb -->
+                                <div class="properties-post-thumb">
+                                    <a href="properties-details.html"><img src="img/bg-img/47.jpg" alt=""></a>
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <a href="properties-details.html" class="post-title">Glover Plains</a>
+                                    <p class="properties--location"><i class="fa fa-map-marker" aria-hidden="true"></i> GA 125, Newyork</p>
+                                    <p class="properties--rent">Rent: <span>$7.770.000</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- **** Properties-area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+    <script type="text/javascript">
+        var Message_Len = << Message_Len >>;
+        var Email_Len = << Email_Len >>;
+    </script>
+
+</body>
+
+</html>

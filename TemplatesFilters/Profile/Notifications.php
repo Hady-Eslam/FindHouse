@@ -6,6 +6,7 @@ use SiteEngines\HashingEngine;
 function GetNotifications(){
 	$String = '';
 
+	$GLOBALS['Last_ID'] = 0;
     foreach ($GLOBALS['Result'] as $Value)
         $String .= Notifications_Get_Notification($Value);
 
@@ -29,29 +30,30 @@ function Notifications_Get_Notification($Notification){
 		return '';
 
 	Notifications_Get_Message();
+	$GLOBALS['Last_ID'] = $GLOBALS['NOTIFICATION_ID'];
 
 	return '
-	<div>
-        <div>
-            <a href="" style="display: inline-block;">
-                <input type="image" src="'.$GLOBALS['User_Picture'].'"
-                	style="width: 80px;height: 80px;">
-            </a>
-
-            <div style="display: inline-block;font-size: 15px;">
-                <p><strong>Date : </strong>'.$GLOBALS['Date'].'</p>
-                <p><strong>By : </strong>'.$GLOBALS['User_Name'].'</p>
-                '.Notifications_Get_Status().'
-            </div>
+	<!-- Agent Information Info -->
+    <div class="agent-information-info d-flex align-items-center"
+    		id="'.$GLOBALS['NOTIFICATION_ID'].'">
+        <!-- Agent Thumb -->
+        <div class="agent-thumb">
+            <img src="'.$GLOBALS['User_Picture'].'" alt="" style="width:100px;height:100px">
         </div>
-
-        <div> <p>'.$GLOBALS['Message'].'</p> </div>
-
+        <!-- Agent Info -->
+        <div class="agent-info">
+            <h4>By : '.$GLOBALS['User_Name'].'</h4>
+            <!-- Agent Contact -->
+            <p>Date : <span>'.$GLOBALS['Date'].'</span></p>
+            '.Notifications_Get_Status().'
+            <p>'.$GLOBALS['Message'].'</p>
+        </div>
     </div>';
 }
 
 function Notifications_Get_Data_From_Hashing($Notification){
 	(new HashingEngine())->Get_Data_From_Hashing([
+		['Type' => '', 'Data' => $Notification['id'], 'Key' => 'NOTIFICATION_ID'],
 		['Type' => 'Notifications', 'Data' => $Notification['from_user'], 'Key' => 'From_User'],
 		['Type' => 'Notifications', 'Data' => $Notification['to_user'], 'Key' => 'To_User'],
 
@@ -68,7 +70,8 @@ function Notifications_Set_Error(){
 }
 
 function Notifications_GetPicture(){
-	if ( $GLOBALS['From_User'] == 'Admin' ){
+	if ( $GLOBALS['Notification_Type'] == '4' || $GLOBALS['Notification_Type'] == '5' ||
+			$GLOBALS['Notification_Type'] == '6' ){
 		$GLOBALS['User_Picture'] = Admin;
 		$GLOBALS['User_Name'] = 'Admin';
 	}
@@ -101,7 +104,8 @@ function Notifications_GetPicture(){
 }
 
 function Notifications_Get_Message(){
-	if ( $GLOBALS['User_Name'] == 'Admin' ){
+	if ( $GLOBALS['Notification_Type'] == '4' || $GLOBALS['Notification_Type'] == '5' ||
+			$GLOBALS['Notification_Type'] == '6' ){
 		if ( preg_match('/(\d+)/', $GLOBALS['Message'], $Result) ){
 			Notifications_CheckPost($Result[1]);
 		}
@@ -119,8 +123,13 @@ function Notifications_CheckPost($Post_id){
 }
 
 function Notifications_Get_Status(){
-	if ( $GLOBALS['From_User'] == 'Admin' )
-		return '<p style="color: green;"><strong>Status : </strong>Authorized Admin</p>';
+	if ( $GLOBALS['Notification_Type'] == '4' || $GLOBALS['Notification_Type'] == '5' ||
+			$GLOBALS['Notification_Type'] == '6' )
+		return '<p>Status : <span style="color: green;">Authorized Admin</span></p>';
 	else
-		return '<p><strong>Status : </strong>User</p>';
+		return '<p><span>Status : </span>User</p>';
+}
+
+function GetMoreNotifications(){
+	return $GLOBALS['Last_ID'];
 }

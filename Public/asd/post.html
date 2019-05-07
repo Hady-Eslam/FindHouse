@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>post</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+        
+
+        <!-- Our CSS stylesheet file -->
+        <link rel="stylesheet" href="assets/css/styles.css" />
+
+        <!-- Font Awesome Stylesheet -->
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css" />
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+div#popup button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30%; 
+  width:30%;
+}
+.column {
+  float: left;
+  
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+        
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- **** Header Area Start **** -->
+    <header class="header-area">
+        <!-- Top Header Area Start -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-6">
+                        <div class="top-header-content">
+                            <a href="#"><i class="icon_mail"></i> <span>info.colorlib@gmail.com</span></a>
+                            <a href="#"><i class="icon_phone"></i> <span>(12) 345 6789</span></a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="top-header-content">
+                            <!-- Top Social Area -->
+                            <div class="top-social-area ml-auto">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Header Area End -->
+
+        <!-- Main Header Start -->
+        <div class="main-header-area animated">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="rehomesNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="./index.html"><img src="./img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- **** Header Area End **** -->
+
+    <!-- **** Breadcrumb Area Start **** -->
+    <div class="breadcrumb-area bg-img bg-overlay-3 wow fadeInUp" data-wow-delay="200ms" style="background-image: url(img/bg-img/30.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">post</li>
+                            </ol>
+                        </nav>
+                        <h2 class="page-title">اضافه اعلان</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- **** Breadcrumb Area End **** -->
+
+    <!-- **** Contact Area Start **** -->
+    <section  id="asd"  dir="rtl" class="rehomes-support-and-contact-area section-padding-80-0">
+        
+                <div   align="right" class="col-12 col-md-6">
+                    <!-- Leave A Reply -->
+                    <div class="rehomes-contact-form mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Title -->
+                        <p   class="support-title">
+                            <h2  >اضافه الاعلان</h2>
+                        </p>
+
+                        <!-- Form -->
+                        <div id="popup">
+                            <button id="myBtn">صنف اعلانك </button>
+                            <div id="myModal" class="modal">
+
+                                      <!-- Modal content -->
+                                <div class="modal-content" style="width:100;">
+                                    <span class="close">&times;</span>
+                                    <div align="center" class="row">
+                                        <div onclick="s()" class="column">
+                                        <img  src="https://img.icons8.com/dusk/64/000000/home-page.png">
+                                        <span style="padding-left:10%; font-size: 20px;">عقارات</span>
+                                         </div>
+                                       </a>
+                                         <div class="column">
+                                        <img   src="https://img.icons8.com/dusk/64/000000/two-smartphones.png">
+                                        <span style="padding-left:10%; font-size: 20px; ">موبيلات</span>
+                                        </div>
+                                        <div class="column">
+                                        <img   src="https://img.icons8.com/dusk/64/000000/traffic-jam.png">
+                                        <span style="padding-left:10%; font-size: 20px;">سيارات</span>
+                                    </div>
+                                    <div class="column">
+                                        <img src="https://img.icons8.com/dusk/64/000000/tv.png">
+                                        <span style="padding-left:10%; font-size: 20px;">اجهزه</span>
+                                    </div>
+                                    <div class="column">
+                                        <img  src="https://img.icons8.com/dusk/64/000000/watch.png">
+                                        <span style="padding-left:10%; font-size: 20px;">اكسسوارات</span>
+                                    </div>
+                                    <div class="column">
+                                        <img  src="https://img.icons8.com/color/64/000000/crown-and-lipstick.png">
+                                        <span  style="padding-left:10%; font-size: 20px;">موضه</span>
+                                    </div>
+                                    
+                                        <div class="column">
+                                        <img   src="https://img.icons8.com/dusk/64/000000/hamburger.png">
+                                        <span style="padding-left:10%; font-size: 20px;">ماكولات</span>
+                                    </div>
+                                    <div class="column">
+                                        <img   src="https://img.icons8.com/dusk/64/000000/stethoscope.png">
+                                        <span style="padding-left:10%; font-size: 20px;">طبي</span>
+                                    </div>
+                                    <div class="column">
+                                        <img   src="https://img.icons8.com/dusk/64/000000/shopping-bag.png">
+                                        <span style="padding-left:10%; font-size: 20px;">تحف</span>
+                                    </div>
+                                    
+                                 </div>
+
+                            </div>
+                         </div>
+                         <hr>
+                        
+                        <form  class="support-form" action="" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                 <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="عنوان الاعلان "></input>
+                                </div>
+
+        
+                                <div class="col-12">
+                                    <textarea dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="الوصف "></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="الموبيل "></input>
+                                </div>
+                                <div class="col-12">
+                                    <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="المدينه "></input>
+                                </div>
+                                 <div class="col-12">
+                                    <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="عدد الاسم "></input>
+                                </div>
+                                <div class="col-12">
+                                    <input dir="rtl" type="text" name="post" class="form-control mb-20" placeholder=" الايميل المعلن "></input>
+                                </div>
+                                
+                                <div class="col-12">
+                                    تواصل معى عن طريق :
+                                   <input type="radio" name="vehicle1" value="m"> الموبيل
+                                    <input type="radio" name="vehicle2" value="e"> Iالايميل
+                                     <input type="radio" name="vehicle3" value="b" > كلاهما
+                                </div>
+                             
+
+                                <div class="col-12">
+                                    <button align="center" type="submit" class="btn rehomes-btn">نشر</button>
+                                </div>
+                            </div>
+                        </form>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- **** Contact Area End **** -->
+
+    <!-- **** Google Maps **** -->
+   
+    <!-- **** Contact Information Start **** -->
+    
+    <!-- **** Contact Information End **** -->
+
+    <!-- **** Partner Area Start **** -->
+   
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    <!-- jQuery 2.2.4 -->
+    <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+<script >
+  function s() {
+  document.getElementById("asd").innerHTML = "Paragraph changed!";
+}
+</script>
+
+    <script src="js/jquery.min.js"></script>
+    <!-- Popper -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- All Plugins -->
+    <script src="js/rehomes.bundle.js"></script>
+    <!-- Active -->
+    <script src="js/default-assets/active.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+   <script src="http://cdn.tutorialzine.com/misc/adPacks/v1.js" async></script>
+
+</body>
+
+</html>

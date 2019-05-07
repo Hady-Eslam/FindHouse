@@ -1,0 +1,116 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <!--<div id="preloader">
+        <div class="loader"></div>
+    </div>-->
+
+    <!-- **** Header Area Start **** -->
+    << include : Header/SiteHeaders/Main_Header.html >>
+    <!-- **** Header Area End **** -->
+
+    <!-- Single Agent Area -->
+    <div class="col-12 col-md-6 col-lg-4" style="padding-left: 10%">
+        <div class="single-agent-area wow fadeInUp" data-wow-delay="200ms">
+            <!-- Agent Thumb -->
+            <div class="single-agent-thumb">
+                <img src="<< User_Picture >>" alt="Profile Picture"
+                    style="width: 80px;height: 80px">
+            </div>
+            <!-- Agent Info -->
+            <div class="agent-info">
+
+                <a href="#"><< User_Name >></a>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> Posts_Number : << Posts_Number >></p>
+
+            </div>
+        </div>
+    </div>
+
+    << Load : Profile/User >>
+    << Filter : GetAdminControl : User_Status >>
+
+    <!-- **** Sale area Start **** -->
+    <section class="rehome-house-sale-area section-padding-100-60">
+        <div class="container">
+            <div class="row">
+
+            << Filter : GetUserPosts >>
+
+                <!-- Single Property Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-property-area wow fadeInUp" data-wow-delay="200ms">
+                        <!-- Property Thumb -->
+                        <div class="property-thumb">
+                            <img src="img/bg-img/1.jpg" alt="">
+                        </div>
+
+                        <!-- Property Description -->
+                        <div class="property-desc-area">
+                            <!-- Property Title & Seller -->
+                            <div class="property-title-seller d-flex justify-content-between">
+                                <!-- Title -->
+                                <div class="property-title">
+                                    <h4>7660 Nikolaus Burg</h4>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> GA 125, Newyork</p>
+                                </div>
+                                <!-- Seller -->
+                                <div class="property-seller">
+                                    <p>Seller:</p>
+                                    <h6>Alex Cross</h6>
+                                </div>
+                            </div>
+                            <!-- Property Info -->
+                            <div class="property-info-area d-flex flex-wrap">
+                                <p>Sqft: <span>1420 m2</span></p>
+                                <p>Garage: <span>2</span></p>
+                                <p>Baths: <span>05</span></p>
+                                <p>Baths: <span>06</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Property Price -->
+                        <div class="property-price">
+                            <p class="badge-rent">For Rent</p>
+                            <p class="price">$1,599/month</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- **** Sale Area End **** -->
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    <!-- **** Footer Area Start **** -->
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+</body>
+
+</html>

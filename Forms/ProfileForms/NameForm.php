@@ -7,7 +7,7 @@ class NameForm extends FormsEngine{
 	
 	function __construct(...$Data){
 
-		$this->N = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
+		$this->Name = FormsEngine::TextField(['Require' => True, 'Min_Length' => 1,
 				'Max_Length' => Name_Len]);
 
 		$this->FORMDATA = $Data;
@@ -15,6 +15,6 @@ class NameForm extends FormsEngine{
 	}
 
 	function GetName(){
-		return $this->FILTERED_DATA['N'];
+		return $this->FILTERED_DATA['Name'];
 	}
 }

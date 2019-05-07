@@ -18,4 +18,4 @@ $Core->BeginView();
 $Core->GenerateTemplate();
 
 $Timer->End();
-$Timer->ShowTime();
+//$Timer->ShowTime();

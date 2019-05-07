@@ -32,7 +32,7 @@ class RoutingEngine{
 			
 			foreach ($this->Schema as $Key => $Value) {
 				$Key = strval($Key);
-			
+				
 				if ( $Key === '404' )
 					$this->Put404Page($Value);
 

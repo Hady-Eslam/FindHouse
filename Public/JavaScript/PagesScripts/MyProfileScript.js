@@ -6,29 +6,28 @@ function EditPost(id){
     location.href = EditPostPage+id;
 }
 
-function DeletePost(id){
+function DeletePost(id, Category){
 	if ( confirm('Are You Sure Want To Delete This Post ?') == false )
 		return ;
 
 	$.ajax({
         type : "POST",
         url : DeletePostPage,
-        data : 'ID=' + id,
+        data : 'ID=' + id + '&Category=' + Category,
         error: function (jqXHR, exception) {
             console.log(jqXHR);
         },
         
         success : function(Data){
+            console.log(Data);
             try{
                 Data = JSON.parse(Data);
                 if ( Data['Result'] == 0 )
-                    TriggerMessage(3500, '#E30300', '<p>Post Not Found</p>');
+                    alert('Post Not Found');
+
          		else if ( Data['Result'] == 1 ){
-         			TriggerMessage(3500, '#53A01A', '<p>Post Deleted</p>');
-         			$('#' + id).remove();
-         			Posts = parseInt($('#Posts_Number').text());
-         			$('#Posts_Number').text( Posts -1 );
-         			$('.Number').text(Posts - 1);
+         			$('#Post_' + Category + '_' + id).remove();
+         			alert('Post Deleted');
          		}
                 else
                     SetError_Function('in Deleting User Post',

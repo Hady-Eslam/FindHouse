@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title><< Head_Title >></title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="<< Head_LOGO >>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="<< Head_Style >>">
+
+    <script src="<< AddPictureScript >>"></script>
+    <script src="<< TriggerMessageScript >>"></script>
+    <script src="<< SetError_FunctionScript >>"></script>
+
+    <script src="<< CheckLenScript >>"></script>
+    
+    <script src="<< TriggerFormScript >>"></script>
+
+</head>
+    
+<body>
+
+    << include : Header/SiteHeaders/Main_Header.html >>
+
+    <!-- **** Welcome Maps Area Start **** -->
+    <div class="rehomes-search-form-area wow fadeInUp" data-wow-delay="200ms">
+        <div class="container">
+            <div class="rehomes-search-form" style="text-align: center;">
+
+                <div id="NameForm" 
+                    class="nl-form offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 mt-1">
+                    
+                    <input type="text" name="Name" class="form-control" id="Name" 
+                        placeholder="Enter your Name..." oninput="CheckNameSize()">
+
+                    <button type="submit" class="btn btn-success" id="NameSubmit">Change Name</button>
+                </div>
+
+                <div id="PhoneForm"
+                    class="nl-form offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 mt-5">
+                    
+                    <input type="text" name="Phone" class="form-control" id="Phone" 
+                        placeholder="Enter your Phone..." oninput="CheckPhoneSize()">
+
+                    <button type="submit" class="btn btn-success" id="PhoneSubmit">Change Phone</button>
+
+                </div>
+
+                <div id="AddressForm" 
+                    class="nl-form offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 mt-5">
+                    
+                    <input type="text" name="Address" class="form-control" id="Address" 
+                        placeholder="Enter your Address..." oninput="CheckAddressSize()">
+
+                    <button type="submit" class="btn btn-success" id="AddressSubmit">Change Address</button>
+                </div>
+
+                <div id="PasswordForm" 
+                    class="nl-form offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 mt-5">
+                    
+                    <input type="text" name="OldPassword" class="form-control" id="OldPassword" 
+                        placeholder="Enter your Old Password..." oninput="CheckOldPasswordSize()">
+
+                    <input type="text" name="Password" class="form-control" id="Password" 
+                        placeholder="Enter your New Password..." oninput="CheckPasswordSize()">
+
+                    <input type="text" name="ConPassword" class="form-control" id="ConPassword" 
+                        placeholder="Confirm Your Password..." oninput="CheckConPasswordSize()">
+
+                    <button type="submit" class="btn btn-success" id="PasswordSubmit">Change Password</button>
+                </div>
+
+                <div id="PictureForm" 
+                    class="nl-form offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12 mt-5">
+                    
+                    <input type="image" src="<< User_Picture >>" width="100"
+                        height="100" alt="AddPicture" id='image1'onclick="GetPicture('#File1');"
+                        name = 'image1'>
+
+                    <input type="file" id='File1' onchange="Read(this, '#image1');" name='File1'
+                        style="display: none;">
+
+                    <button type="submit" class="btn btn-success" id="PictureSubmit">Change Profile Picture</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- **** Partner Area Start **** -->
+    << include : PartnerArea.html >>
+    <!-- **** Partner Area End **** -->
+
+    << include : Footer/Homes_Template_Footer.html >>
+    <!-- **** Footer Area End **** -->
+
+    <!-- **** All JS Files ***** -->
+    << include : AllJSFiles.html >>
+
+    <script src="<< PagesScripts >>SettingsScript.js"></script>
+
+    <script type="text/javascript">
+        var Name_Len = << Name_Len >>;
+        var Address_Len = << Address_Len >>;
+        var Password_Len = << Password_Len >>;
+        var Phone_Len = << Phone_Len >>;
+
+        << Load : Profile/Settings_Results >>;
+        << Filter : ShowResults >>
+    </script>
+
+</body>
+
+</html>

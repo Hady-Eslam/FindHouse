@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>post</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+        
+
+        <!-- Our CSS stylesheet file -->
+        <link rel="stylesheet" href="assets/css/styles.css" />
+
+        <script src="./Advertise_files/jquery-3.3.1.js.download"></script>
+
+        <!-- Font Awesome Stylesheet -->
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css" />
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+div#popup button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30%; 
+  width:30%;
+}
+.column {
+  float: left;
+  
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* The container */
+.container {
+  
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-right: 40%;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 10%;
+ 
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+ 
+  background-color: #eee;
+  padding-left: 2%;
+  margin-right: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+</style>
+        
+ <script src="./Advertise_files/AddPicture.js.download"></script>
+</head>
+<body dir="rtl">
+    <input type="image" src="./Advertise_files/AddPicture.PNG" width="80" height="80" alt="AddPicture" id="image1" name="image1" onclick="GetPicture('File1');">
+
+<input type="file" style="display: none;" name="file1" id="File1" onchange="Read(this,'image1');">
+<form id="asd" class="support-form" action="" method="post">
+
+
+                            <div class="row">
+                                <div  align="right" class="col-12">
+                                
+                                 <input  style="width: 40%; " dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="السعر * "></input>
+                                 
+                                </div>
+                            
+                               
+                                <div align="right">
+                                 <h4 style="padding-right: 20%;" >الكماليات</h4>
+                                    <label  align="right" class="container">جراج
+                                      <input  type="checkbox" checked="checked">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                    &nbsp;&nbsp;
+                                    <label class="container">امن
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                    &nbsp;&nbsp;
+                                    <label class="container">حديقه
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                </div>
+
+                                <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                    <label style="font-size: 25px;  ">الغرف </label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <select  name="cars" style="width: 4%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                         <option value="5">5</option>
+                                    </select>
+                                
+                                 </div>
+                                 
+                                 <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                    <label style="font-size: 25px;  ">الحمامات </label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <select  name="cars" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">+4</option>
+                                    </select>
+                                
+                                 </div>
+                                 <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                    <label style="font-size: 25px;  ">مفروش </label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <select  name="cars" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                        <option value="1">نعم</option>
+                                        <option value="2">لا</option>
+                                        
+                                    </select>
+                                
+                                 </div>
+                                 <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                    <label style="font-size: 25px;  ">الطابق </label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <select  name="cars" style="width: 5%; height: 60%; border-radius: 20%;  font-size:20px;" >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">+11</option>
+                                        
+                                    </select>
+                                <div style="border-bottom-color: #454545;border-bottom-style: solid;border-bottom-width: 1px;">
+
+                <input type="image" src="./Advertise_files/AddPicture.PNG" width="80" height="80" alt="AddPicture" id="image1" name="image1" onclick="GetPicture(&#39;#File1&#39;);">
+                
+                <input type="file" id="File1" name="File1" onchange="Read(this,&#39;#image1&#39;);">
+
+                <input type="image" src="./Advertise_files/AddPicture.PNG" width="80" height="80" alt="AddPicture" id="image2" name="image2" onclick="GetPicture(&#39;#File2&#39;);">
+
+                <input type="file" id="File2" name="File2" onchange="Read(this,&#39;#image2&#39;);">
+
+                <input type="image" src="./Advertise_files/AddPicture.PNG" width="80" height="80" alt="AddPicture" id="image3" name="image3" onclick="GetPicture(&#39;#File3&#39;);">
+
+                <input type="file" id="File3" name="File3" onchange="Read(this,&#39;#image3&#39;);">
+
+                <input type="image" src="./Advertise_files/AddPicture.PNG" width="80" height="80" alt="AddPicture" id="image4" name="image4" onclick="GetPicture(&#39;#File4&#39;);">
+
+                <input type="file" id="File4" name="File4" onchange="Read(this,&#39;#image4&#39;);">           
+            </div>
+                                 </div>
+                                 <div  class="col-12" style="padding-right: 2.7%; "  class="col-12 " align="right">
+                                    <label style="font-size: 25px;  ">التشطيب </label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <select  name="cars" style="width: 10%; height: 80%; border-radius: 20%;  font-size:20px;" >
+                                       <option value="1">طوب احمر</option>
+                                        <option value="2">حماره</option>
+                                        <option value="3">عادى</option>
+                                        <option value="4">نص تشطيب</option>
+                                        <option value="5">لوكس</option>
+                                        <option value="6">سوب لوكس</option>
+                                        <option value="7">هاى لوكس</option>
+                                        
+                                        
+                                    </select>
+                                
+                                 </div>
+                                <div   width="60%" align="right" class="col-12">
+                                    <textarea   dir="rtl" type="text" name="post" class="form-control mb-20" placeholder="صف اعلانك "></textarea>
+                                </div>
+                                
+                                
+                                <div class="col-12" align="right" >
+                                    <button align="center" type="submit" class="btn rehomes-btn">نشر</button>
+                                </div>
+                            </div>
+                        </form>
